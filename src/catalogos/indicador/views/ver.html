@@ -1,0 +1,101 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}" >
+		<md-icon md-svg-icon="plus"></md-icon>
+  	</md-button>
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>{{ 'VER' | translate }}</span>
+			</h2>
+			<span flex></span>	
+            
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>
+	<md-content layout="column" class="imprimir" layout-padding ng-init="ver('/Indicador');Alertas();">
+	
+            
+             <div layout >
+        	<md-input-container flex>                                    
+            	<label>ID</label>
+                <input readonly  name="id" ng-model="dato.id" value="{{dato.id}}">                    
+            </md-input-container>
+            <md-input-container flex>                                    
+                <span class="img-circle" style="background: {{dato.color}}; display:block; height:40px; width:40px;"></span>                    
+            </md-input-container>
+             </div>
+            <md-input-container flex >                                    
+            	<label>{{ 'CODIGO' | translate }}</label>
+                <input readonly  name="codigo" ng-model="dato.codigo" >
+                    
+            </md-input-container>					            
+        
+        	<md-input-container flex >                                    
+            	<label>{{ 'NOMBRE' | translate }}</label>
+                <input readonly  name="nombre" ng-model="dato.nombre" value="{{dato.nombre}}">
+                    
+            </md-input-container>
+            <md-input-container flex >                                    
+            	<label>{{ 'CATEGORIA' | translate }}</label>
+                <input readonly  name="categoria" ng-model="dato.categoria" value="{{dato.categoria}}">
+                    
+            </md-input-container>					
+							
+            <md-input-container flex >                                    
+            	<label>{{ 'CREADO' | translate }}</label>
+                <input readonly  name="creadoAl" ng-model="dato.creadoAl" value="{{dato.creadoAl}}">
+                    
+            </md-input-container>
+        						
+            <md-input-container flex >                                    
+            	<label>{{ 'MODIFICADO' | translate }}</label>
+                <input readonly  name="modificadoAL" ng-model="dato.modificadoAl" value="{{dato.modificadoAl}}">
+                    
+            </md-input-container>
+        					
+            <md-input-container flex >          
+			   
+			  <div >
+              <md-data-table-toolbar ng-hide="selected.length || filter.show">
+  <h2 class="md-title"><p>{{ 'ALERTA' | translate }}</p></h2>
+  <div flex></div>
+  
+</md-data-table-toolbar>
+
+<md-data-table-container>
+  <table md-data-table md-progress="datos">
+    <thead md-order="query.order" md-trigger="onOrderChange">
+      <tr>
+			  			<th ></th>
+			  			<th name="{{  'MINIMO' | translate }}"></th>
+			  			<th name="{{  'MAXIMO' | translate }}"></th>
+			  			<th name="{{  'COLOR' | translate }}"></th>
+			  			<th ></th>			  			
+			  		</tr>
+    </thead>
+    <tbody>
+      <tr md-auto-select ng-repeat="item in dato.indicador_alertas">			  	
+			 			<td>{{ $index+1 }}</td>
+			 			<td>{{item.minimo}}</td>
+			 			<td>{{item.maximo}}</td>
+			 			<td><md-select placeholder="Color" ng-model="item.idAlerta" ng-change="getIndexOf(item.idAlerta,$index)"  ng-init="getIndexOf(item.idAlerta,$index)">
+                            	<md-option ng-repeat="campo in alertas" value="{{campo.id}}">{{campo.nombre}}</md-option>
+                            </md-select>
+			 			</td>
+			 			<td>
+                        <span class="img-circle" style="background: {{ colorColor[$index] }}; display:block; height:25px; width:25px;"></span></td>
+			 		</tr>
+    </tbody>
+  </table>
+</md-data-table-container>
+			  
+			</md-input-container>
+        			
+</md-content>
+</div>					

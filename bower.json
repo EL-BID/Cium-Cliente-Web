@@ -1,0 +1,42 @@
+{
+  "name": "cium cliente",
+  "version": "0.0.0",
+  "authors": [
+    "Eliecer <ramirez.esquinca@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "~1.1.0",
+    "angular-aria": "~1.4.8",
+    "angular-route": "~1.4.7",
+    "ngstorage": "~0.3.0",
+    "angular-translate": "~2.7.0",
+    "angular-translate-storage-local": "~2.7.0",
+    "angular-cookies": "~1.4.7",
+    "angular-http-auth": "~1.2.2",
+    "angular-messages": "~1.4.8",
+    "angular-animate": "1.4.8",
+    "angular-translate-loader-static-files": "~2.7.2",
+    "angular-resource": "~1.4.2",
+    "angular-fullscreen": "~1.0.1",
+    "angular-sanitize": "~1.4.2",
+    "angular-material-data-table": "~0.8.5",
+    "checklist-model": "~0.2.4",
+    "tc-angular-chartjs": "~2.0.0",
+    "ngRadialGauge": "master",
+    "Chart.js": "2.1.6",
+    "angular-filter": "master",
+    "lf-ng-md-file-input": "~1.4.8"
+  },
+  "resolutions": {
+    "angular-material": "~1.1.0",
+    "angular": "~1.4.8"
+  }
+}

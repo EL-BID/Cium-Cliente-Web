@@ -1,0 +1,51 @@
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+    <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+    <md-toolbar style="z-index: 59;">
+        <div class="md-toolbar-tools">
+            <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <h2>
+              <span>Dashboard   </span>
+            </h2>
+            <span flex></span>
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+    <md-content layout="row" layour-align="center center" layout-padding flex id="principal" style="background-color:#FFFFFF" ng-controller="gaugeCalidadController" ng-init="toggleRightOpciones('gaugeCalidad');">
+        <div flex>
+            <div class="md-toolbar-tools" style="background:gainsboro">
+                <h2>
+                <span flex>{{ 'CALIDAD' | translate}}</span>                                 
+            </h2>
+                <span flex></span>
+                <md-switch ng-model="filtro.estricto" aria-label="Estricto" ng-change="init()"></md-switch>
+                
+            </div>
+            <md-progress-linear ng-if="gaugeCalidad" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+            <md-content layout="column" layour-align="center center" layout-padding flex >
+                <md-content layout="column" layout-align="center center" ng-show="datosOk">
+                    <md-content style="width:58%" layout="column" class="relative gauge" ng-radial-gauge ranges="ranges" value="value" value-unit="unit" precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit">
+                    </md-content>
+                    <md-content layout="column" layout-fill class="relative" ng-show="datosOk" style="font-size:.8em" align="center">
+                        {{ "NUM_UM" | translate}}
+                    </md-content>
+                </md-content>
+                <div ng-show="!datosOk" layout="row" layout-align="center center">
+                    <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+                </div>
+                <ul class="tc-chart-js-legend" ng-show="datosOk" style="padding:0px !important">
+                    <li ng-repeat="item in indicadores">
+                        <span style="background-color:{{item.color}}"></span>{{item.indicador}}
+                    </li>
+                </ul>
+            </md-content>
+        </div>
+        <div flex>
+            <md-content flex>
+                <div ng-include="'src/dashboard/views/dashboard/filtros.html'"></div>
+            </md-content>
+        </div>
+    </md-content>
+</div>

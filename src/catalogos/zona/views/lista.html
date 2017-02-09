@@ -1,0 +1,111 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/Zona')">
+	
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar ng-show="!showSearch">
+			<div class="md-toolbar-tools">    
+				<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+			  <md-icon md-svg-icon="menu" ></md-icon>
+			    </md-button>   
+				<h2>
+				  <span>{{ moduloName | translate }}</span>
+				</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="mostrarSearch(0)" aria-label="{{ 'BUSCAR' | translate }}">
+				    <md-icon md-svg-icon="magnify"></md-icon>
+                    <md-tooltip hide-sm>
+			          {{ 'BUSCAR'| translate }}
+			        </md-tooltip>
+				</md-button>
+
+				<md-button hide-md hide-sm hide-lg aria-label="{{ 'NUEVO' | translate }}" ng-click="nuevo()">
+				    <md-icon md-svg-icon="plus"></md-icon>
+				    {{ 'NUEVO' | translate }}
+				</md-button>
+				<md-button class="md-icon-button"  hide show-sm show-md show-lg ng-click="nuevo()" aria-label="{{ 'NUEVO' | translate }}">
+				  <md-icon md-svg-icon="plus"></md-icon>
+				  <md-tooltip hide-sm>
+				          {{ 'NUEVO' | translate }}
+				        </md-tooltip>
+				</md-button>
+				<span ng-include="'src/app/views/menu-opciones.html'"></span>
+			</div>
+	</md-toolbar>
+
+	<md-toolbar ng-show="showSearch" md-theme="altTheme" class="md-whiteframe-z1" >
+		<div class="md-toolbar-tools" >    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  		<md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<md-button  ng-click="mostrarSearch(1)" aria-label="{{ 'REGRESAR' | translate }}">
+			   <md-icon md-svg-icon="keyboard-backspace"></md-icon> {{ 'REGRESAR' | translate}}
+			</md-button>
+
+				<form ng-submit="buscarL(buscar,columna)" flex layout="row" > 
+			
+					<md-input-container  flex >			     		
+	        			<label>&nbsp;</label>
+	        			<input focus-me="showSearch" ng-model="buscar" type="text" placeholder="{{ 'BUSCAR' | translate }}" flex >            
+	      			</md-input-container>	
+	      		</form>
+		</div>
+	</md-toolbar>
+	<md-content>
+	
+<md-data-table-container>
+  <table md-data-table md-progress="datos">
+    <thead md-order="query.order" md-trigger="onOrderChange">
+      <tr>
+		 <th hide-sm name="ID" order-by="id"></th>
+			<th name="{{ 'NOMBRE' | translate }}" order-by="nombre"></th>
+			<th hide-sm hide-md  name="{{ 'CREADO' | translate }}" order-by="creadoAl"></th>
+		<th hide-sm hide-md hide-lg name="{{ 'MODIFICADO' | translate }}"  order-by="modificadoAl"></th>
+
+			<th ></th>
+		  </tr>
+    </thead>
+    <tbody>
+      <tr md-auto-select ng-repeat="dato in datos">
+				 <td hide-sm>{{ dato.id  }}</td>
+				 <td>{{ dato.nombre | uppercase }}</td>
+				 <td hide-sm hide-md>{{ dato.creadoAl }}</td>
+				 <td hide-sm hide-md hide-lg>{{ dato.modificadoAl }}</td>
+				 <td>
+					
+					<section layout="row" layout-align="end center">
+						
+						<a url-modulo="ver?id={{ dato.id }}"><md-button class="md-icon-button md-primary" aria-label="Ver">
+							<md-icon md-svg-icon="eye"></md-icon>
+    <md-tooltip hide-sm>
+    {{ 'VER' | translate }}
+  </md-tooltip>
+						</md-button></a>
+						
+						<a url-modulo="modificar?id={{ dato.id }}"><md-button class="md-icon-button md-primary" aria-label="Editar">
+						  <md-icon md-svg-icon="pencil" ></md-icon>
+  <md-tooltip hide-sm>
+    {{ 'EDITAR' | translate }}
+  </md-tooltip>
+						</md-button></a>
+						
+						<md-button ng-click="borrar(dato.id, $index)" class="md-icon-button md-warn" aria-label="Eliminar">
+						  <md-icon md-svg-src="delete" ></md-icon>
+  <md-tooltip hide-sm>
+    {{ 'ELIMINAR' | translate }}
+  </md-tooltip>
+						</md-button>
+						
+					</section>
+					
+					</td>
+				 
+			 </tr>
+    </tbody>
+  </table>
+</md-data-table-container>
+
+
+<md-data-table-pagination md-limit="query.limit" md-label="paginationLabel" md-row-select="[25,50,100,1000,10000]" md-page="query.page" md-total="{{paginacion.paginas}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+
+</md-content></div>

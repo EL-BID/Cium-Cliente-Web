@@ -1,0 +1,23 @@
+<md-dialog aria-label="INDICACIONES" style="width: 40%; height: auto;" md-theme="altTheme">
+  <form role="form" name="forma">
+    <md-toolbar >
+      <div class="md-toolbar-tools ">
+        <h2>{{ 'INDICACIONES' | translate }} </h2>
+        <span flex></span>
+        
+        <md-button class="md-icon-button" ng-click="hide()">
+            <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content >
+    
+      <md-content layout="column" layour-align="center center" layout-padding flex>        
+        <md-input-container class="md-block">      
+          <textarea aria-label="indicaciones" ng-model="indicaciones" readonly="true" style="border:none"></textarea>
+        </md-input-container>
+      </md-content>
+
+    </md-dialog-content>
+  </form>
+</md-dialog>    

@@ -1,0 +1,259 @@
+<md-progress-linear  ng-if="opcion" style="position:absolute; top:-5px; left:0px;" class="md-accent"  md-theme="dashboardTheme"  md-mode="indeterminate"></md-progress-linear>
+ 
+	<div class="md-toolbar-tools" style="background:red">  
+		<h1>{{ 'FILTRAR' | translate }}</h1>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="aplicarFiltro(true,null)">
+			<md-icon md-svg-icon="check" ></md-icon>
+			<md-tooltip hide-sm>
+				{{ 'APLICAR_FILTRO' | translate }}
+			</md-tooltip>
+		</md-button>
+		<md-button class="md-icon-button" ng-if="filtros.activo" ng-click="quitarFiltro()">
+			<md-icon md-svg-icon="close-box-outline" ></md-icon>
+			<md-tooltip hide-sm>
+				{{ 'QUITAR_FILTRO' | translate }}
+			</md-tooltip>
+		</md-button>
+	</div>
+
+<md-content layout="column" flex > 
+	<md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom>
+		<md-tab label="TOP" layout="column" ng-if="filtro.top">	
+			<div layout="column" layout-margin  ng-if="filtro.top>1">
+				<br><br>
+				<div flex> 
+					<md-radio-group ng-model="valorMostrarTop" layout="column" layout-aling="start center" ng-change="cambiarVistaTop(valorMostrarTop)">                                         
+						<md-radio-button ng-value="1" >{{ 'TOP_MAS' | translate}}</md-radio-button>
+						<md-radio-button ng-value="2" >{{ 'TOP_MENOS' | translate}}</md-radio-button>
+						<md-radio-button ng-value="0" >{{ 'AMBOS' | translate}}</md-radio-button>                                  
+					</md-radio-group>
+				</div>
+				<div flex>      
+					<md-select placeholder="Top" ng-model="filtro.top" >						
+						<md-option value="5">Top 5</md-option>   
+						<md-option value="10">Top 10</md-option> 
+						<md-option value="25">Top 25</md-option>
+						<md-option value="50">Top 50</md-option> 
+						<md-option value="100">Top 100</md-option>                                           
+					</md-select>
+				</div>
+			</div>	 
+		</md-tab>
+		<md-tab label="{{ 'PERIODO' | translate }}" layout="column">			
+			<div layout="row" layout-align="center center" layout-margin>                                       
+				<div flex  >        
+					<md-select placeholder="{{ 'ANIO' | translate }}" ng-model="filtro.anio"  >						
+						<md-option ng-repeat="item in datos[0]" ng-click="cambiarAnio(item.anio)" value="{{item.anio}}">{{item.anio}}</md-option>  
+					</md-select> 
+				</div>     	               
+				
+				<md-button class="md-icon-button" ng-click="filtro.anio=[]" style="display:inline-block">
+					<md-icon md-svg-icon="close-box-outline" ></md-icon>
+					<md-tooltip hide-sm>
+						{{ 'QUITAR_FILTRO' | translate }}
+					</md-tooltip>
+				</md-button> 
+			</div >
+			<div layout="row" layout-align="center center" layout-margin>                                       
+				<div flex  >      
+					<md-select placeholder="{{ 'BIMESTRE' | translate }}" ng-model="filtro.bimestre" ng-change="cambiarBimestre(filtro.bimestre)" >						
+						<md-option ng-repeat="item in datos[1]" value="{{item.id}}">{{item.nombre}}</md-option>                                           
+					</md-select>
+				</div>
+				<md-button class="md-icon-button" ng-click="filtro.bimestre=[]">
+					<md-icon md-svg-icon="close-box-outline" ></md-icon>
+					<md-tooltip hide-sm>
+						{{ 'QUITAR_FILTRO' | translate }}
+					</md-tooltip>
+				</md-button>      
+			</div>
+				
+			<md-list-item >	
+				<md-input-container flex > 
+					<label>{{ 'DE' | translate}}</label>
+					<input type="date" ng-model="filtro.de">             
+				</md-input-container>
+				<md-input-container flex > 
+					<label>{{ 'HASTA' | translate}}</label>
+					<input type="date" ng-model="filtro.hasta">             
+				</md-input-container>
+			</md-list-item >
+			
+		</md-tab>
+		<md-tab label="{{ 'INDICADOR' | translate }}" layout="column">
+				<md-content layout="row" layout-margin layout-padding>
+					<md-radio-group ng-model="filtro.tipo" layout="row" layout-aling="start center" ng-if="catVisible" ng-change="cambiarCategoria()">                                         
+						<md-radio-button value="Recurso" >{{ 'RECURSO' | translate}}</md-radio-button>
+						<md-radio-button value="Calidad" >{{ 'CALIDAD' | translate}}</md-radio-button>                                  
+					</md-radio-group> 
+				
+					<md-radio-group ng-model="filtro.verTodosIndicadores" layout="row" layout-aling="start center" ng-change="cambiarVerTodoIndicador()">
+						<md-radio-button ng-value="true" class="md-primary">{{ 'VER_TODO' | translate }}</md-radio-button>
+						<md-radio-button ng-value="false" class="md-primary">{{ 'VER_POR_INDICADOR' | translate }}</md-radio-button>
+					</md-radio-group>
+				</md-content>
+		
+				<md-content layout="column" ng-if="!filtro.verTodosIndicadores"> 
+					
+					<section ng-repeat="(key, value) in datos[2] | groupBy :  'categoriaEvaluacion'" ng-if="key != 'undefined'" >						
+						<md-subheader class="md-primary" >
+							{{ key | translate }}                              
+						</md-subheader>
+						<md-list>	
+														
+							<md-list-item ng-repeat="c in value" class="md-2-line">	
+								<md-checkbox aria-label="indicador" class="md-primary"  ng-checked="exists(c.codigo, tempIndicador)" ng-click="toggle(c.codigo, tempIndicador)">								
+								</md-checkbox>																							
+								<div class="md-list-item-text">									
+									<h3>												
+										{{c.codigo}}
+										<span class="img-circle" style="background:{{c.color}}; position: relative; float: left; width: 0.7em; height: 0.7em; margin: 0; margin-right: 0.3em; padding: 0; display: block;">
+											
+										</span>											
+									</h3>									
+									<p>											
+										<small> {{ c.indicador }} </small>
+									</p>									
+								</div>															
+								<md-divider></md-divider>
+							</md-list-item>													
+						</md-list>
+						
+					</section>
+				</md-content>
+		</md-tab>
+		<md-tab label="{{ 'PARAMETROS' | translate }}">
+			<md-content layout="row" layout-margin layout-padding>
+				<md-radio-group ng-model="filtro.verTodosUM" layout="row" layout-aling="start center" ng-change="cambiarVerTodoUM()">
+					<md-radio-button ng-value="true" class="md-primary">{{ 'VER_TODO' | translate }}</md-radio-button>
+					<md-radio-button ng-value="false" class="md-primary">{{ 'FILTRO' | translate }}</md-radio-button>
+				</md-radio-group>
+			</md-content>
+				<div layout="row" layout-align="center center" layout-margin>
+					<div flex>
+						<md-select multiple="true" ng-model="filtro.um.cone" placeholder="{{ 'CONE' | translate }}" ng-disabled="filtro.verTodosUM" >							
+							<md-option ng-repeat="item in datos[6]" value="{{item.cone}}">{{item.cone}}</md-option>
+						</md-select>
+					</div>
+					<md-button class="md-icon-button" ng-click="filtro.um.cone=[]">
+						<md-icon md-svg-icon="close-box-outline" ></md-icon>
+						<md-tooltip hide-sm>
+							{{ 'QUITAR_FILTRO' | translate }}
+						</md-tooltip>
+					</md-button>
+				</div>
+				
+				<div layout="row" layout-align="center center" layout-margin>
+					<div flex>
+						<md-select multiple="true" ng-model="filtro.um.jurisdiccion"  placeholder="{{ 'JURISDICCION' | translate }}"  ng-disabled="filtro.verTodosUM" ng-change="getDimension('municipio',4);getDimension('zona',5)">							
+							<md-option ng-repeat="item in datos[3]" value="{{item.jurisdiccion}}">{{item.jurisdiccion}}</md-option>
+						</md-select>
+					</div>
+					<md-button class="md-icon-button" ng-click="filtro.um.jurisdiccion=[]">
+						<md-icon md-svg-icon="close-box-outline" ></md-icon>
+						<md-tooltip hide-sm>
+							{{ 'QUITAR_FILTRO' | translate }}
+						</md-tooltip>
+					</md-button>					
+				</div>
+				<md-content layout="row" layout-margin layout-padding>
+				<md-radio-group ng-model="filtro.um.tipo" layout="row" layout-aling="start center" ng-if="!filtro.verTodosUM">                                         
+					<md-radio-button value="municipio" >{{ 'MUNICIPIO' | translate}}</md-radio-button>
+					<md-radio-button value="zona" >{{ 'ZONA' | translate}}</md-radio-button>                                  
+				</md-radio-group>
+				</md-content>
+				
+				<div layout="row" layout-align="center center" layout-margin ng-if="filtro.um.tipo=='municipio'">
+					<div flex>
+						<md-select multiple="true" ng-model="filtro.um.municipio" placeholder="{{ 'MUNICIPIO' | translate }}"  ng-disabled="filtro.verTodosUM" >				
+							<md-option ng-repeat="item in datos[4]" value="{{item.municipio}}">{{item.municipio}}</md-option>
+						</md-select>
+					</div>
+					<md-button class="md-icon-button" ng-click="filtro.um.municipio=[]">
+						<md-icon md-svg-icon="close-box-outline" ></md-icon>
+						<md-tooltip hide-sm>
+							{{ 'QUITAR_FILTRO' | translate }}
+						</md-tooltip>
+					</md-button>
+				</div>
+				
+				<div layout="row" layout-align="center center" layout-margin ng-if="filtro.um.tipo=='zona'">
+					<div flex>
+						<md-select multiple="true" ng-model="filtro.um.zona" placeholder="{{ 'ZONA' | translate }}"  ng-disabled="filtro.verTodosUM">						
+							<md-option ng-repeat="item in datos[5]" value="{{item.zona}}">{{item.zona}}</md-option>
+						</md-select>
+					</div>
+					<md-button class="md-icon-button" ng-click="filtro.um.zona=[]">
+						<md-icon md-svg-icon="close-box-outline" ></md-icon>
+						<md-tooltip hide-sm>
+							{{ 'QUITAR_FILTRO' | translate }}
+						</md-tooltip>
+					</md-button>
+				</div>										
+				<div ng-if="despegarInfo">
+				<div layout-margin layout-padding>{{ 'DESPEGAR_INFO' | translate }}:</div>
+				<md-content layout="row" layout-margin layout-padding>
+				
+				<md-radio-group ng-model="filtro.um.nivel" layout="column" layout-aling="start center" ng-change="mostrarClues=false;cambiarVerTodoClues();">
+					<md-radio-button value="jurisdiccion" class="md-primary">{{ 'JURISDICCION' | translate }}</md-radio-button>
+					<md-radio-button value="municipio" class="md-primary" ng-if="filtro.um.tipo=='municipio'">{{ 'MUNICIPIO' | translate }}</md-radio-button>
+					<md-radio-button value="zona" class="md-primary" ng-if="filtro.um.tipo=='zona'">{{ 'ZONA' | translate }}</md-radio-button>
+					<md-radio-button value="cone" class="md-primary">{{ 'CONE' | translate }}</md-radio-button>
+					<md-radio-button value="clues" class="md-primary">{{ 'CLUES' | translate }}</md-radio-button>
+				</md-radio-group>
+				<md-button ng-if="filtro.um.nivel=='clues'" ng-click="mostrarClues=true;getDimension('clues, nombre',7);" ng-disabled="mostrarClues">
+					<md-icon md-svg-icon="check" ></md-icon>
+					{{ 'FILTRAR' | translate }} clues					
+				</md-button>
+				</md-content>
+				</div>
+		</md-tab>
+		<md-tab label="{{ 'UM' | translate }}" layout="column" ng-if="filtro.um.nivel=='clues' ? true : false">																
+			<md-subheader class="md-primary" >
+				{{ 'CLUES' | translate }}  
+				<md-button class="md-icon-button" ng-click="cambiarVerTodoClues()">
+					<md-icon md-svg-icon="close-box-outline" ></md-icon>
+					<md-tooltip hide-sm>
+						{{ 'VER_TODO' | translate }}
+					</md-tooltip>
+				</md-button>                             
+			</md-subheader>
+			<md-input-container layout-margin>
+				<label>{{ 'BUSCAR' | translate}}</label>
+				<input ng-model="buscar" md-sidenav-focus>
+			</md-input-container>
+			<md-list>	
+											
+				<md-list-item ng-repeat="c in datos[7] | filter:buscar" class="md-2-line" ng-if="datos[7].length>0">	
+					<md-checkbox aria-label="clues" class="md-primary"  ng-checked="exists(c.clues, filtro.clues)" ng-click="toggle(c.clues, filtro.clues)">
+					
+					</md-checkbox>
+																				
+					<div class="md-list-item-text">
+						
+						<h3>												
+							{{c.clues}}								
+						</h3>
+						
+						<p>											
+							<small> {{ c.nombre }} </small>
+						</p>
+						
+					</div>														
+					<md-divider></md-divider>
+				</md-list-item>													
+			</md-list>		
+		</md-tab>
+	</md-tabs>		
+</md-content>
+
+<md-divider></md-divider>
+<div  layout-align="center center" ng-if="despegarInfo">
+	<md-content layout="row" layout-margin layout-padding>
+		<md-radio-group ng-model="filtro.visualizar" layout="row" layout-align="center center" >
+			<md-radio-button value="tiempo" class="md-primary">{{ 'TIEMPO' | translate }}</md-radio-button>
+			<md-radio-button value="parametro" class="md-primary">{{ 'PARAMETROS' | translate }}</md-radio-button>
+		</md-radio-group>	
+	</md-content>	
+</div>

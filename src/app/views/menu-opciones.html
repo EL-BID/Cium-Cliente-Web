@@ -1,0 +1,71 @@
+       
+<a url-modulo="--" id="lista">
+  <md-button hide-md hide-sm hide-lg aria-label="{{ 'REGRESAR' | translate }}" ng-if="url.split('/').length>2">
+    <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+    {{ 'REGRESAR' | translate }}
+  </md-button>
+
+  <md-button class="md-icon-button"  hide show-sm show-md show-lg  aria-label="{{ 'REGRESAR' | translate }}" ng-if="url.split('/').length>2">
+    <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+    <md-tooltip hide-sm>
+          {{ 'REGRESAR' | translate }}
+        </md-tooltip>
+  </md-button> 
+</a>
+
+<md-button hide-md hide-sm hide-lg aria-label="{{ 'CREAR' | translate }}" ng-click="guardar(forma)" ng-disabled="forma.$invalid" ng-if="url.split('/')[2]=='nuevo'">
+    <md-icon md-svg-icon="content-save"></md-icon>
+    {{ 'CREAR' | translate }}
+</md-button>
+<md-button class="md-icon-button"  hide show-sm show-md show-lg ng-click="guardar(forma)" ng-disabled="forma.$invalid" aria-label="{{ 'AGREGAR' | translate }}" ng-if="url.split('/')[2]=='nuevo'">
+  <md-icon md-svg-icon="content-save"></md-icon>
+  <md-tooltip hide-sm>
+          {{ 'CREAR' | translate }}
+        </md-tooltip>
+</md-button>
+
+<md-button hide-md hide-sm hide-lg  aria-label="{{ 'GUARDAR' | translate }}" ng-click="modificar(id)" ng-disabled="forma.$invalid" ng-if="url.split('/')[2].split('?')[0]=='modificar'">
+    <md-icon md-svg-icon="content-save"></md-icon>
+  {{ 'GUARDAR' | translate }}
+</md-button>
+<md-button class="md-icon-button"  hide show-sm show-md show-lg ng-click="modificar(id)" ng-disabled="forma.$invalid" aria-label="{{ 'GUARDAR' | translate }}" ng-if="url.split('/')[2].split('?')[0]=='modificar'">
+  <md-icon md-svg-icon="content-save"></md-icon>
+  <md-tooltip hide-sm>
+          {{ 'GUARDAR' | translate }}
+        </md-tooltip>
+</md-button>
+
+<md-button hide-md hide-sm hide-lg  aria-label="{{ 'PDF' | translate }}" imprimir-div=".imprimir" ng-if="url.split('/')[2].split('?')[0]=='ver'">
+  <md-icon md-svg-icon="printer"></md-icon>
+  {{ 'PDF' | translate }}
+</md-button>
+<md-button class="md-icon-button"  hide show-sm show-md show-lg imprimir-div=".imprimir" aria-label="{{ 'PDF' | translate }}" ng-if="url.split('/')[2].split('?')[0]=='ver'">
+  <md-icon md-svg-icon="printer"></md-icon>
+  <md-tooltip hide-sm>
+          {{ 'PDF' | translate }}
+        </md-tooltip>
+</md-button>
+
+<md-button hide-md hide-sm hide-lg  aria-label="{{ 'ELIMINAR' | translate }}" ng-click="borrar()" ng-if="url.split('/')[2].split('?')[0]=='modificar' || (url.split('/')[2].split('?')[0]=='ver' && url.split('/')[1]!='clues')">
+    <md-icon md-svg-icon="delete"></md-icon>
+    {{ 'ELIMINAR' | translate }}
+</md-button>
+<md-button class="md-icon-button"  hide show-sm show-md show-lg nng-click="borrar()" aria-label="{{ 'ELIMINAR' | translate }}" ng-if="url.split('/')[2].split('?')[0]=='modificar' || (url.split('/')[2].split('?')[0]=='ver' && url.split('/')[1]!='clues')">
+  <md-icon md-svg-icon="delete"></md-icon>
+  <md-tooltip hide-sm>
+          {{ 'ELIMINAR' | translate }}
+        </md-tooltip>
+</md-button>
+
+
+<md-button hide-sm hide-md class="md-icon-button" aria-label="{{ 'CAMBIAR_IDIOMA' | translate }}" ng-click="mostrarIdiomas($event)">
+  <md-icon md-svg-icon="web"></md-icon>
+        <md-tooltip hide-sm>
+          {{ 'CAMBIAR_IDIOMA' | translate }}
+        </md-tooltip>
+</md-button>
+      
+<md-button hide-sm hide-md ng-click="logout()"  aria-label="{{ 'CERRAR_SESION' | translate }}">
+  <md-icon md-svg-icon="exit-to-app"></md-icon>
+  {{ 'CERRAR_SESION' | translate }}
+</md-button>

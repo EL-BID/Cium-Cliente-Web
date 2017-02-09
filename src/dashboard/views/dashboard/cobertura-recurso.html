@@ -1,0 +1,56 @@
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+    <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+    <md-toolbar style="z-index: 59;">
+        <div class="md-toolbar-tools">
+            <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <h2>
+              <span>Dashboard   </span>
+            </h2>
+            <span flex></span>
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+    <md-content layout="row" layour-align="center center" layout-padding flex id="principal" style="background-color:#FFFFFF" ng-controller="pieRecursoController" ng-init="toggleRightOpciones('pieRecurso');">
+        <div flex>
+            <div class="md-toolbar-tools" style="background:gainsboro">
+                <h2>
+                <span flex>{{ 'REPORTE_X_EQUIPO' | translate}} {{ 'RECURSO' | translate}} </span>                                 
+            </h2>
+            </div>
+            <md-progress-linear ng-if="pieRecurso" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+            <md-content layout="column" layour-align="center center" layout-padding flex>
+                <div style="font-size:.8em" align="center">
+                    {{ "ANIO" | translate}} : {{filtro.anio}} {{"BIMESTRE" | translate}} : {{filtro.bimestre | nombreBimestre}}
+                </div>
+                <md-content layout="column" layout-align="center center" ng-show="datosOk" layout-fill flex>
+                    <canvas tc-chartjs-pie chart-options="options" chart-data="data" ng-click="chartClick($event)" chart="chart" id="chartChart" flex></canvas>
+                </md-content>
+                <ul class="tc-chart-js-legend">
+                    <li ng-repeat="item in data.datasets[0].backgroundColor" style="float: none; padding: 0px">
+                        <span style="background-color:{{item}}; width:32%">
+                            <strong style="font-size:14px; color:#fff;position: absolute; margin: 2px 0px 2px 10px;">{{data.labels[$index]}}: {{data.datasets[0].data[$index]}} UMs</strong>
+                        </span>
+                        <strong style="font-size:14px;"></strong>
+                    </li>
+                    <li style="float: none; padding: 0px">
+                        <span style="background-color:gainsboro; width:32%">
+                            <strong style="font-size:14px; color:#000;position: absolute; margin: 2px 0px 2px 10px;">Total: {{data.datasets[0].data[0] + data.datasets[0].data[1]}}  UMs</strong>
+                        </span>
+                        <strong style="font-size:14px;"></strong>
+                    </li>
+                </ul>
+                <div ng-show="!datosOk" layout="row" layout-align="center center" flex>
+                    <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+                </div>
+            </md-content>
+        </div>
+        <div flex>
+            <md-content flex>
+                <div ng-include="'src/dashboard/views/dashboard/filtros.html'"></div>
+            </md-content>
+        </div>
+    </md-content>
+</div>

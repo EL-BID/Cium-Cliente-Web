@@ -1,0 +1,11 @@
+.avatar-login {
+  width: 25%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+
+  
+  vertical-align: middle;
+}

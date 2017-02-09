@@ -1,0 +1,164 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools" ng-init="vistaImpreso()">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>{{ 'VER' | translate }}</span>
+			</h2>
+			<span flex></span>	
+            
+            	
+			<a url-modulo="--" id="lista">
+          <md-button hide-md hide-sm hide-lg  aria-label="{{ 'REGRESAR' | translate }}" ng-if="url.split('/').length>2">
+            <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+            {{ 'REGRESAR' | translate }}
+          </md-button>
+        
+          <md-button class="md-icon-button"  hide show-sm show-md show-lg  aria-label="{{ 'REGRESAR' | translate }}" ng-if="url.split('/').length>2">
+            <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+            <md-tooltip hide-sm>
+              {{ 'REGRESAR' | translate }}
+            </md-tooltip>
+          </md-button> 
+        
+        </a>
+        
+        <md-button hide-md hide-sm hide-lg  aria-label="{{ 'PDF' | translate }}" imprimir-div=".imprimir" >
+          <md-icon md-svg-icon="printer"></md-icon>
+          {{ 'PDF' | translate }}
+        </md-button>
+        <md-button class="md-icon-button"  hide show-sm show-md show-lg imprimir-div=".imprimir" aria-label="{{ 'PDF' | translate }}" >
+          <md-icon md-svg-icon="printer"></md-icon>
+          <md-tooltip hide-sm>
+                  {{ 'PDF' | translate }}
+                </md-tooltip>
+        </md-button> 
+        
+        <md-button hide-sm class="md-icon-button" aria-label="{{ 'CAMBIAR_IDIOMA' | translate }}" ng-click="mostrarIdiomas($event)">
+        <md-icon md-svg-icon="web"></md-icon>
+              <md-tooltip hide-sm>
+                {{ 'CAMBIAR_IDIOMA' | translate }}
+              </md-tooltip>
+      </md-button>
+            
+      <md-button hide-sm ng-click="logout()"  aria-label="{{ 'CERRAR_SESION' | translate }}">
+        <md-icon md-svg-icon="exit-to-app"></md-icon>
+        {{ 'CERRAR_SESION' | translate }}
+      </md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding>
+<div class="imprimir" > 
+      
+    <table  cellspacing="0" class="Tabla" align="right" style="margin-bottom:1em">
+        <tr style="background:#ddd">
+          <th colspan="4">{{'EVALUACION_CALIDAD' | translate | uppercase}}</th>                
+        </tr>
+        <tr>
+          <th>{{'FECHA_EVALUACION' | translate}}:</th>
+          <td width="300px"></td>
+          
+          
+        </tr>        
+      </table>
+      
+      <table width="100%" cellspacing="0" class="Tabla">
+        <caption>{{ 'DATOS_UNIDAD' | translate | uppercase}}</caption>
+          <tr>
+            <td><strong>{{'CLUES' | translate}}</strong></td>
+            <td>{{ dato.clues | uppercase}}</td>
+            <td><strong>{{'NIVEL_CONE' | translate}}</strong></td>
+            <td>{{ dato.nivelCone | uppercase}}</td>
+          </tr>
+          <tr>
+            <td><strong>{{'NOMBRE' | translate}}</strong></td>
+            <td colspan="3">{{ dato.nombre | uppercase}}</td>
+          </tr>
+          <tr>
+            <td><strong>{{'JURISDICCION' | translate}}</strong></td>
+            <td> {{ dato.jurisdiccion | uppercase}}</td>
+            <td><strong>{{'MUNICIPIO' | translate}}</strong></td>
+            <td>{{ dato.municipio | uppercase}}</td>
+          </tr>
+          <tr>
+            <td><strong>{{'ZONA' | translate}}</strong></td>
+            <td>{{ dato.zona | uppercase}}</td>
+            <td><strong>{{'TIPOLOGIA' | translate}}</strong></td>
+            <td>{{ dato.tipologia | uppercase}} | {{ dato.tipoUnidad | uppercase}}</td>
+          </tr>
+          <tr>
+            <td><strong>{{'DOMICILIO' | translate}}</strong></td>
+            <td colspan="3"> {{ dato.domicilio | uppercase}}  <strong>CP: </strong> {{ dato.codigoPostal }}</td>
+          </tr>
+        </table>
+      <br>         
+            
+    
+    <div>
+      <div ng-repeat="criterios in indicadores" style="border-bottom: 2px solid #999;  padding-bottom:3em; margin-bottom:3em;">                  
+       <table width="100%" class="Tabla" style="margin-bottom:0.5em">
+
+
+          <caption style="font-size:1.3em">INDICADOR</caption>
+          <tbody>
+            <tr>
+              <th>Código</th>
+              <th style="text-align:left;"><span class="img-circle" style="background: {{ criterios.indicador.color }}; display:block; height:1em; width:1em; float:left; margin-right:.5em"></span> {{ criterios.indicador.codigo }}</th>
+            </tr>
+            <tr>
+              <th>Nombre</th>
+              <th style="text-align:left;">{{ criterios.indicador.nombre }}</th>
+            </tr>
+          </tbody>
+        </table>
+
+        <div ng-repeat="(key, value) in criterios | groupBy : 'lugarVerificacion'" ng-if="key != 'undefined'" style="margin-bottom:0.5em">
+          <table width="100%" class="Tabla"  style="border:0" cellspacing="0"  >                
+              <thead>
+                <tr>
+                  <th align="left">{{key}}</th>
+                  <td ng-repeat="x in expedientes" colspan="2">  </td>
+                </tr>
+                
+              </thead>
+              <tbody>
+                <tr ng-repeat="c in value" height="1px">
+                    <td >{{ c.criterio  }}</td>
+                    <td width="13px" align="center" ng-repeat-start="x in expedientes"><small style="font-size:.6em">{{ 'SI' | translate}}</small></td>
+                    <td width="13px" align="center" ng-repeat-end><small style="font-size:.6em">{{ 'NO' | translate}}</small></td>
+                     
+                    </tr>
+              </tbody>
+            </table>
+          </div>                
+      </div>
+      </div>
+    <br>
+    <div align="center">
+        <div align="center" style="border: 1px solid #666; width:40%">
+          <br>
+          {{ 'RESPONSABLE' | translate | uppercase}}
+          <div style="margin-top:40px;"><img ng-if="dato.firma" style="width:10%" src="data:image/png;base64,{{dato.firma}}"></div>
+          
+          <div style="padding:15px;">{{ dato.responsable | uppercase}}</div>
+          <div style="padding:15px;">{{ 'NOMBRE_FIRMA' | translate | uppercase}}</div>
+          <div align="center" style=" font-size:0.8em;border-top: 1px solid #666; width:100%;">
+            <span style="padding:.5em;display:block">
+              {{ 'REALIZO' | translate | uppercase}}: 
+            </span>
+          </div>
+          <div align="center" style="font-size:0.8em; border-top: 1px solid #666; width:auto; padding:1em;">
+              
+            
+          </div>
+        </div>
+    </div>
+  </div>
+</md-content>
+</div>

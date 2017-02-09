@@ -1,0 +1,42 @@
+<md-dialog aria-label="clues">
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools ">
+            <h2>{{ 'CLUES' | translate }} </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="hide()">
+                <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width: 500px;">
+        <md-progress-linear ng-if="alertaDetalle" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+        <md-subheader class="md-primary">
+            <span ng-if="tipo >= 0">
+        <a href="#" ng-click="getAlertaDetalleClick2(event, valorGuardado[0], 0)">{{ 'JURISDICCION' | translate }}: </a> {{ valorGuardado[1] }} /
+      </span>
+            <span ng-if="tipo > 0">
+        <a href="#" ng-if="tipo > 0" ng-click="getAlertaDetalleClick2(event, valorGuardado[1], 1)">{{ 'MUNICIPIO' | translate }} </a> {{ valorGuardado[2] }} /
+      </span>
+            <span ng-if="tipo > 1">
+        <a href="#" ng-if="tipo > 1" ng-click="getAlertaDetalleClick2(event, valorGuardado[2], 2)">{{ 'LOCALIDAD' | translate }}</a> {{ valorGuardado[3] }} /
+      </span>
+            <span ng-if="tipo > 2">
+        <a href="#" ng-if="tipo > 2" ng-click="getAlertaDetalleClick2(event, valorGuardado[3], 3)">{{ 'EVALUACION' | translate }}</a> {{ valorGuardado[4] }} /
+      </span>
+        </md-subheader>
+        <md-list>
+            <md-list-item ng-repeat="c in datoClues" class="md-2-line" ng-click="verEvaluacion(event, c.evaluacion)" style="border-bottom: 1px solid #ddd">
+                <div class="md-list-item-text">
+                    <h3>                        
+                    {{ 'EVALUACION' | translate }} # {{ c.evaluacion }}                                                         
+                </h3>
+                    <p>
+                        {{c.fechaEvaluacion}}
+                        <br>
+                        <small><strong>{{ c.clues }}</strong> {{c.nombre}} ({{c.jurisdiccion}}) </small>
+                    </p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-dialog-content>
+</md-dialog>

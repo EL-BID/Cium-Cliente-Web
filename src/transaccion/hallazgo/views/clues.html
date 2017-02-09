@@ -1,0 +1,29 @@
+  
+<md-dialog aria-label="clues">
+  <md-toolbar class="md-warn">
+    <div class="md-toolbar-tools ">
+      <h2>{{ 'CLUES' | translate }} </h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="hide()">
+        <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content  style="min-width: 500px;" >
+                                        						                        
+    <md-list>	                                                               
+        <md-list-item ng-repeat="c in dato" class="md-2-line" ng-click="verEvaluacion(c.idEvaluacion,c.categoria,c.codigo)" style="border-bottom: 1px solid #ddd">	                                 	                        
+            <div class="md-list-item-text">                                    
+                <h3>												
+                    {{ c.clues }}                                       										
+                </h3>                                    
+                <p>
+                    {{c.fechaEvaluacion}} 
+                    <br>   
+                    <small>{{c.nombre}} ({{c.jurisdiccion}}) </small>
+                </p>                                    
+            </div>                          
+        </md-list-item>												
+    </md-list>
+  </md-dialog-content>
+</md-dialog>

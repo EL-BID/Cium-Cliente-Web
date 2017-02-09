@@ -1,0 +1,50 @@
+<div layout-fill fullscreen="isFullscreen">
+    <div class="md-toolbar-tools" style="background:gainsboro">
+        <h2>
+                <span flex>{{ 'REPORTE_X_EQUIPO' | translate}} {{ 'RECURSO' | translate}} </span>                                 
+            </h2>
+        <span flex></span>
+        <span>
+                <md-button class="md-icon-button" aria-label="Opciones"  ng-click="toggleRightOpciones('pieRecurso');" id="pieRecurso">
+                    <md-icon md-svg-icon="settings"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'OPCIONES' | translate }}
+                    </md-tooltip>
+                </md-button>                                                                        
+                
+                <md-button class="md-icon-button" aria-label="Máximizar" hide-sm ng-click="toggleFullScreen('max-equipo')" id="max-equipo">
+                    <md-icon md-svg-src="{{!isFullscreen ? 'fullscreen' : 'fullscreen-exit'}}"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'FULLSCREEN' | translate }}
+                    </md-tooltip>
+                </md-button>
+            </span>
+    </div>
+    <md-progress-linear ng-if="pieRecurso" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+    <md-content layout="column" layour-align="center center" layout-padding flex>
+        <div style="font-size:.8em" align="center">
+            {{ "ANIO" | translate}} : {{filtro.anio}} {{"BIMESTRE" | translate}} : {{filtro.bimestre | nombreBimestre}}
+        </div>
+        <md-content layout="column" layout-align="center center" ng-show="datosOk" layout-fill flex>
+            <canvas tc-chartjs-pie chart-options="options" chart-data="data" ng-click="chartClick($event)" chart="chart" id="chartChart" flex></canvas>
+        </md-content>
+        <ul class="tc-chart-js-legend">
+            <li ng-repeat="item in data.datasets[0].backgroundColor" style="float: none; padding: 0px">
+                <span style="background-color:{{item}}; width:32%">
+                            <strong style="font-size:14px; color:#fff;position: absolute; margin: 2px 0px 2px 10px;">{{data.labels[$index]}}: {{data.datasets[0].data[$index]}} UMs</strong>
+                        </span>
+                <strong style="font-size:14px;"></strong>
+            </li>
+            <li style="float: none; padding: 0px">
+                <span style="background-color:gainsboro; width:32%">
+                            <strong style="font-size:14px; color:#000;position: absolute; margin: 2px 0px 2px 10px;">Total: {{data.datasets[0].data[0] + data.datasets[0].data[1]}}  UMs</strong>
+                        </span>
+                <strong style="font-size:14px;"></strong>
+            </li>
+        </ul>
+        <div ng-show="!datosOk" layout="row" layout-align="center center" flex>
+            <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+        </div>
+    </md-content>
+    <md-sidenav layout="column" layout-fill class="md-sidenav-right md-whiteframe-z2" md-component-id="pieRecurso" ng-include="'src/dashboard/views/dialog.html'"></md-sidenav>
+</div>

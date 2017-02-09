@@ -1,0 +1,192 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'">
+</md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+
+  <md-button class="md-fab md-fab-bottom-right md-primary" id="mostrarIndicacion" ng-show="indicaciones != null" ng-click="verIndicacion($event)" aria-label="{{ 'INDICACIONES' | translate }}" >
+    <md-icon md-svg-icon="information-outline"></md-icon>
+  </md-button>
+
+  <md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate">
+  </md-progress-linear>
+  <md-toolbar  ng-init="ver('/EvaluacionRecurso');"><span ng-if="dato.cerrado" ng-init="redirect(dato.id)"></span>
+    <div class="md-toolbar-tools" >  
+      <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+        <md-icon md-svg-icon="menu" ></md-icon>
+      </md-button>   
+      <h2>
+        <span>{{ 'EDITAR' | translate }}  </span>
+      </h2>
+      <span flex></span>				 
+
+      <a url-modulo="--" id="lista">
+        <md-button hide-md hide-sm hide-lg  aria-label="{{ 'REGRESAR' | translate }}" ng-if="url.split('/').length>2">
+          <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+          {{ 'REGRESAR' | translate }}
+        </md-button>
+
+        <md-button class="md-icon-button"  hide show-sm show-md show-lg  aria-label="{{ 'REGRESAR' | translate }}" ng-if="url.split('/').length>2">
+          <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+          <md-tooltip hide-sm>
+            {{ 'REGRESAR' | translate }}
+          </md-tooltip>
+        </md-button> 
+      </a>
+
+      <md-button hide-md hide-sm hide-lg ng-show="terminado"  aria-label="{{ 'CERRAR_EV' | translate }}" ng-click="cerrar(dato.id)" ng-disabled="forma.$invalid">
+        <md-icon md-svg-icon="check"></md-icon>
+        {{ 'CERRAR_EV' | translate }}
+      </md-button>
+
+      <md-button class="md-icon-button"  ng-show="terminado" hide show-sm show-md show-lg show-sm ng-click="cerrar(dato.id)" ng-disabled="forma.$invalid" aria-label="{{ 'CERRAR_EV' | translate }}">
+        <md-icon md-svg-icon="check"></md-icon>
+        <md-tooltip hide-sm>
+          {{ 'CERRAR_EV' | translate }}
+        </md-tooltip>
+      </md-button>
+
+      <md-button hide-md hide-sm hide-lg  aria-label="{{ 'GUARDAR' | translate }}" ng-click="modificar(dato.id)" ng-if="dato.idIndicador" ng-disabled="forma.$invalid">
+        <md-icon md-svg-icon="content-save"></md-icon>
+        {{ 'GUARDAR' | translate }}
+      </md-button>
+
+      <md-button class="md-icon-button"  hide show-sm show-md show-lg show-sm ng-click="modificar(dato.id)" aria-label="{{ 'GUARDAR' | translate }}" ng-disabled="forma.$invalid" ng-if="dato.idIndicador">
+        <md-icon md-svg-icon="content-save"></md-icon>
+        <md-tooltip hide-sm>
+          {{ 'GUARDAR' | translate }}
+        </md-tooltip>
+      </md-button>
+
+
+      <md-button hide-md hide-sm hide-lg  aria-label="{{ 'FICHA' | translate }}" ng-click="abrirFicha($event);" >
+        <md-icon md-svg-icon="information-outline"></md-icon>
+        {{ 'FICHA' | translate }}
+        </md-button>
+      <md-button class="md-icon-button"  hide show-sm show-md show-lg show-sm ng-click="abrirFicha($event);" aria-label="{{ 'FICHA' | translate }}" >
+      <md-icon md-svg-icon="information-outline"></md-icon>
+        <md-tooltip hide-sm>
+        {{ 'FICHA' | translate }}
+        </md-tooltip>
+      </md-button>
+
+      <md-button hide-sm class="md-icon-button" aria-label="{{ 'CAMBIAR_IDIOMA' | translate }}" ng-click="mostrarIdiomas($event)">
+        <md-icon md-svg-icon="web"></md-icon>
+        <md-tooltip hide-sm>
+          {{ 'CAMBIAR_IDIOMA' | translate }}
+        </md-tooltip>
+      </md-button>
+
+      <md-button hide-sm ng-click="logout()"  aria-label="{{ 'CERRAR_SESION' | translate }}">
+        <md-icon md-svg-icon="exit-to-app"></md-icon>
+        {{ 'CERRAR_SESION' | translate }}
+      </md-button>
+    </div>
+  </md-toolbar>
+
+    <md-content layout="column" layour-align="center center" layout-padding flex >
+
+      <div layout-margin layout-align="center center" align="center" >
+        <md-icon md-svg-icon="calendar-today"></md-icon>
+        <span> {{dato.fechaEvaluacion}}                      
+        <md-icon md-svg-icon="star" ></md-icon> {{ clues }}    {{ nombre }}
+        </span> 
+        <md-divider></md-divider>
+      </div>
+
+      <div layout="row" layout-align="center center">
+        <div> 
+          <md-menu>
+            <md-button class="md-icon-button md-primary" aria-label="{{ 'INDICADOR_SEL' | translate }}" ng-click="$mdOpenMenu();">
+              <md-icon md-svg-icon="menu"></md-icon>
+              <md-tooltip hide-sm>
+                {{ 'INDICADOR_SEL' | translate }}
+              </md-tooltip>
+             </md-button>
+              <md-menu-content width="4">
+                <md-menu-item ng-repeat="i in lista_indicadores">
+                  <md-button ng-click="dato.idIndicador=i.id; cargarCriterios(i.id, i.codigo, i.nombre, i.indicacion, i.indicador_validaciones, i.indicador_preguntas, $index);">
+                    {{ i.codigo }} - {{ i.nombre}}
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item ng-if="lista_indicadores.length == 0">
+                  <md-button>
+                    {{ 'INDICADORES_USADOS' | translate }}
+                  </md-button>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+        </div>
+        <div flex>            
+          <md-select flex placeholder="{{ informacion.length>0 ? 'INDICADOR_SEL' : 'NO_INDICADOR_SEL' | translate }}" ng-model="dato.idIndicador"  id="indicador">  
+                              
+            <md-option ng-repeat="i in informacion" value="{{i.id}}" ng-click="dato.idIndicador=i.id; cargarCriterios(i.id, i.codigo, i.nombre, i.indicacion, i.indicador_validaciones, i.indicador_preguntas);">
+              <md-icon md-svg-icon="{{ i[i.codigo] == i.evaluado ? 'check' : 'alert' }}" md-menu-align-target style="margin-top:-3px"></md-icon>
+              <strong style="color: #{{ i[i.codigo] == i.evaluado ? '090' : 'A00' }};"> {{ i.codigo }} </strong> - {{ i.nombre}} 
+            </md-option>                      
+          </md-select>
+        </div>
+        <div>
+          <md-button class="md-icon-button  md-warn"  ng-click="borrarIndicador()" aria-label="{{ 'ELIMINAR' | translate }}" ng-if="criterios.aprobado.length>0 || criterios.noAprobado.length>0">
+            <md-icon md-svg-icon="delete"></md-icon>
+            <md-tooltip hide-sm>
+              {{ 'ELIMINAR_IND' | translate }}
+            </md-tooltip>
+          </md-button>                                               
+        </div>
+          <md-subheader class="md-primary">
+            <div class="md-char-counter"  layout-margin> 
+              {{ totalDeTotal[dato.idIndicador]['de'] }} {{ dato.idIndicador > 0 ? '/' : ''}} {{totalDeTotal[dato.idIndicador]['total'] }} 
+            </div>
+          </md-subheader>         
+      </div>
+      <form name="forma" layout="column" flex layout-fill ng-cloak>
+        
+        <md-content flex>
+          <section ng-repeat="(key, value) in criterios | groupBy :  'lugarVerificacion'" ng-if="key != 'undefined' ">  
+            <md-subheader class="md-primary">{{key}}</md-subheader>
+            <md-list layout-padding>
+              <md-list-item class="md-1-line" ng-repeat="c in value" style="border-top: 1px solid #ddd">                
+                
+                  <p>{{ c.criterio }}</p>
+                  <md-radio-group layout="row" layout-wrap ng-model="dato.aprobado[c.idCriterio]" ng-change="aprobar(c.idCriterio,dato.id)" ng-click="c.tieneValidacion == '1' ? abrirValidarCriterio($event, c) : '' ">
+                                
+                    <md-radio-button value="1" class="md-primary" ng-disabled="c.tieneValidacion">{{ 'SI' | translate}}</md-radio-button>
+                    <md-radio-button value="0" class="md-warn" ng-disabled="c.tieneValidacion">{{ 'NO' | translate}}</md-radio-button>
+                    <md-radio-button value="2" class="md-primary" ng-disabled="c.tieneValidacion" ng-if="c.habilitarNoAplica">{{ 'NA' | translate}}</md-radio-button>                                                                            
+                  </md-radio-group>
+              </md-list-item>
+            </md-list>
+          </section>
+        </md-content>
+
+        <section class="md-whiteframe-z1" layout-align="center center" layout-margin ng-if="tieneHallazgo">
+          <div layout="row">
+            <md-input-container flex  ng-init="acciones();">     
+              <label>{{ 'HALLAZGO' | translate }}</label>
+              <textarea ng-model="dato.hallazgos.descripcion" name="hallazgo" maxlength="500" required></textarea>      
+              <div ng-messages="forma.hallazgo.$error" >
+                <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>                                    
+              </div>
+            </md-input-container>
+              
+
+            <md-input-container class="md-block" flex>
+              <label>{{ 'ACCION' | translate }}</label>
+              <md-select name="myModel" ng-model="dato.hallazgos.idAccion"  id="accion" name="accion" required>
+                <md-optgroup label="{{currentGroup == 'R' ? 'Resolutiva' : 'Seguimiento' }}" ng-repeat="currentGroup in groupList" >
+                <md-option ng-value="item.id" ng-repeat="item in acciones | filter: {tipo: currentGroup}" ng-click="verSeguimiento(item.tipo)">{{item.nombre}}</md-option>
+              </md-optgroup>
+              </md-select>
+              <div ng-messages="forma.accion.$error" >
+                <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>                                    
+              </div>
+            </md-input-container>
+
+          </div>
+        </section>
+
+      </form>        
+
+      </md-content>
+    </md-content>
+  </div>

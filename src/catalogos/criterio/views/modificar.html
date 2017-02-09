@@ -1,0 +1,90 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}" >
+		<md-icon md-svg-icon="plus"></md-icon>
+  	</md-button>
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools" ng-init="cargarCatalogo('/Indicador', indicadores);cargarCatalogo('/Cone', cones);cargarCatalogo('/LugarVerificacion', lugares, ver('/Criterio'));">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+          <md-icon md-svg-icon="menu" ></md-icon>
+            </md-button>   
+            <h2>
+              <span>{{ 'EDITAR' | translate }}</span>
+            </h2>
+            <span flex></span>  
+            
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+	<md-content>
+	
+
+        <form name="forma" >
+            <md-content layout="column"   layout-padding >	
+                <md-tabs md-dynamic-height md-border-bottom>               
+                    <md-tab label="{{ 'DATOS_GENERALES' | translate }}">
+                        <md-content layout="column"   layout-padding >  						
+                            <md-input-container flex >     
+                                <label>{{ 'NOMBRE' | translate }}</label>
+                                <input required  name="nombre" ng-model="dato.nombre" minlength="3" maxlength="455">
+                                <div ng-messages="forma.nombre.$error">
+                                  <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                                  <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+                                  <div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+                                </div>
+                            </md-input-container>
+                            
+                            <md-input-container flex >     
+                                <label>{{ 'ORDEN' | translate }}</label>
+                                <input  name="orden" ng-model="dato.orden" >                                
+                            </md-input-container>
+                    		        
+                            <md-input-container flex >     
+                                <md-checkbox ng-model="dato.habilitarNoAplica" ng-true-value="1" ng-false-value="0">{{ 'HABILITAR_NO_APLICA' | translate }}</md-checkbox>
+                            </md-input-container>
+                        
+                            <md-container > 
+                				<div class="tree">
+                                    <ul>
+                                        <li ng-repeat="i in indicadores" class="parent_li" title="Abrir">
+                                        	<span ng-click="treeClick('indicador'+criterio.id+''+i.id);" class="principal" id="indicador{{ criterio.id }}{{i.id }}" >
+                                        		<md-icon md-svg-src="{{ !icono['indicador'+criterio.id+''+i.id] ? 'plus' : 'minus'}}"></md-icon> 
+                                        
+                                        		<strong>{{ 'INDICADOR' | translate }}: </strong> {{ i.codigo }} | {{ i.nombre }}
+                                        	</span>
+                                        	<ul>			   
+                                        		<li ng-repeat="c in cones" class="parent_li" title="Abrir" style="display: none;">
+                                        			<span ng-click="treeClick(criterio.id+''+i.id+''+c.id);">
+                                        				<md-icon md-svg-src="seat-flat"></md-icon>   
+                                        				<input checklist-model="criterio.indicador[i.id].cone" checklist-value="i.id+','+c.id" ng-checked="che[i.id+','+c.id]" id="che{{i.id+'-'+c.id}}" type="checkbox" ng-click="treeClickCheck(i.id,0,'indicador'+criterio.id+''+i.id);" > 
+                                        				<strong ><label for="che{{i.id+'-'+c.id}}">CONE: </label></strong><label for="che{{i.id+'-'+c.id}}"> {{ c.nombre }} </label>                                                                            
+                                                                
+                                        			</span> 			  
+                                        		</li>
+                                        		<li class="parent_li" style="display: none;">				
+                                            		<span>
+                                                		<select ng-options="item.id as item.nombre for item in lugares" ng-model="criterio.indicador[i.id].lugar" ng-change="treeClickCheck(i.id,0,'indicador'+criterio.id+''+i.id);" name="LugarVerificacion[{{ i.id }}]" id="LugarVerificacion{{ i.id }}" style="border:none; background-color:transparent; width:100%">                        			
+                                                		</select>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>    
+                                    </ul>
+
+                                </div>
+                            </md-container>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="{{ 'VALIDACION' | translate }}" >
+                        <md-content layout="column" layout-marging layout-padding ng-include="'src/catalogos/criterio/views/form_validacion.html'">
+                        </md-content>
+                    </md-tab>
+                    
+                </md-tabs>
+            </md-content>	
+        </form>
+    </md-content>
+</div>

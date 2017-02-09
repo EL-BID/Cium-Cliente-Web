@@ -1,0 +1,49 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools" ng-init="index('/VersionApp')">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>{{ 'NUEVO' | translate }}</span>
+			</h2>
+			<span flex></span>	
+            
+           
+            	
+			<span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>
+	<md-content>
+	
+<form role="form" name="forma">
+<md-content layout="column" class="imprimir" layout-padding>
+   				
+			<md-input-container flex >                                    
+					
+				<lf-ng-md-file-input lf-files="dato.path" lf-api="api01" ng-disabled="disabled01"></lf-ng-md-file-input>
+					
+			</md-input-container>
+			<md-input-container flex >                                    
+					<label>Version App</label>
+					<input required  name="versionApp" ng-model="dato.versionApp" >
+			</md-input-container>
+			<md-input-container flex >                                    
+					<label>Version BD</label>
+					<input required  name="versionDB" ng-model="dato.versionDB" >
+			</md-input-container>
+			<md-input-container flex >                                    
+					<label>Descripción</label>
+					<input required  name="descripcion" ng-model="dato.descripcion" >
+			</md-input-container>
+            					
+            
+       
+</md-content>
+</form>   
+<span ng-init="cargando = false;"></span> 
+</md-content></div>

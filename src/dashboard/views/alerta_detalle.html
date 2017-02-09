@@ -1,0 +1,77 @@
+<md-dialog aria-label="clues" flex>
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools ">
+            <h2>        
+        <strong>
+          <span class="img-circle" style="background: {{ indicadorSeleccionado.color }}; display:block; height:1em; width:1em;"></span>
+          {{indicadorSeleccionado.codigo}}</strong> 
+        {{indicadorSeleccionado.nombre}} </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="hide()">
+                <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content flex style="overflow: overlay">
+        <section>
+            <md-subheader class="md-primary">
+                <span ng-if="tipo >= 0">
+                <a href="#" ng-click="getAlertaDetalleClick(event, valorGuardado[0], 0)">{{ 'JURISDICCION' | translate }}: </a> {{ valorGuardado[1] }} /
+              </span>
+                <span ng-if="tipo > 0">
+                <a href="#" ng-if="tipo > 0" ng-click="getAlertaDetalleClick(event, valorGuardado[1], 1)">{{ 'MUNICIPIO' | translate }} </a> {{ valorGuardado[2] }} /
+              </span>
+                <span ng-if="tipo > 1">
+                <a href="#" ng-if="tipo > 1" ng-click="getAlertaDetalleClick(event, valorGuardado[2], 2)">{{ 'LOCALIDAD' | translate }}</a> {{ valorGuardado[3] }} /
+              </span>
+                <span ng-if="tipo > 2">
+                <a href="#" ng-if="tipo > 2" ng-click="getAlertaDetalleClick(event, valorGuardado[3], 3)">{{ 'EVALUACION' | translate }}</a> {{ valorGuardado[4] }} /
+              </span>
+            </md-subheader>
+            <md-progress-linear ng-if="alertaDetalle" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+            <div style="min-height: 500px; max-height: 716px; overflow: auto;" flex>
+
+                <h4 ng-if="tipo >= 2" layout layout-padding>{{ 'MENSAJE_DIALOG' | translate}} </h4>
+
+                <div layout-fill ng-repeat="(clave, valor) in indicadorDetalle | groupBy :  dimen[tipo]">
+                    <div class="md-toolbar-tools" style="background:gainsboro">
+                        <h2 ng-click="tipo < 2 ? getAlertaDetalleClick(event, clave, (tipo + 1)) : null " style="cursor: {{tipo < 2 ?'pointer' : 'default'}};">
+                    <span flex>{{ clave }}</span>                                 
+                </h2>
+                    </div>
+                    <md-content flex>
+                        <md-data-table-container>
+                            <table md-data-table md-progress="datos">
+                                <thead md-order="query.order" md-trigger="onOrderChange">
+                                    <tr>
+                                        <th name="{{ tipo < 2 ? 'CONE' : 'UM' | translate }}" width="20%"></th>
+                                        <th width="1%" name="{{ 'TOTAL' | translate }} UM´s" width="20%"></th>
+                                        <th name="{{ 'TOTAL' | translate }} {{ 'CRITERIO' | translate }} " width="20%"></th>
+                                        <th name="{{ 'PROMEDIO' | translate }}" width="20%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="value in valor" ng-click="tipo >= 2 ? getCluesCriterios(event,value.evaluacion) : null" style="cursor: {{tipo >= 2 ?'pointer' : 'default'}};">
+                                        <td><strong>{{ tipo < 2 ? value.cone : value.nombre }}</strong></td>
+                                        <td>{{ value.um }}</td>
+                                        <td>{{ value.criterios }}</td>
+                                        <td>
+                                            <div class="progress" ng-if="!filtro.estricto">
+                                                <div class="progress-bar progress-bar-striped active progress-bar-default" role="progressbar" aria-valuenow="{{ value.promedio }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ value.promedio }}%; background:{{ value.color }}">
+                                                    {{ value.promedio }}%
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-data-table-container>
+
+                    </md-content>
+                </div>
+            </div>
+        </section>
+
+    </md-dialog-content>
+</md-dialog>

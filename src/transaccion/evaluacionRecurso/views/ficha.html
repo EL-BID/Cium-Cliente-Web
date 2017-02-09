@@ -1,0 +1,172 @@
+<md-dialog aria-label="FICHA">
+<form role="form" name="forma" style="min-width: 500px;">
+  <md-toolbar >
+    <div class="md-toolbar-tools ">
+      <h2>{{ 'RECURSO' | translate }} </h2>
+      <span flex></span>
+      
+
+      <md-button hide-md hide-sm hide-lg ng-show="!update"  aria-label="{{ 'CAMBIAR_UM' | translate }}" ng-click="update=true" >
+        <md-icon md-svg-icon="pencil"></md-icon>
+      {{ 'CAMBIAR_UM' | translate }}
+    </md-button>
+    <md-button class="md-icon-button"  ng-show="!update" hide show-sm show-md show-lg show-sm ng-click="update=true" aria-label="{{ 'CAMBIAR_UM' | translate }}" >
+      <md-icon md-svg-icon="pencil"></md-icon>
+      <md-tooltip hide-sm>
+          {{ 'CAMBIAR_UM' | translate }}
+        </md-tooltip>
+    </md-button>
+      
+    <md-button hide-md hide-sm hide-lg ng-show="update"  aria-label="{{ 'GUARDAR' | translate }}" ng-click="modificar(id,1);" ng-disabled="forma.$invalid">
+        <md-icon md-svg-icon="content-save"></md-icon>
+        {{ 'GUARDAR' | translate }}
+    </md-button>
+    <md-button class="md-icon-button"  ng-show="update" hide show-sm show-md show-lg show-sm ng-click="modificar(id,1);" ng-disabled="forma.$invalid" aria-label="{{ 'GUARDAR' | translate }}" >
+      <md-icon md-svg-icon="content-save"></md-icon>
+      <md-tooltip hide-sm>
+          {{ 'GUARDAR' | translate }}
+        </md-tooltip>
+    </md-button>
+
+    <md-button class="md-icon-button" ng-click="hide()">
+        <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="min-width: 500px;">
+  
+		<div layout-align="center center" ng-if="!update">
+
+            <md-content class="md-padding">
+              <md-list-item layout-wrap >
+              	<div  align="center" style="width:100%">
+                    <md-icon md-svg-icon="calendar-today"></md-icon>
+                    <span> {{dato.fechaEvaluacion}} </span>
+           			<br />
+                    <span> <strong style="font-size:.8em;">{{ dato.cerrado == 1 ? 'Cerrado' : 'Abierto' }}</strong> </span>
+                  </div>
+              	
+              </md-list-item>
+            </md-content>
+    </div>
+    
+    <div layout-align="center center" ng-if="update" flex>  
+   <div layout="row" flex>
+      <div layout="column" flex id="content">
+        <md-content layout="column" flex class="md-padding">
+
+          <md-autocomplete 
+            md-selected-item="selectedItem"
+            md-search-text-change="searchTextChange(searchText)"
+            md-search-text="searchText"
+            md-selected-item-change="selectedItemChange(item)"
+            md-items="item in querySearch(searchText)"
+            md-item-text="item.nombre"
+            md-min-length="1"
+            placeholder="{{ 'UM' | translate }}"
+            md-delay="300"
+            ng-model="dato.idClues" 
+            md-input-name="idClues"
+
+            md-menu-class="autocomplete-custom-template">
+            
+              <md-item-template >
+                <span class="item-title">
+                  <md-icon md-svg-icon="hospital-building"></md-icon>
+                  <span> {{item.nombre}} </span>
+                  <md-icon md-svg-icon="star"></md-icon>
+                  <span> <strong style="font-size:.8em;">{{item.clues}}</strong> </span>
+                </span>
+                <span class="item-metadata" style="font-size:.8em">
+                  <span class="item-metastat" >
+                    <strong>{{ 'JURISDICCION' | translate }}: </strong> {{item.jurisdiccion}}
+                  </span>
+                  <span class="item-metastat">
+                    <strong>{{ 'MUNICIPIO' | translate }}: </strong>{{item.municipio}} 
+                  </span>
+                  <span class="item-metastat">
+                    <strong>{{ 'LOCALIDAD' | translate }}: </strong> {{item.localidad}}
+                  </span>
+                </span>
+                <span class="item-metadata" style="font-size:.6em">
+                	<md-icon md-svg-icon="map-marker"></md-icon>
+                  <span class="item-metastat">
+                    {{item.domicilio}} 
+                  </span>
+                </span>
+                <span class="item-metadata" style="font-size:.7em">
+                	<md-icon md-svg-icon="hospital-building"></md-icon>
+                  <span class="item-metastat">
+                    <strong>{{item.tipoUnidad}}</strong> 
+                  </span>
+                  <span class="item-metastat">
+                    <md-icon md-svg-icon="seat-flat"></md-icon>
+                    <strong>{{item.tipologia}}</strong> 
+                  </span>
+                </span>
+               </md-item-template>                                 
+              <md-not-found>
+                No hay resultados para  "{{searchText}}".
+              </md-not-found>
+              <div ng-messages="forma.idClues.$error" >
+                <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>                               
+            </div>
+        	</md-autocomplete> 
+      
+        </md-content>
+      </div>
+    </div>            
+        </div>
+
+          <md-content layout="column"  layour-align="center center" >
+					  <md-list layout-margin  layout-align="center center" >
+
+                    	<md-input-container flex >
+                            <div style="text-align:center" flex>                            
+                            	<h4 style="font-size:1.8em">{{ dato.nombre }}</h4>
+                                <h5 style="font-size:2em"><md-icon md-svg-icon="star"></md-icon> {{ dato.clues }}</h5>
+                                <p style="font-size:.8em; margin-bottom:20px;">
+                                {{ dato.domicilio }}  <strong>CP: </strong> {{ dato.codigoPostal }}
+                                </p>
+                                <md-divider ></md-divider>
+                                
+                                <div  style="font-size:.9em; margin:20px;">
+                                    <span flex="33.33">
+                                    	<strong>{{ 'JURISDICCION' | translate }}:</strong> {{ dato.jurisdiccion }}
+                                    </span>
+                                    <span flex="33.33">
+                                    	<strong>{{ 'MUNICIPIO' | translate }}:</strong> {{ dato.municipio }}
+                                    </span>
+                                    <span flex="33.33">
+                                		<strong>{{ 'LOCALIDAD' | translate }}:</strong> {{ dato.localidad }}
+                                    </span>
+                                </div>                               
+                                <md-divider ></md-divider>
+                                
+                                <div  style="font-size:.8em; margin:20px;">
+                                    <span flex="50">
+                                    	<md-icon md-svg-icon="hospital-building"></md-icon> {{ dato.tipologia }}
+                                    </span>
+                                    <span flex="50">
+                                    	<md-icon md-svg-icon="hospital"></md-icon> {{ dato.tipoUnidad }}
+                                    </span>
+                                </div>
+                                <md-divider ></md-divider>
+                                
+                                <div  style="font-size:.9em; margin-top:20px">
+                                	<span class="col-xs-12">
+                                		<md-icon md-svg-icon="seat-flat"></md-icon><strong> Nivel CONE:</strong> {{ dato.nivelCone }}
+                                    </span>
+                                </div>
+                            </div>
+						</md-input-container>
+                  <input type="hidden" ng-model="dato.id" />
+                  <input type="hidden" aria-label="idCone" ng-model="dato.idCone" name="idCone" required>
+                	</md-list>
+				</md-content>
+			  
+		</md-list>
+</md-dialog-content>
+</form>
+</md-dialog>   

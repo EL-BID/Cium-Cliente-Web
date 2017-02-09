@@ -1,0 +1,45 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools" ng-init="ver('Usuario')">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>{{ 'VER' | translate }}</span>
+			</h2>
+			<span flex></span>	
+            
+      
+            	
+			<span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>
+	<md-content >
+
+	<md-list-item layout-sm="row" layout-md="row" style="margin-top:3%">
+  <md-content flex="33" flex-md="25" flex-lg="15" flex-sm="0" hide-sm></md-content>
+  <md-content flex="33" flex-md="50" flex-lg="70" flex-sm="100" class="imprimir md-padding">
+
+    <md-card>
+      <img src="{{ dato.avatar!=''  ? dato.avatar : 'assets/img/user.png'}}" class="md-card-image" >
+      <md-card-content style="background-color: lightslategrey; color: floralwhite;  text-shadow: 1px 1px darkblue; font-size:1em;">
+        <h2 class="md-title" align="center">{{dato.nombre}} {{dato.apellido_paterno}} {{dato.apellido_materno}}</h2>
+        <p>
+         <strong style="float:left">{{dato.email}}</strong> 
+         <i style="float:right; font-size:.8em;">{{dato.created_at}}</i>
+        </p>
+      </md-card-content>
+      
+    </md-card>
+
+    
+
+</md-content>
+<md-content flex="33" flex-md="25" flex-lg="15" flex-sm="0" hide-sm></md-content>
+</md-list-item>
+</md-content></div>
+

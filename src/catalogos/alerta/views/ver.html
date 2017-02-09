@@ -1,0 +1,51 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}" >
+		<md-icon md-svg-icon="plus"></md-icon>
+  	</md-button>
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools" ng-init="ver('/Alerta')">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>{{ 'VER' | translate }}</span>
+			</h2>
+			<span flex></span>	
+            
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>
+	<md-content>
+	
+<md-content layout="column" class="imprimir"  layout-padding  >
+	
+        	<md-input-container flex >                                    
+            	<label>ID</label>
+                <input readonly  name="id" ng-model="dato.id" value="{{dato.id}}">
+                    
+            </md-input-container>					
+            <md-input-container flex >                                    
+            	<label>{{ 'NOMBRE' | translate }}</label>
+                <input readonly  name="nombre" ng-model="dato.nombre" value="{{dato.nombre}}">
+                    
+            </md-input-container>
+            
+            <h4><span class="img-circle" style="background: {{dato.color}}; display:block; height:50px; width:50px;"></span></h4>
+        					
+            <md-input-container flex >                                    
+            	<label>{{ 'CREADO' | translate }}</label>
+                <input readonly  name="creadoAl" ng-model="dato.creadoAl" value="{{dato.creadoAl}}">
+                    
+            </md-input-container>
+        						
+            <md-input-container flex >                                    
+            	<label>{{ 'MODIFICADO' | translate }}</label>
+                <input readonly  name="modificadoAL" ng-model="dato.modificadoAl" value="{{dato.modificadoAl}}">
+                    
+            </md-input-container>
+       			
+</md-content> 
+</md-content></div>

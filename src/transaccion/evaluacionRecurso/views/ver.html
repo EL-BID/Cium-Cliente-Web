@@ -1,0 +1,252 @@
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+
+    <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+    <md-toolbar>
+        <div class="md-toolbar-tools" ng-init="ver('/EvaluacionRecurso')">
+            <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <h2>
+              <span>{{ 'VER' | translate }}</span>
+            </h2>
+            <span flex></span>
+
+            <a url-modulo="--" id="lista">
+          <md-button hide-md hide-sm hide-lg  aria-label="{{ 'REGRESAR' | translate }}" ng-if="url.split('/').length>2">
+            <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+            {{ 'REGRESAR' | translate }}
+          </md-button>
+
+          <md-button class="md-icon-button"  hide show-sm show-md show-lg  aria-label="{{ 'REGRESAR' | translate }}" ng-if="url.split('/').length>2">
+            <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+            <md-tooltip hide-sm>
+              {{ 'REGRESAR' | translate }}
+            </md-tooltip>
+          </md-button> 
+
+        </a>
+
+            <md-button hide-md hide-sm hide-lg  aria-label="{{ 'PDF' | translate }}" imprimir-div=".imprimir" >
+              <md-icon md-svg-icon="print"></md-icon>
+              {{ 'PDF' | translate }}
+            </md-button>
+            <md-button class="md-icon-button"  hide show-sm show-md show-lg imprimir-div=".imprimir" aria-label="{{ 'PDF' | translate }}" >
+              <md-icon md-svg-icon="print"></md-icon>
+              <md-tooltip hide-sm>
+                      {{ 'PDF' | translate }}
+                    </md-tooltip>
+            </md-button>
+
+            <md-button hide-sm class="md-icon-button" aria-label="{{ 'CAMBIAR_IDIOMA' | translate }}" ng-click="mostrarIdiomas($event)">
+                <md-icon md-svg-icon="web"></md-icon>
+                <md-tooltip hide-sm>
+                    {{ 'CAMBIAR_IDIOMA' | translate }}
+                </md-tooltip>
+            </md-button>
+
+            <md-button hide-sm ng-click="logout()" aria-label="{{ 'CERRAR_SESION' | translate }}">
+                <md-icon md-svg-icon="exit-to-app"></md-icon>
+                {{ 'CERRAR_SESION' | translate }}
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding>
+        <div class="imprimir" id="imprimir">
+
+            <table cellspacing="0" class="Tabla" align="right" style="margin-bottom:1em">
+                <tr style="background:#ddd">
+                    <th colspan="4">{{'EVALUACION_RECURSO' | translate | uppercase}}</th>
+                    <th>{{'FOLIO' | translate | uppercase}}</th>
+                </tr>
+                <tr>
+                    <th>{{'FECHA_EVALUACION' | translate}}:</th>
+                    <td>{{dato.fechaEvaluacion | date:'MM/dd/yyyy'}}</td>
+                    <th>{{'ESTADO' | translate}}:</th>
+                    <td style="background:#{{ dato.cerrado  ? 'FF3C3C' : '7BE15E' }}">{{ dato.cerrado ? 'Cerrado' : 'Abierto' }}</td>
+                    <th>{{dato.id | numberFixedLen:4}}</th>
+
+                </tr>
+            </table>
+            <br>
+            <br>
+
+            <table width="100%" cellspacing="0" class="Tabla">
+                <tr style=" background: lightgray;  font-weight: 700;">
+                    <td align="center" colspan="4">{{ 'DATOS_UNIDAD' | translate | uppercase}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{'CLUES' | translate}}</strong></td>
+                    <td>{{ dato.clues | uppercase}}</td>
+                    <td><strong>{{'NIVEL_CONE' | translate}}</strong></td>
+                    <td>{{ dato.nivelCone | uppercase}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{'NOMBRE' | translate}}</strong></td>
+                    <td colspan="3">{{ dato.nombre | uppercase}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{'JURISDICCION' | translate}}</strong></td>
+                    <td> {{ dato.jurisdiccion | uppercase}}</td>
+                    <td><strong>{{'MUNICIPIO' | translate}}</strong></td>
+                    <td>{{ dato.municipio | uppercase}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{'ZONA' | translate}}</strong></td>
+                    <td>{{ dato.zona | uppercase}}</td>
+                    <td><strong>{{'TIPOLOGIA' | translate}}</strong></td>
+                    <td>{{ dato.tipologia | uppercase}} | {{ dato.tipoUnidad | uppercase}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{'DOMICILIO' | translate}}</strong></td>
+                    <td colspan="3"> {{ dato.domicilio | uppercase}} <strong>CP: </strong> {{ dato.codigoPostal }}</td>
+                </tr>
+            </table>
+            <br>
+            <table width="100%" cellspacing="0" cellpadding="4" style="page-break-inside: auto;" class="Tabla" ng-init="cargarCriteriosVer();">
+
+                <thead>
+                    <tr style=" background: lightgray;  font-weight: 700;">
+                        <td align="center" colspan="8">{{ 'RESULTADOS_EV' | translate | uppercase}}</td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2" colspan="3">{{ 'INDICADOR' | translate}}</th>
+                        <th colspan="{{ contadorNoAplica>0? 4 : 3 }}" style="text-align: center;">{{ 'CRITERIO' | translate}}s</th>
+                        <th rowspan="2">{{ 'PORCENTAJE' | translate}}</th>
+                        <th rowspan="2">{{ 'CUMPLE' | translate}}</th>
+                    </tr>
+                    <tr>
+                        <th width="1%">{{ 'TOTAL' | translate}}</th>
+                        <th width="1%">{{ 'APROBADO' | translate}}</th>
+                        <th width="1%">N/{{ 'APROBADO' | translate}}</th>
+                        <th width="1%" ng-if="contadorNoAplica>0">{{ 'NA' | translate}}</th>
+                    </tr>
+                </thead>
+                <!-- TODO: ng-init -->
+                <tbody>
+                    <tr ng-repeat="value in estadistica">
+                        <td width="1%" align="center">
+                            <span ng-init="value.indicadores.totalNoAplica>0 ? sumarNoAplica() : ''" class="img-circle" style="background: {{ value.color }}; display:block; height:25px; width:25px;">
+                  </span>
+                        </td>
+                        <td width="1%" align="center">{{ value.codigo }}</td>
+                        <td>{{ value.nombre }}</td>
+                        <td align="center">{{ value.indicadores.totalCriterios }}</td>
+                        <td align="center">{{ value.indicadores.totalAprobados }}</td>
+                        <td align="center">{{ value.indicadores.totalCriterios - (value.indicadores.totalAprobados + value.indicadores.totalNoAplica) }}</td>
+                        <td align="center" ng-if="contadorNoAplica>0">{{ value.indicadores.totalNoAplica }}</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active progress-bar-default" role="progressbar" aria-valuenow="{{ value.indicadores.totalPorciento }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ value.indicadores.totalPorciento }}%; background:{{ value.indicadores.totalColor }}">
+                                    <span>{{ value.indicadores.totalPorciento }}%</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td width="1%" align="center" style="background:#{{ value.indicadores.totalCriterios != (value.indicadores.totalAprobados + value.indicadores.totalNoAplica)  ? 'FF3C3C' : '7BE15E' }}">
+                            {{ value.indicadores.totalCriterios == (value.indicadores.totalAprobados + value.indicadores.totalNoAplica) ? 'Si' : 'No' }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <h3 style="text-align:center; font-size:1em;" class="h3-caption {{ !imprimirDetalle ? 'equis' :'' }}">{{ 'DETALLES_EV' | translate | uppercase}}
+
+              <md-button class="md-icon-button" style="float:right; margin-top:-15px; " aria-label="detalle" ng-click="imprimirDetalle=!imprimirDetalle">
+              <md-icon md-svg-src="{{imprimirDetalle ? 'minus' : 'plus' }}" style="color:white" class="equis"></md-icon>
+              <md-tooltip ng-if="!imprimirDetalle">
+                    {{ 'IMPRIMIR_DETALLE_ON' | translate }}
+                </md-tooltip>
+                <md-tooltip ng-if="imprimirDetalle">
+                    {{ 'IMPRIMIR_DETALLE_OFF' | translate }}
+                </md-tooltip>
+            </md-button>
+            </h3>
+            <div ng-if="imprimirDetalle">
+                <div ng-repeat="criterios in indicadores" style="border-bottom: 2px solid #999;  padding-bottom:3em; margin-bottom:3em;">
+                    <table width="100%" class="Tabla" style="margin-bottom:0.5em">
+                        <tbody>
+                            <tr style=" background: lightgray;  font-weight: 700;">
+                                <td align="center" colspan="2">INDICADOR</td>
+                            </tr>
+                            <tr>
+                                <th>Código</th>
+                                <th style="text-align:left;"><span class="img-circle" style="background: {{ criterios.indicador.color }}; display:block; height:1em; width:1em; float:left; margin-right:.5em"></span> {{ criterios.indicador.codigo }}</th>
+                            </tr>
+                            <tr>
+                                <th>Nombre</th>
+                                <th style="text-align:left;">{{ criterios.indicador.nombre }}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-repeat="(key, value) in criterios | groupBy : 'lugarVerificacion'" ng-if="key != 'undefined'" style="margin-bottom:0.5em">
+                        <table width="100%" class="Tabla" style="border:0" cellspacing="0" style="page-break-inside: auto;">
+                            <thead>
+                                <tr>
+                                    <th align="left">{{key}}</th>
+                                    <th colspan="2" align="center">{{ 'APROBADO' | translate}}</th>
+                                </tr>
+                                <tr>
+                                    <th align="left">{{ 'CRITERIO' | translate}}</th>
+                                    <th>{{ 'SI' | translate}}</th>
+                                    <th>{{ 'NO' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="c in value">
+                                    <td>{{ c.criterio }}</td>
+                                    <td width="1%" style="background-color: {{ c.aprobado == 1 ? '#7BE15E'  : '' }}; color:#000; font-weight:bold;">
+                                        <md-icon ng-if="c.aprobado == 1" md-svg-icon="check"></md-icon>
+                                        <md-icon ng-if="c.aprobado == 2" md-svg-icon="remove"></md-icon>
+                                    </td>
+                                    <td width="1%" style="background-color: {{ c.aprobado == 0 ? '#FF3C3C' : '' }}; color:#000; font-weight:bold;">
+                                        <md-icon ng-if="c.aprobado == 0" md-svg-icon="close"></md-icon>
+                                        <md-icon ng-if="c.aprobado == 2" md-svg-icon="remove"></md-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <table class="Tabla" ng-if="criterios.hallazgo" width="100%">
+                        <thead>
+                            <tr>
+                                <th colspan="2">{{ 'HALLAZGO' | translate | uppercase}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th align="left" width="1%">{{ 'DESCRIPCION' | translate}}</th>
+                                <td>{{ criterios.hallazgo.descripcion}}</td>
+                            </tr>
+                            <tr>
+                                <th align="left" width="1%">{{ 'ACCION' | translate}}</th>
+                                <td>{{ criterios.hallazgo.accion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <br>
+            <div align="center" style="color:#000; width:100%">
+                <div align="center" style="color:#000; border: 1px solid #666; width:40%">
+                    <br> {{ 'RESPONSABLE' | translate | uppercase}}
+                    <div style="margin-top:40px;"><img ng-if="dato.firma" style="width:30%" ng-src="data:image/png;base64,{{dato.firma}}"></div>
+
+                    <div style="color:#000;padding:15px;">{{ dato.responsable | uppercase}}</div>
+                    <div style="color:#000;padding:15px;">{{ 'NOMBRE_FIRMA' | translate | uppercase}}</div>
+                    <div style="color:#000; font-size:0.8em;border-top: 1px solid #666; width:100%;" align="center">
+                        <span style="color:#000;padding:.5em;display:block">
+              {{ 'REALIZO' | translate | uppercase}}: 
+            </span>
+                    </div>
+                    <div align="center" style="color:#000;font-size:0.8em; border-top: 1px solid #666; width:auto; padding:0.5em;">
+                        {{ dato.email | uppercase}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</div>

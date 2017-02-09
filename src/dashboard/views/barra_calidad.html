@@ -1,0 +1,51 @@
+<div layout-fill fullscreen="isFullscreen">
+    
+        <div class="md-toolbar-tools" style="background:gainsboro">
+            <h2 >
+                <span flex>{{ 'RU_CALIDAD' | translate}}</span>                                 
+            </h2> 
+            <span flex></span>
+            <md-switch ng-model="quitar" aria-label="estricto" ng-change="quitarAlert()">
+                <md-tooltip hide-sm>
+                    {{ !quitar ? 'QUITARALERTA' : 'PONERALERTA' | translate }}
+                </md-tooltip>
+            </md-switch>
+            <span>
+                <md-button class="md-icon-button" aria-label="info" ng-click="showAlert($event)" ng-if="verInfo" >
+                <md-icon md-svg-icon="information-outline"></md-icon>
+                <md-tooltip hide-sm>
+                    Info
+                </md-tooltip>
+                </md-button>
+                
+                
+                <md-button class="md-icon-button" aria-label="Opciones"  ng-click="toggleRightOpciones('calidad');">
+                <md-icon md-svg-icon="settings"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'OPCIONES' | translate }}
+                    </md-tooltip>
+                </md-button>                                                                
+                
+                <md-button class="md-icon-button" aria-label="Máximizar" hide-sm ng-click="toggleFullScreen('max-calidad')" id="max-calidad">
+                <md-icon md-svg-src="{{!isFullscreen ? 'fullscreen' : 'fullscreen-exit'}}"></md-icon>
+                    <md-tooltip hide-sm>
+                        {{ 'FULLSCREEN' | translate }}
+                    </md-tooltip>
+                </md-button>                                                                
+            </span>
+        </div>
+    <md-progress-linear  ng-if="calidad" class="md-accent"  md-theme="altTheme"  md-mode="indeterminate"></md-progress-linear> 
+    <md-content layout="column" layour-align="center center" layout-padding flex  style="{{!isFullscreen ? 'overflow: auto; display: block; max-height: 454px;' : '' }}" >                                                                                                                                                                    
+        
+        <md-content layout="column" layout-align="center center" ng-show="datosOk" layout-fill flex>                                
+            <canvas tc-chartjs-bar chart-options="options" chart-data="data" auto-legend ng-click="chartClick($event)" chart="chart" id="chartChart" flex>
+                
+            </canvas>                     
+        </md-content>
+        <div ng-show="!datosOk" layout="row" layout-align="center center" flex>
+            <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+        </div>    
+                                   
+    </md-content>
+    <md-sidenav layout="column" layout-fill class="md-sidenav-right md-whiteframe-z2" md-component-id="calidad"  ng-include="'src/dashboard/views/dialog.html'" ></md-sidenav>
+</div>

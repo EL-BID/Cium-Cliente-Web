@@ -1,0 +1,136 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools" ng-init="index('/EvaluacionRecurso')">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>{{ 'NUEVA' | translate }}</span>
+			</h2>
+			<span flex></span>	
+            
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>
+	<md-content>
+	
+
+<form role="form" name="forma">
+<md-content layout="column" class="imprimir"  layour-align="center center"  >
+	<md-list layout-margin layout-align="center center" >
+        		
+            <md-content class="md-padding">     
+
+                                <md-autocomplete 
+                                  md-selected-item="selectedItem"
+                                  md-search-text-change="searchTextChange(searchText)"
+                                  md-search-text="searchText"
+                                  md-selected-item-change="selectedItemChange(item)"
+                                  md-items="item in querySearch(searchText)"
+                                  md-item-text="item.nombre"
+                                  md-min-length="1"
+                                  placeholder="{{ 'UM' | translate }}"
+                                  md-delay="300"
+                                  ng-model="dato.idClues" 
+                                  md-input-name="idClues"
+                                  md-menu-class="autocomplete-custom-template">
+
+                                    <md-item-template >
+                                      <span class="item-title">
+                                        <md-icon md-svg-icon="hospital-building"></md-icon>
+                                        <span md-highlight-text="searchTerm"> {{item.nombre}} </span>
+                                        <md-icon md-svg-icon="star"></md-icon>
+                                        <span > <strong style="font-size:.8em;" md-highlight-text="searchTerm">{{item.clues}}</strong> </span>
+                                      </span>
+                                      <span class="item-metadata" style="font-size:.8em">
+                                        <span class="item-metastat" >
+                                          <strong>{{ 'JURISDICCION' | translate }}: </strong> <span md-highlight-text="searchTerm">{{item.jurisdiccion}}</span>
+                                        </span>
+                                        <span class="item-metastat">
+                                          <strong>{{ 'MUNICIPIO' | translate }}: </strong><span md-highlight-text="searchTerm">{{item.municipio}} </span>
+                                        </span>
+                                        <span class="item-metastat">
+                                          <strong>{{ 'LOCALIDAD' | translate }}: </strong> <span md-highlight-text="searchTerm">{{item.localidad}}</span>
+                                        </span>
+                                      </span>
+                                      <span class="item-metadata" style="font-size:.6em">
+                                      	<md-icon md-svg-icon="map-marker"></md-icon>
+                                        <span class="item-metastat" md-highlight-text="searchTerm">
+                                          {{item.domicilio}} 
+                                        </span>
+                                      </span>
+                                      <span class="item-metadata" style="font-size:.7em">
+                                      	<md-icon md-svg-icon="hospital-building"></md-icon>
+                                        <span class="item-metastat">
+                                          <strong>{{item.tipoUnidad}}</strong> 
+                                        </span>
+                                        <span class="item-metastat">
+                                          <md-icon md-svg-icon="seat-flat"></md-icon>
+                                          <strong>{{item.tipologia}}</strong> 
+                                        </span>
+                                      </span>
+                                     </md-item-template>                                 
+                                    <md-not-found>
+                                      No hay resultados para  "{{searchText}}".
+                                    </md-not-found>
+                                    <div ng-messages="forma.idCone.$error" >
+                                      <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>                                    
+                                  </div>
+                              	</md-autocomplete><input type="hidden" aria-label="idCone" ng-model="dato.idCone" name="idCone" required>  
+                           
+                    
+              	
+              </md-content> 
+              <md-content layout="column"  layour-align="center center" >
+                <md-list layout-margin layout-align="center center" >
+                  	
+                  <div style="text-align:center" flex>                            
+                  	<h4 style="font-size:1.8em">{{ dato.nombre }}</h4>
+                      <h5 style="font-size:2em"><md-icon md-svg-icon="star"></md-icon> {{ dato.clues }}</h5>
+                      <p style="font-size:.8em; margin-bottom:20px;">
+                      {{ dato.domicilio }}  <strong>CP: </strong> {{ dato.codigoPostal }}
+                      </p>
+                      <md-divider ></md-divider>
+                      
+                      <div  style="font-size:.9em; margin:20px;">
+                          <span flex="33.33">
+                          	<strong>{{ 'JURISDICCION' | translate }}:</strong> {{ dato.jurisdiccion }}
+                          </span>
+                          <span flex="33.33">
+                          	<strong>{{ 'MUNICIPIO' | translate }}:</strong> {{ dato.municipio }}
+                          </span>
+                          <span flex="33.33">
+                      		<strong>{{ 'LOCALIDAD' | translate }}:</strong> {{ dato.localidad }}
+                          </span>
+                      </div>                               
+                      <md-divider ></md-divider>
+                      
+                      <div  style="font-size:.7em; margin:20px;">
+                          <span flex="50">
+                          	<md-icon md-svg-icon="hospital-building"></md-icon> {{ dato.tipologia }}
+                          </span>
+                          <span flex="50">
+                          	<md-icon md-svg-icon="hospital-building"></md-icon> {{ dato.tipoUnidad }}
+                          </span>
+                      </div>
+                      <md-divider ></md-divider>
+                      
+                      <div  style="font-size:.9em; margin-top:20px">
+                      	<span class="col-xs-12">
+                      		<md-icon md-svg-icon="seat-flat"></md-icon><strong> Nivel CONE:</strong> {{ dato.nivelCone }}
+                          </span>
+                      </div>
+                  </div>
+                </md-list>
+              </md-content>
+			  
+		</md-list>
+	</md-content>
+    
+</form>
+<span ng-init="cargando = false;"></span> 
+</md-content></div>

@@ -1,0 +1,49 @@
+<!--<md-whiteframe class="md-whiteframe-z1"  layout layout-align="center center">
+<div class="md-padding" layout-fill layout-sm="column">
+    <div layout="row" layout-sm="column" >
+	<div flex="100">
+		<md-button flex-sm="50" ng-disabled="btexportar" class="md-raised md-primary" ng-click="exportar()" style="float:right">
+			<md-icon md-svg-src="picture-as-pdf"></md-icon>
+			<md-tooltip hide-sm>
+				{{ 'PDF' | translate }}
+			</md-tooltip>
+		</md-button>
+		
+		<md-button flex-sm="50" ng-disabled="btexcel" class="md-raised md-primary" ng-click="excel()" style="float:right">
+			<md-icon md-svg-src="explicit"></md-icon>
+			<md-tooltip hide-sm>
+				{{ 'EXCEL' | translate }}
+			</md-tooltip>
+		</md-button>
+	</div>
+    </div>
+
+    <div layout="row" layout-sm="column" >
+
+      <md-input-container class="md-icon-float md-default-theme" flex-md="60" flex-sm="100" flex-lg="60" flex="60" >
+		<label hide-sm style="margin-top:16px">{{ 'BUSCAR' | translate }}</label>
+		<md-icon md-svg-src="search" hide-sm  style="margin-top:16px"></md-icon>
+
+		<label show-sm hide>{{ 'BUSCAR' | translate }}</label>
+		<md-icon md-svg-src="search" show-sm hide></md-icon>
+		<input ng-model="buscar" type="text">
+	  </md-input-container>
+      
+	      
+
+		<div  flex-md="40" flex-sm="100" flex-lg="40" flex="40" >
+		<md-select ng-model="columna" aria-label="Por" ng-init="columna='nombre'" style="float:left">
+			<md-option ng-repeat="item in BuscarPor" value="{{item.id}}">{{item.nombre}}</md-option>
+		  </md-select>
+		  	<md-button class="md-raised" ng-click="buscarL(buscar,columna)" style="float:left; margin-top:16px">
+				<md-icon md-svg-src="search"></md-icon>
+				<md-tooltip hide-sm>
+					{{ 'BUSCAR' | translate }}
+				</md-tooltip>
+			</md-button>			
+		</div>
+
+    </div>
+</div>										
+	
+</md-whiteframe>-->

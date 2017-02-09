@@ -1,0 +1,71 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools" ng-init="ver('/Clues')">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>{{ 'VER' | translate }}</span>
+			</h2>
+			<span flex></span>	
+            	
+			<span ng-include="'src/app/views/menu-opciones.html'" ng-init="verEliminar=true"></span>
+		</div>
+		
+	</md-toolbar>
+	<md-content>
+
+
+<div class="imprimir">  
+  <md-content  layout="column" >
+
+
+
+                      <md-input-container flex >
+                            <div style="text-align:center" flex>                            
+                              <h4 style="font-size:1.3em">{{ dato.nombre }}</h4>
+                                <h5 style="font-size:1em"><md-icon md-svg-icon="star"></md-icon> {{ dato.clues }}</h5>
+                                <p style="font-size:.5em; margin-bottom:20px;">
+                                {{ dato.domicilio }}  <strong>CP: </strong> {{ dato.codigoPostal }}
+                                </p>
+                                <md-divider ></md-divider>
+                                
+                                <div  style="font-size:.7em; margin:20px;">
+                                    <span flex="33.33">
+                                      <strong>{{ 'JURISDICCION' | translate }}:</strong> {{ dato.jurisdiccion }}
+                                    </span>
+                                    <span flex="33.33">
+                                      <strong>{{ 'MUNICIPIO' | translate }}:</strong> {{ dato.municipio }}
+                                    </span>
+                                    <span flex="33.33">
+                                    <strong>{{ 'LOCALIDAD' | translate }}:</strong> {{ dato.localidad }}
+                                    </span>
+                                </div>                             
+                                <md-divider ></md-divider>
+                                
+                                <div  style="font-size:.6em; margin:20px;">
+                                    <span flex="50">
+                                      <md-icon md-svg-icon="hospital-building"></md-icon> {{ dato.tipologia }}
+                                    </span>
+                                    <span flex="50">
+                                      <md-icon md-svg-icon="hospital-building"></md-icon> {{ dato.tipoUnidad }}
+                                    </span>
+                                </div>
+                                <md-divider ></md-divider>
+                                
+                                <div  style="font-size:.7em; margin-top:20px">
+                                  <span class="col-xs-12">
+                                    <md-icon md-svg-icon="seat-flat"></md-icon><strong> Nivel CONE:</strong> {{ dato.cone.cone.nombre }}
+                                    </span>
+                                </div>
+                            </div>
+            </md-input-container>
+
+                
+  </md-content>
+  </div>
+  </md-content></div>

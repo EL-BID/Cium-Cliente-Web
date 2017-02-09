@@ -1,0 +1,63 @@
+<md-sidenav  layout="column"  class="md-sidenav-left md-whiteframe-z2" md-component-id="left-publico"  ng-include="'src/app/views/menu-publico-side-nav.html'"></md-sidenav>
+<div layout="column" flex>
+	<md-toolbar ng-include="'src/app/views/menu-publico.html'" class="md-whiteframe-z2"></md-toolbar>
+    <div flex></div>
+	<md-content layout="row" layout-padding layout-wrap layout-align="space-around none" style="overflow: auto; min-height: 600px;">
+	    
+		<div class="md-whiteframe-z2" flex="30" flex-md="40" flex-sm="60" flex-xs="100"  layout="column" style="padding:0px" ng-cloak>
+            <div class="spinner" ng-show="cargando" style="position: absolute; left: 48%; top: 75px; z-index: 99999;" >
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1" width="48px" height="48px" viewBox="0 0 28 28">
+                    <g class="qp-circular-loader">
+                        <path class="qp-circular-loader-path" fill="none" d="M 14,1.5 A 12.5,12.5 0 1 1 1.5,14" stroke-linecap="round"></path>
+                    </g>
+                </svg>
+            </div>
+			<md-toolbar  md-Theme="altTheme">                
+                <h1 class="md-display-4" style="font-size:2em;margin::0px;  line-height:1em;text-align:center" >
+                    <img src="assets/img/icono-cium-blue.png" style="width: 13%; float: left; margin-top: -25px;">
+                    <span style="margin-left:-50px">{{ 'BIENVENIDO' | translate }}</span>
+                </h1>
+            </md-toolbar>            
+			<form flex layout="column" ng-submit="signin()" layout-padding>
+              
+                <md-input-container class="md-block">     
+                    <md-icon md-svg-src="email" class="email"></md-icon>
+                    <input ng-model="email" name="email" type="email" placeholder=" {{ 'EMAIL' | translate }}" ng-required="true">
+                </md-input-container>
+                <md-input-container class="md-block">     
+                    <md-icon md-svg-src="lock" class="email"></md-icon>
+                    <input ng-model="password" name="password" type="password" placeholder=" {{ 'PASSWORD' | translate }}" ng-required="true">
+                </md-input-container>
+                				
+				<md-button type="submit" ng-disabled="cargando" class="md-raised md-primary" ng-click="signin()">
+					<md-icon md-svg-icon="salud-id" ></md-icon>
+                    
+                    {{ 'ENTRAR' | translate }}
+				</md-button>
+			
+                <md-button style="display:inline-block" ng-href="{{urlOlvidePassword}}"  target="_blank" aria-label="{{ 'OLVIDE_PASSWORD' | translate }}">
+                    <small>{{ 'OLVIDE_PASSWORD' | translate }}</small>
+                    <md-icon md-svg-icon="launch" style="width:10px;height:10px;vertical-align:top;margin-top:8px"></md-icon>
+                </md-button>
+                <md-divider></md-divider>
+                <div flex class="row" style="padding:2%" align="center"><small>{{ 'NO_TIENES_CUENTA' | translate }}</small></div>
+                <div class="column">
+                    
+                    <md-button ng-href="{{urlObtenerOAuth}}" target="_blank" style="float:left; width:42%; padding:3%; font-size:.7em; border-radius: 60px 0px 60px 0px;" aria-label="{{ 'OBTENER_CUENTA_OAUTH' | translate }}" ng-href="#/signup" class="md-raised md-accent">
+                            <md-icon md-svg-icon="exit-to-app" ></md-icon> {{ 'OBTENER_CUENTA_OAUTH' | translate }}
+                    </md-button>
+                    
+                    <md-button ng-href="{{urlOAuthInfo}}" target="_blank" style="float:right; width:42%; padding:3%; font-size:.7em; border-radius: 0px 60px 0px 60px;" aria-label="{{ 'QUE_ES_OAUTH' | translate }}" class="md-raised">
+                        <small>{{ 'QUE_ES_OAUTH' | translate }}</small>
+                        <md-icon md-svg-icon="launch" style="width:10px;height:10px;vertical-align:top;margin-top:8px"></md-icon>
+                    </md-button>
+                </div>
+            </form>
+		</div>
+	</md-content>
+	<div flex></div>
+	<md-content>
+		<md-divider></md-divider>
+		<md-content layout="row" layout-fill ng-include="'src/app/views/pie-pagina.html'"></md-content>	
+	</md-content>
+</div>

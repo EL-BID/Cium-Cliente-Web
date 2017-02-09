@@ -1,0 +1,64 @@
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+    <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+    <md-toolbar style="z-index: 59;">
+        <div class="md-toolbar-tools">
+            <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <h2>
+              <span>Dashboard   </span>
+            </h2>
+            <span flex></span>
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+    <md-content layout="row" layour-align="center center" layout-padding flex id="principal" style="background-color:#FFFFFF" ng-controller="globalCalidadController" ng-init="toggleRightOpciones('globalCalidad');">
+        <div flex>
+            <div class="md-toolbar-tools" style="background:gainsboro">
+                <h2>
+                    <span flex>Top {{filtro.top}} {{ 'DE' | translate}} {{ 'CALIDAD' | translate}}</span>
+                </h2>
+                
+            </div>
+            <md-progress-linear ng-if="globalCalidad" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+            <md-content flex >
+                <md-content>
+                    <div ng-repeat="(key, value) in dato" class="md-whiteframe-z2" ng-if="mostrarTop[key] && datosOk">
+                        <md-data-table-toolbar>
+                            <h2 class="md-title">{{ key | translate }}</h2>
+                        </md-data-table-toolbar>
+                        <md-data-table-container>
+                            <table md-data-table md-progress="indicadores">
+                                <thead md-order="query.order" md-trigger="onOrderChange">
+                                    <tr>
+                                        <th name="N°"></th>
+                                        <th name="{{ 'CLUES' | translate}}"></th>
+                                        <th name="{{ 'NOMBRE' | translate}}"></th>
+                                        <th name="{{ 'PORCENTAJE' | translate}}"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in value">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{ item.clues }}</td>
+                                        <td>{{ item.nombre }}</td>
+                                        <td>{{ item.porcentaje | number:2}} %</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-data-table-container>
+                    </div>
+                    <div ng-show="!datosOk" layout="row" layout-align="center center">
+                        <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+                    </div>
+                </md-content>
+            </md-content>
+        </div>
+        <div flex>
+            <md-content flex>
+                <div ng-include="'src/dashboard/views/dashboard/filtros.html'"></div>
+            </md-content>
+        </div>
+    </md-content>
+</div>

@@ -1,0 +1,189 @@
+
+<md-tabs>
+  <md-tab label="{{ 'PREGUNTAS' | translate }}">
+    <br>
+    <md-button class="md-raised md-primary" type="button" ng-click="agregarPregunta()">
+      <md-icon md-svg-icon="plus"></md-icon>
+      <md-tooltip md-direction="right" show-gt-sm>
+        {{'AGREGAR' | translate}}
+      </md-tooltip> 
+    </md-button> 
+
+    <md-button class="md-raised md-accent" type="button" ng-show="dato.indicador_preguntas.length > 0" ng-click="limpiarPregunta()">
+      <md-icon md-svg-icon="delete-forever"></md-icon> 
+      <md-tooltip md-direction="right" show-gt-sm>
+        {{'LIMPIAR' | translate}}
+      </md-tooltip>
+    </md-button>
+
+
+
+    <md-data-table-container>
+      <table md-data-table md-progress="datos">
+        <thead md-order="query.order" md-trigger="onOrderChange">
+          <tr>
+                  <th width="30%" name="{{  'PREGUNTA' | translate }}"></th>
+                  <th name="{{  'TIPO' | translate }}"></th>
+                  <th name="{{  'CONSTANTE' | translate }}"></th>  
+                  <th></th>    
+                  <th></th>                    
+                  <th width="1%"></th>              
+                </tr>
+        </thead>
+        <tbody>
+          <tr md-auto-select ng-repeat="item in dato.indicador_preguntas">
+            <td>
+              <md-input-container flex layout>
+                <input aria-label="min{{$index}}" type="text"  ng-model="item.nombre" >
+                <input type="hidden"  ng-model="item.id" >
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container flex layout>
+                <md-select placeholder="Seleccione" ng-model="item.tipo" flex ng-change="item.fechaSistema = 0; validarTipo();">
+                  <md-option ng-repeat="tipo in tipos" value="{{tipo.id}}">{{tipo.nombre}}</md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+            <td>
+              <br><br>
+              <md-checkbox ng-model="item.constante" aria-label="constante" ng-true-value="'1'" ng-false-value="'0'" ng-click="item.fechaSistema = 0">
+                {{ 'ES_CONSTANTE' | translate }}
+              </md-checkbox>
+            
+            </td>
+            <td>
+              <br><br>
+              <md-checkbox ng-model="item.fechaSistema" aria-label="constante" ng-if="item.tipo == 'date' ? item.constante == '1' ? true : false : false" ng-true-value="'1'" ng-false-value="'0'">
+                {{ 'ES_FECHA_SISTEMA' | translate }}
+              </md-checkbox>
+            </td>
+            <td>
+              
+              <span ng-if="item.constante == '1' ? item.fechaSistema  == '1' ? false : true : false">
+                <md-input-container flex ng-if="item.tipo != 'date' && item.tipo != 'boolean'" >
+                  <label>{{ 'VALOR_CONSTANTE' | translate }}</label>
+                  <input aria-label="const{{$index}}" type="{{item.tipo}}"  ng-model="item.valorConstante" >
+                </md-input-container>
+                <span ng-if="item.tipo == 'date'">
+                  <br>
+                  <md-datepicker ng-model="item.valorComparativo" md-placeholder="dd/mm/aaaa"  >
+                  </md-datepicker>
+                </span>
+                <span ng-if="item.tipo == 'boolean'">
+                  <br><br>
+                  <md-checkbox ng-model="item.valorComparativo" aria-label="Checkbox 1" >
+                    {{ 'VALOR_CONSTANTE' | translate }}
+                  </md-checkbox>
+                </span>
+              </span>
+            </td>
+            <td>
+              <md-button type="button" class="md-warn" aria-label="Quitar" ng-click="quitarPregunta($index)">
+                <md-icon md-svg-icon="delete"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-data-table-container>
+  </md-tab>
+
+  <md-tab label="{{ 'FORMULAS' | translate }}">
+    <br>
+    <md-button class="md-raised md-primary" type="button" ng-show="dato.indicador_preguntas.length > 0" ng-click="agregarValidacion()">
+      <md-icon md-svg-icon="plus"></md-icon>
+      <md-tooltip md-direction="right" show-gt-sm>
+        {{'AGREGAR' | translate}}
+      </md-tooltip> 
+    </md-button> 
+
+    <md-button class="md-raised md-accent" type="button" ng-show="dato.indicador_validaciones.length > 0" ng-click="limpiarValidacion()">
+      <md-icon md-svg-icon="delete-forever"></md-icon> 
+      <md-tooltip md-direction="right" show-gt-sm>
+        {{'LIMPIAR' | translate}}
+      </md-tooltip>
+    </md-button> 
+
+    <md-button class="md-raised md-default" type="button" ng-show="dato.indicador_validaciones.length > 0" ng-click="probarValidacion($event)">
+      <md-icon md-svg-icon="eye"></md-icon> 
+      <md-tooltip md-direction="right" show-gt-sm>
+        {{ 'PROBAR_VALIDACION' | translate }}
+      </md-tooltip>
+    </md-button> 
+
+    <md-data-table-container>
+      <table md-data-table md-progress="datos">
+        <thead md-order="query.order" md-trigger="onOrderChange">
+          <tr>
+            <th name="{{  'PREGUNTA' | translate }} 1"></th>
+            <th name="{{  'OPERADOR_ARITMETICO' | translate }}"></th>
+            <th name="{{  'PREGUNTA' | translate }} 2"></th>
+            <th name="{{  'UNIDAD_MEDIDA' | translate }}"></th>
+            <th name="{{  'OPERADOR_LOGICO' | translate }}"></th>
+            <th name="{{  'VALOR_COMPARATIVO' | translate }}"></th>                      
+            <th width="1%"></th>              
+          </tr>
+        </thead>
+        <tbody>
+          <tr md-auto-select ng-repeat="item in dato.indicador_validaciones">   
+            <td>
+              <md-input-container flex layout>
+                <md-select placeholder="Seleccione" ng-model="item.pregunta1" flex ng-disabled="bool1[$index]" ng-change="pregunta1(item.pregunta1, item.pregunta2, $index)">
+                  <md-option ng-repeat="pregunta in dato.indicador_preguntas" value="{{pregunta.id}}">{{pregunta.nombre}} </md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container flex layout>             
+                <md-select placeholder="Seleccione" ng-model="item.operadorAritmetico" flex ng-disabled="bool[$index]">
+                  <md-option ng-repeat="ope in operadoresAritmeticos" value="{{ope.id}}">{{ope.nombre}}</md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container flex layout>
+                <md-select placeholder="Seleccione" ng-model="item.pregunta2" flex ng-disabled="bool2[$index]" ng-change="pregunta1(item.pregunta1, item.pregunta2, $index)">
+                  <md-option ng-repeat="pregunta in dato.indicador_preguntas" value="{{pregunta.id}}">{{pregunta.nombre}}</md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container flex layout>                
+                <md-select placeholder="Seleccione" ng-model="item.unidadMedida" flex ng-disabled="bool[$index]">
+                  <md-option ng-repeat="uniMe in unidadMedidas" value="{{uniMe.id}}">{{uniMe.nombre}}</md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container flex layout>             
+                <md-select placeholder="Seleccione" ng-model="item.operadorLogico" flex ng-disabled="bool[$index]">
+                  <md-option ng-repeat="ope in operadoresLogicos" value="{{ope.id}}">{{ope.nombre}}</md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+
+            <td>
+              <br>
+              <md-input-container flex ng-if="!check[$index]">
+                <label>{{ 'VALOR_COMPARATIVO' | translate }}</label>
+                <input aria-label="comp{{$index}}" type="text"  ng-model="item.valorComparativo" >
+              </md-input-container>  
+
+              <md-checkbox ng-model="item.valorComparativo" aria-label="Checkbox 1" ng-if="check[$index]">
+                {{ 'VALOR_COMPARATIVO' | translate }}
+              </md-checkbox>                                            
+
+            </td>
+                                    
+            <td>
+              <md-button type="button" class="md-warn" aria-label="Quitar" ng-click="quitarValidacion($index)">
+                <md-icon md-svg-icon="delete"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-data-table-container>
+  </md-tab>
+</md-tabs> 

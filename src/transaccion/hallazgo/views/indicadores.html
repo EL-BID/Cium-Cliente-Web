@@ -1,0 +1,77 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools" ng-init="ver('/Hallazgo')">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>{{ 'INDICADOR_SEL' | translate }}</span>
+			</h2>
+			<span flex></span>		
+
+<a url-modulo="--" id="lista">
+  <md-button hide-md hide-sm hide-lg aria-label="{{ 'REGRESAR' | translate }}" >
+    <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+    {{ 'REGRESAR' | translate }}
+  </md-button>
+
+  <md-button class="md-icon-button"  hide show-sm show-md show-lg  aria-label="{{ 'REGRESAR' | translate }}" >
+    <md-icon md-svg-icon="keyboard-backspace"></md-icon>
+    <md-tooltip hide-sm>
+          {{ 'REGRESAR' | translate }}
+        </md-tooltip>
+  </md-button> 
+</a>
+  
+<md-button hide-md hide-sm hide-lg  aria-label="{{ 'PDF' | translate }}" imprimir-div=".imprimir" >
+  <md-icon md-svg-icon="printer"></md-icon>
+  {{ 'PDF' | translate }}
+</md-button>
+<md-button class="md-icon-button"  hide show-sm show-md show-lg imprimir-div=".imprimir" aria-label="{{ 'PDF' | translate }}" >
+  <md-icon md-svg-icon="printer"></md-icon>
+  <md-tooltip hide-sm>
+          {{ 'PDF' | translate }}
+        </md-tooltip>
+</md-button>
+
+<md-button hide-sm class="md-icon-button" aria-label="{{ 'CAMBIAR_IDIOMA' | translate }}" ng-click="mostrarIdiomas($event)">
+  <md-icon md-svg-icon="web"></md-icon>
+        <md-tooltip hide-sm>
+          {{ 'CAMBIAR_IDIOMA' | translate }}
+        </md-tooltip>
+</md-button>
+      
+<md-button hide-sm ng-click="logout()"  aria-label="{{ 'CERRAR_SESION' | translate }}">
+  <md-icon md-svg-icon="exit-to-app"></md-icon>
+  {{ 'CERRAR_SESION' | translate }}
+</md-button>
+
+		</div>
+	</md-toolbar>
+	<md-content class="imprimir" layout="column"  layour-align="center center"  >
+        <section ng-repeat="(key, value) in dato | groupBy :  'categoria'" ng-if="key != 'undefined' ">						
+            <md-subheader class="md-primary" >
+                {{ key | translate }}                              
+            </md-subheader>
+            <md-list>	
+                                            
+                <md-list-item ng-repeat="c in value" class="md-2-line" ng-click="secondClick(c.codigo)" style="border-bottom: 1px solid #ddd">	
+                    <span class="img-circle" style="background:{{c.color}}; position: relative; float: left; width: 1.7em; height: 1.7em; margin: 0; margin-right: 1.3em; padding: 0; display: block;"></span>	                                                                                      
+                    <div class="md-list-item-text">                        
+                        <h3>												
+                            {{c.codigo}}                                        										
+                        </h3>                        
+                        <p>                                        
+                            <small> {{ c.indicador }} </small>
+                        </p>                        
+                    </div>                       
+                </md-list-item>													
+            </md-list>
+            
+        </section>
+	</md-content>   
+</div>				

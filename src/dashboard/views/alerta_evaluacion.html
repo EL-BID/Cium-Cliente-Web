@@ -1,0 +1,176 @@
+<md-dialog aria-label="clues">
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools ">
+            <h2>{{ 'EVALUACION' | translate }} </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="hide()">
+                <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width: 500px;">
+
+        <div layout="column" class="relative" layout-fill role="main" flex>
+
+            <md-progress-linear ng-if="alertaDetalle" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+
+                    <h2>
+          <span>{{ 'VER' | translate }}</span>
+        </h2>
+                    <span flex></span>
+
+                    <md-button hide-md hide-sm hide-lg aria-label="{{ 'PDF' | translate }}" imprimir-div=".imprimir">
+                        <md-icon md-svg-icon="printer"></md-icon>
+                        {{ 'PDF' | translate }}
+                    </md-button>
+                    <md-button class="md-icon-button" hide show-sm show-md show-lg imprimir-div=".imprimir" aria-label="{{ 'PDF' | translate }}">
+                        <md-icon md-svg-icon="printer"></md-icon>
+                        <md-tooltip hide-sm>
+                            {{ 'PDF' | translate }}
+                        </md-tooltip>
+                    </md-button>
+
+                    <md-button hide-md hide-sm hide-lg aria-label="ver" ng-click="verEvaluacionCompleta()">
+                        <md-icon md-svg-icon="eye"></md-icon>
+                        {{ 'VER_EVALUACION_COMPLETA' | translate }}
+                    </md-button>
+                    <md-button class="md-icon-button" hide show-sm show-md show-lg aria-label="Ver" ng-click="verEvaluacionCompleta()">
+                        <md-icon md-svg-icon="eye"></md-icon>
+                        <md-tooltip hide-sm>
+                            {{ 'VER_EVALUACION_COMPLETA' | translate }}
+                        </md-tooltip>
+                    </md-button>
+
+                </div>
+            </md-toolbar>
+
+            <md-content layout-padding>
+                <md-subheader class="md-primary">
+                    <span ng-if="tipo >= 0">
+            <a href="#" ng-click="getAlertaDetalleClick2(event, valorGuardado[0], 0)">{{ 'JURISDICCION' | translate }}: </a> {{ valorGuardado[1] }} /
+          </span>
+                    <span ng-if="tipo > 0">
+            <a href="#" ng-if="tipo > 0" ng-click="getAlertaDetalleClick2(event, valorGuardado[1], 1)">{{ 'MUNICIPIO' | translate }} </a> {{ valorGuardado[2] }} /
+          </span>
+                    <span ng-if="tipo > 1">
+            <a href="#" ng-if="tipo > 1" ng-click="getAlertaDetalleClick2(event, valorGuardado[2], 2)">{{ 'LOCALIDAD' | translate }}</a> {{ valorGuardado[3] }} /
+          </span>
+                    <span ng-if="tipo > 2">
+            <a href="#" ng-if="tipo > 2" ng-click="getAlertaDetalleClick2(event, valorGuardado[3], 3)">{{ 'EVALUACION' | translate }}</a> {{ valorGuardado[4] }} /
+          </span>
+                </md-subheader>
+
+                <div class="imprimir">
+
+                    <table cellspacing="0" class="Tabla" align="right" style="margin-bottom:1em">
+                        <tr style="background:#ddd">
+                            <th colspan="4">{{'EVALUACION' | translate | uppercase}} {{ filtro.tipo | uppercase}}</th>
+                            <th>{{'FOLIO' | translate | uppercase}}</th>
+                        </tr>
+                        <tr>
+                            <th>{{'FECHA_EVALUACION' | translate}}:</th>
+                            <td>{{evaluacion.fechaEvaluacion | date:'MM/dd/yyyy'}}</td>
+                            <th>{{'ESTADO' | translate}}:</th>
+                            <td>{{ evaluacion.cerrado ? 'Cerrado' : 'Abierto' }}</td>
+                            <th>{{evaluacion.id | numberFixedLen:4}}</th>
+
+                        </tr>
+                    </table>
+
+                    <table width="100%" cellspacing="0" class="Tabla">
+                        <caption>{{ 'DATOS_UNIDAD' | translate | uppercase}}</caption>
+                        <tr>
+                            <td><strong>{{'CLUES' | translate}}</strong></td>
+                            <td>{{ evaluacion.clues | uppercase}}</td>
+                            <td><strong>{{'NIVEL_CONE' | translate}}</strong></td>
+                            <td>{{ evaluacion.nivelCone | uppercase}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{'NOMBRE' | translate}}</strong></td>
+                            <td colspan="3">{{ evaluacion.nombre | uppercase}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{'JURISDICCION' | translate}}</strong></td>
+                            <td> {{ evaluacion.jurisdiccion | uppercase}}</td>
+                            <td><strong>{{'MUNICIPIO' | translate}}</strong></td>
+                            <td>{{ evaluacion.municipio | uppercase}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{'ZONA' | translate}}</strong></td>
+                            <td>{{ evaluacion.zona | uppercase}}</td>
+                            <td><strong>{{'TIPOLOGIA' | translate}}</strong></td>
+                            <td>{{ evaluacion.tipologia | uppercase}} | {{ evaluacion.tipoUnidad | uppercase}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{'DOMICILIO' | translate}}</strong></td>
+                            <td colspan="3"> {{ evaluacion.domicilio | uppercase}} <strong>CP: </strong> {{ evaluacion.codigoPostal }}</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <h3 style="text-align:center; font-size:1em;" class="h3-caption">{{ 'DETALLES_EV' | translate | uppercase}}</h3>
+
+                    <div style="border: 2px solid #ccc; padding:0.5em; margin-bottom:1em;">
+
+                        <h3 style="line-height:1em;">
+              <span class="img-circle" style="background: {{ evaluacion.indicador.color }}; display:block; height:1em; width:1em;float:left; margin-right:.5em"></span> 
+              {{evaluacion.indicador.codigo}} | {{evaluacion.indicador.nombre}}
+            </h3>
+                        <div ng-repeat="(key, value) in evaluacion.criteriosRecurso | groupBy : 'lugarVerificacion'" ng-if="key != 'undefined'" style="margin-bottom:0.5em">
+                            <table width="100%" class="Tabla" style="border:0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th align="left">{{key}}</th>
+                                        <th colspan="2" align="center">{{ 'APROBADO' | translate}}</th>
+                                    </tr>
+                                    <tr>
+                                        <th align="left">{{ 'CRITERIO' | translate}}</th>
+                                        <th>{{ 'SI' | translate}}</th>
+                                        <th>{{ 'NO' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="c in value">
+                                        <td width="90%">{{ c.criterio }}</td>
+                                        <td width="1%" style="background-color: {{ c.aprobado == 1 ? '#7BE15E'  : '' }}; color:#000; font-weight:bold;">
+                                            <md-icon md-svg-icon="{{ c.aprobado == 1 ? 'check'  : '' }} "></md-icon>
+
+                                        </td>
+                                        <td width="1%" style="background-color: {{ c.aprobado == 0 ? '#FF3C3C' : '' }}; color:#000; font-weight:bold;">
+                                            <md-icon md-svg-icon="{{ c.aprobado == 0 ? 'close'  : '' }} "></md-icon>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <table width="100%" class="Tabla" style="margin-bottom:0.5em" ng-if="evaluacion.criteriosCalidad">
+                            <caption>{{ 'DETALLE' | translate | uppercase}}</caption>
+                            <thead>
+                                <tr>
+                                    <th align="right" width="40%">{{'NUMERO_EXP' | translate}}</th>
+                                    <td style="vertical-align:bottom;text-align:center; height:{{ k.length/2.8 }}em;" ng-repeat="(k, v) in evaluacion.criteriosCalidad" ng-if="k != 'criterios'" width="1%" align="center" name="{{ k }}"><span class="texto-vertical">{{ k }}</span></td>
+                                </tr>
+                                <tr>
+                                    <th align="left">{{ 'CRITERIO' | translate}}s</th>
+                                    <td ng-repeat="(k, v) in evaluacion.criteriosCalidad" width="1%" align="center" ng-if="k != 'criterios'" style="font-size:.7em !important">{{ $index+1 }}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(key, value) in evaluacion.criteriosCalidad.criterios" ng-if="key != 'criterios'" ng-init="y=$index">
+                                    <td width="40%">{{ value.criterio }}</td>
+                                    <td ng-repeat="(b, a) in evaluacion.criteriosCalidad" ng-if="b != 'criterios'" width="1%" style=" background-color: {{ a[y].aprobado == 1 ? '#7BE15E' : a[y].aprobado == 0 ? '#FF3C3C' : '' }}; color:#FFF; font-weight:bold;">
+
+                                        <md-icon md-svg-icon="{{ a[y].aprobado == 0 ? 'close' :  a[y].aprobado == 1 ? 'check': '' }} " style="width:80%"></md-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </md-content>
+        </div>
+    </md-dialog-content>
+</md-dialog>

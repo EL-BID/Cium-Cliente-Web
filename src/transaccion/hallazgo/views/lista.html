@@ -1,0 +1,343 @@
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'">
+</md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="listar=true; indexUrl('/Hallazgo')">
+    <md-progress-linear ng-if="cargando" class="md-warn" md-theme="altTheme" md-theme="altTheme" style="position:fixed; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+    <md-toolbar ng-show="!showSearch">
+        <div class="md-toolbar-tools">
+            <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <h2>
+				  <span>{{ moduloName | translate }}</span>
+				</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="mostrarSearch(0)" aria-label="{{ 'BUSCAR' | translate }}">
+                <md-icon md-svg-icon="magnify"></md-icon>
+                <md-tooltip hide-sm>
+                    {{ 'BUSCAR'| translate }}
+                </md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="toggleRight()" aria-label="{{ 'FILTRAR' | translate }}">
+                <md-icon md-svg-icon="settings"></md-icon>
+                <md-tooltip hide-sm>
+                    {{ 'FILTRAR'| translate }}
+                </md-tooltip>
+            </md-button>
+            <md-button class="md-fab md-warn md-mini" ng-click="toggleRightIndicadores()" aria-label="{{ 'INDICADOR_ALERTA' | translate }}" ng-if="!filtro.historial">
+                {{total}}
+                <md-tooltip hide-sm>{{ 'INDICADOR_ALERTA'| translate }}</md-tooltip>
+            </md-button>
+            <md-switch ng-model="filtro.historial" aria-label="historial" class="md-primary md-hue-2" ng-change="history()">
+                <md-icon md-svg-icon="{{filtro.historial ? 'history' : 'flash'}}" ng-class="!filtro.historial ? 'md-primary md-hue-3' : ''"></md-icon>
+            </md-switch>
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+    <md-toolbar ng-show="showSearch" md-theme="altTheme" class="md-whiteframe-z1">
+        <div class="md-toolbar-tools">
+            <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <md-button ng-click="mostrarSearch(1)" aria-label="{{ 'REGRESAR' | translate }}">
+                <md-icon md-svg-icon="keyboard-backspace"></md-icon> {{ 'REGRESAR' | translate}}
+            </md-button>
+            <form ng-submit="buscarL(buscar,columna)" flex layout="row">
+                <md-input-container flex>
+                    <label>&nbsp;</label>
+                    <input focus-me="showSearch" ng-model="buscar" type="text" placeholder="{{ 'BUSCAR' | translate }}" flex>
+                </md-input-container>
+            </form>
+        </div>
+    </md-toolbar>
+    <md-content>
+        <md-chips class="custom-chips" ng-model="filtro.indicador" readonly="true" ng-if="filtro.indicador.length>0">
+            <md-chip-template>
+                <md-icon md-svg-src="brightness-1" style="float: left; margin-left: -.1em; margin-top: .2em; margin-right: .5em;color:{{ chipIndicador[$chip].color }}"></md-icon>
+                <span class="chip-text"><strong>{{$chip}}</strong> {{ chipIndicador[$chip].indicador }}</span>
+            </md-chip-template>
+            <button md-chip-remove class="md-primary removechip">
+                <md-icon md-svg-src="close"></md-icon>
+            </button>
+        </md-chips>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="{{ 'PROBLEMA' | translate }}" ng-click="validarTab('PROBLEMAS')">
+                <md-progress-linear ng-if="cargarP" class="md-accent" style="position:absolute; left:0px; z-index:99" md-theme="altTheme" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+                <md-toolbar md-theme="altTheme" class="md-whiteframe-z1">
+                    <div class="md-toolbar-tools" ng-init="agrupadoPor='codigo'">
+                        <div flex style="height: 100%;">
+                            <br>
+                            <md-input-container flex style="width:99%; top: -29px;">
+                                <label>&nbsp;</label>
+                                <input ng-model="buscarBis" placeholder="{{ 'FILTRAR' | translate}}">
+                            </md-input-container>
+                        </div>
+                        <md-select ng-model="tipo" aria-label="tipo">
+                            <md-option value="RECURSO">{{ 'RECURSO' | translate}}</md-option>
+                            <md-option value="CALIDAD">{{ 'CALIDAD' | translate}}</md-option>
+                        </md-select>
+                        <md-button class="md-icon-button" aria-label="{{ 'ORDEN' | translate }}" ng-init="ordenText=['-total','-exp']" ng-click="ordenCriterio=!ordenCriterio; ordenText = ordenCriterio ? ['total','exp'] : ['-total','-exp']; ">
+                            <md-icon md-svg-icon="{{ ordenCriterio ? 'trending-up' : 'trending-down' }}"></md-icon>
+                            <md-tooltip hide-sm>
+                                {{ ordenCriterio ? 'Asc' : 'Desc' }}
+                            </md-tooltip>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="{{ 'AGRUPAR' | translate }}" ng-click="agrupado=!agrupado; agrupadoPor = agrupado ? 'codigo' : ''; ">
+                            <md-icon md-svg-icon="{{ agrupado ? 'unfold-less' : 'unfold-more' }}"></md-icon>
+                            <md-tooltip hide-sm>
+                                {{ !agrupado ? 'AGRUPAR' : 'DESAGRUPAR' | translate }}
+                            </md-tooltip>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-content flex ng-repeat="(k, v) in criterios " ng-if="k == tipo" style="min-height:500px;max-height:{{tamano-150}}px;">
+                    <section ng-repeat="(key, value) in v | groupBy :  agrupadoPor " ng-if="key != 'undefined' && agrupado">
+                        <md-subheader class="md-primary " style="{{ !abriIndicado[key] ? 'border-style: outset; margin-bottom: -16px;' : '' }}; cursor: pointer; display" ng-init="abriIndicado[key] = false" ng-click="abriIndicado[key] = !abriIndicado[key]">
+                            <span class="img-circle" style="background: {{ value[0].color }}; display:block; height:1em; width:1em;float:left; margin-right:.5em">
+                            	
+                            </span> {{key}} {{value[0].indicador}} <strong style="float:right">{{ value.length }} {{ 'CRITERIO' | translate }}</strong>
+                        </md-subheader>
+                        <md-list>
+                            <md-list-item ng-repeat="c in value | filter:buscarBis | orderBy:ordenText " style="border-bottom: 1px solid #ddd" class="md-2-line" ng-click="getCluesCriterios(event,c.idCriterio,c.idIndicador,c.codigo,k)" ng-if="abriIndicado[key]">
+                                <div class="md-list-item-text">
+                                    <p>{{ c.criterio }} </p>
+                                    <p><strong><md-icon md-svg-icon="emoticon-sad" style="width:1.2em"></md-icon> {{c.total}} UM {{c.total>1 ? '\'s' : ''}} {{c.exp ? c.exp+' EXP' : ''}}</strong></p>
+                                </div>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </section>
+                    <section ng-if="!agrupado">
+                        <md-list>
+                            <md-list-item ng-repeat="c in v | filter:buscarBis | orderBy:ordenText " style="border-bottom: 1px solid #ddd" class="md-2-line" ng-click="getCluesCriterios(event,c.idCriterio,c.idIndicador,c.codigo,k)">
+                                <div class="md-list-item-text">
+                                    <p>{{ c.criterio }} </p>
+                                    <p><strong><md-icon md-svg-icon="emoticon-sad" style="width:1.2em"></md-icon> {{c.total}} UM {{c.total>1 ? '\'s' : ''}} {{c.exp ? c.exp+' EXP' : ''}} </strong></p>
+                                </div>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </section>
+                </md-content>   
+            </md-tab>
+
+            <md-tab label="{{ 'PROBLEMA_UM' | translate }}" layout="column" layout-align="center center" layout-fill ng-click="validarTab('UNIDADES');">
+                <md-progress-linear ng-if="cargarUM" class="md-accent" style="position:absolute; left:0px; z-index:99" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+                <div layout-padding flex>
+                    <md-data-table-container>
+                        <table md-data-table>
+                            <thead md-order="query.order" md-trigger="onOrderChange">
+                                <tr>
+                                    <th name="{{ 'CLUES' | translate }}" order-by="clues"></th>
+                                    <th name="{{ 'NOMBRE' | translate }}" order-by="nombre"></th>
+                                    <th hide-sm name="{{ 'JURISDICCION' | translate }}" order-by="jurisdiccion"></th>
+                                    <th hide-sm name="{{ 'CONE' | translate }}" order-by="cone"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr md-auto-select ng-repeat="dato in data" ng-click="abrirSelect();firstClick(dato.clues)" style="cursor:pointer">
+                                    <td>{{ dato.clues | uppercase }}</td>
+                                    <td>{{ dato.nombre | uppercase }}</td>
+                                    <td hide-sm>{{ dato.jurisdiccion | uppercase }}</td>
+                                    <td hide-sm>{{ dato.cone | uppercase }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-data-table-container>
+                    <md-data-table-pagination md-limit="query.limit" md-label="paginationLabel" md-row-select="[15,25,50,100,1000,10000]" md-page="query.page" md-total="{{paginacion.paginas}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+                </div>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
+<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="filtro" layout="column" layout-fill>
+    <md-toolbar class="md-accent">
+        <div class="md-toolbar-tools">
+            <h1 class="md-toolbar-tools">{{ 'FILTRAR' | translate }}</h1>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="aplicarFiltro(true,null)">
+                <md-icon md-svg-icon="check"></md-icon>
+                <md-tooltip hide-sm>
+                    {{ 'APLICAR_FILTRO' | translate }}
+                </md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button" ng-if="filtros.activo" ng-click="quitarFiltro()">
+                <md-icon md-svg-icon="close-box-outline"></md-icon>
+                <md-tooltip hide-sm>
+                    {{ 'QUITAR_FILTRO' | translate }}
+                </md-tooltip>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content>
+        <md-tabs md-dynamic-height flex md-border-bottom>
+            <md-tab label="{{ 'PERIODO' | translate }}" layout="column">
+                <div layout="row" layout-align="center center" layout-margin>
+                    <div flex>
+                        <md-select placeholder="{{ 'ANIO' | translate }}" ng-model="filtro.anio">
+                            <md-option ng-repeat="item in datos[0]" value="{{item.anio}}" ng-click="cambiarAnio(item.anio)">{{item.anio}}</md-option>
+                        </md-select>
+                    </div>
+                    <md-button class="md-icon-button" ng-click="filtro.anio=[]" style="display:inline-block">
+                        <md-icon md-svg-icon="close-box-outline"></md-icon>
+                        <md-tooltip hide-sm>
+                            {{ 'QUITAR_FILTRO' | translate }}
+                        </md-tooltip>
+                    </md-button>
+                </div>
+                <div layout="row" layout-align="center center" layout-margin>
+                    <div flex>
+                        <md-select placeholder="{{ 'BIMESTRE' | translate }}" ng-model="filtro.bimestre" ng-change="cambiarBimestre(filtro.bimestre)">
+                            <md-option ng-repeat="item in datos[1]" value="{{item.id}}">{{item.nombre}}</md-option>
+                        </md-select>
+                    </div>
+                    <md-button class="md-icon-button" ng-click="filtro.bimestre=[]">
+                        <md-icon md-svg-icon="close-box-outline"></md-icon>
+                        <md-tooltip hide-sm>
+                            {{ 'QUITAR_FILTRO' | translate }}
+                        </md-tooltip>
+                    </md-button>
+                </div>
+                <md-list-item>
+                    <md-input-container flex>
+                        <label>{{ 'DE' | translate}}</label>
+                        <input type="date" ng-model="filtro.de">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>{{ 'HASTA' | translate}}</label>
+                        <input type="date" ng-model="filtro.hasta">
+                    </md-input-container>
+                </md-list-item>
+            </md-tab>
+            <md-tab label="{{ 'INDICADOR' | translate }}" layout="column">
+                <md-content layout="row" layout-margin layout-padding>
+                    <md-radio-group ng-model="filtro.verTodosIndicadores" layout="row" layout-aling="start center" ng-change="cambiarVerTodoIndicador()">
+                        <md-radio-button ng-value="true" class="md-primary">{{ 'VER_TODO' | translate }}</md-radio-button>
+                        <md-radio-button ng-value="false" class="md-primary">{{ 'VER_POR_INDICADOR' | translate }}</md-radio-button>
+                    </md-radio-group>
+                </md-content>
+                <md-content layout="column" ng-if="!filtro.verTodosIndicadores">
+                    <section ng-repeat="(key, value) in datos.indicadores | groupBy :  'categoria'" ng-if="key != 'undefined' ">
+                        <md-subheader class="md-primary">
+                            {{ key | translate }}
+                        </md-subheader>
+                        <md-list>
+                            <md-list-item ng-repeat="c in value" class="md-2-line">
+                                <md-checkbox aria-label="indicador" class="md-primary" ng-checked="exists(c.codigo, tempIndicador)" ng-click="toggle(c.codigo, tempIndicador)">
+                                </md-checkbox>
+                                <div class="md-list-item-text">
+                                    <h3>												
+									{{c.codigo}}
+									<span class="img-circle" style="background:{{c.color}}; position: relative; float: left; width: 0.7em; height: 0.7em; margin: 0; margin-right: 0.3em; padding: 0; display: block;">
+										
+									</span>											
+								</h3>
+                                    <p>
+                                        <small> {{ c.indicador }} </small>
+                                    </p>
+                                </div>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </section>
+                </md-content>
+            </md-tab>
+            <md-tab label="{{ 'PARAMETROS' | translate }}">
+                <md-content layout="column" layout-margin layout-padding>
+                    <md-radio-group ng-model="filtro.verTodosUM" layout="row" layout-aling="start center" ng-change="cambiarVerTodoUM()">
+                        <md-radio-button ng-value="true" class="md-primary">{{ 'VER_TODO' | translate }}</md-radio-button>
+                        <md-radio-button ng-value="false" class="md-primary">{{ 'FILTRO' | translate }}</md-radio-button>
+                    </md-radio-group>
+                    <div layout="row" layout-align="center center" layout-margin>
+                        <div flex>
+                            <md-select multiple="true" ng-model="filtro.um.cone" placeholder="{{ 'CONE' | translate }}" ng-disabled="filtro.verTodosUM">
+                                <md-option ng-repeat="item in datos[6]" value="{{item.cone}}">{{item.cone}}</md-option>
+                            </md-select>
+                        </div>
+                        <md-button class="md-icon-button" ng-click="filtro.um.cone=[]">
+                            <md-icon md-svg-icon="close-box-outline"></md-icon>
+                            <md-tooltip hide-sm>
+                                {{ 'QUITAR_FILTRO' | translate }}
+                            </md-tooltip>
+                        </md-button>
+                    </div>
+                    <div layout="row" layout-align="center center" layout-margin>
+                        <div flex>
+                            <md-select multiple="true" ng-model="filtro.um.jurisdiccion" placeholder="{{ 'JURISDICCION' | translate }}" ng-disabled="filtro.verTodosUM" ng-change="getDimension('municipio',4);getDimension('zona',5)">
+                                <md-option ng-repeat="item in datos[3]" value="{{item.jurisdiccion}}" ng-if="datos[3]">{{item.jurisdiccion}}</md-option>
+                            </md-select>
+                        </div>
+                        <md-button class="md-icon-button" ng-click="filtro.um.jurisdiccion=[]">
+                            <md-icon md-svg-icon="close-box-outline"></md-icon>
+                            <md-tooltip hide-sm>
+                                {{ 'QUITAR_FILTRO' | translate }}
+                            </md-tooltip>
+                        </md-button>
+                    </div>
+                    <md-radio-group ng-model="filtro.um.tipo" layout="row" layout-aling="start center" ng-if="!filtro.verTodosUM">
+                        <md-radio-button value="municipio">{{ 'MUNICIPIO' | translate}}</md-radio-button>
+                        <md-radio-button value="zona">{{ 'ZONA' | translate}}</md-radio-button>
+                    </md-radio-group>
+                    <div layout="row" layout-align="center center" layout-margin ng-if="filtro.um.tipo=='municipio'">
+                        <div flex>
+                            <md-select multiple="true" ng-model="filtro.um.municipio" placeholder="{{ 'MUNICIPIO' | translate }}" ng-disabled="filtro.verTodosUM">
+                                <md-option ng-repeat="item in datos[4]" value="{{item.municipio}}">{{item.municipio}}</md-option>
+                            </md-select>
+                        </div>
+                        <md-button class="md-icon-button" ng-click="filtro.um.municipio=[]">
+                            <md-icon md-svg-icon="close-box-outline"></md-icon>
+                            <md-tooltip hide-sm>
+                                {{ 'QUITAR_FILTRO' | translate }}
+                            </md-tooltip>
+                        </md-button>
+                    </div>
+                    <div layout="row" layout-align="center center" layout-margin ng-if="filtro.um.tipo=='zona'">
+                        <div flex>
+                            <md-select multiple="true" ng-model="filtro.um.zona" placeholder="{{ 'ZONA' | translate }}" ng-disabled="filtro.verTodosUM">
+                                <md-option ng-repeat="item in datos[5]" value="{{item.zona}}">{{item.zona}}</md-option>
+                            </md-select>
+                        </div>
+                        <md-button class="md-icon-button" ng-click="filtro.um.zona=[]">
+                            <md-icon md-svg-icon="close-box-outline"></md-icon>
+                            <md-tooltip hide-sm>
+                                {{ 'QUITAR_FILTRO' | translate }}
+                            </md-tooltip>
+                        </md-button>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</md-sidenav>
+
+<md-sidenav class="md-sidenav-right md-whiteframe-z1" md-component-id="indicadores" layout="column" layout-fill>
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools">
+            <h1 class="md-toolbar-tools">{{total}} {{ 'INDICADOR_ALERTA' | translate }}</h1>
+        </div>
+    </md-toolbar>
+    <md-content layout="column">
+        <section ng-repeat="(key, value) in datos.indicadores | groupBy :  'categoria'" ng-if="key != 'undefined' ">
+            <md-subheader class="md-primary">
+                {{ key | translate }}
+            </md-subheader>
+            <md-list>
+                <md-list-item ng-repeat="c in value" class="md-2-line" ng-click="aplicarFiltro(false,c,key);">
+                    <div class="md-list-item-text">
+                        <h3>												
+							{{c.codigo}}
+							<span class="img-circle" style="background:{{c.color}}; position: relative; float: left; width: 0.7em; height: 0.7em; margin: 0; margin-right: 0.3em; padding: 0; display: block;">
+								
+							</span>											
+						</h3>
+                        <p>
+                            <md-icon md-svg-icon="emoticon-sad" style="width:1.2em"></md-icon> {{c.total}} UM {{c.total>1 ? '\'s' : ''}}
+                            <br>
+                            <small> {{ c.indicador }} </small>
+                        </p>
+                    </div>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+        </section>
+    </md-content>
+</md-sidenav>

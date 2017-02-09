@@ -1,0 +1,99 @@
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'"></md-sidenav>
+
+<style>
+    .md-sidenav-backdrop
+    {
+        position: fixed;
+        top: 0;
+    }
+    .md-sidenav-right
+    {
+        position: fixed;        
+    }
+</style>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar style="z-index: 59;">
+		<div class="md-toolbar-tools">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>Dashboard   </span>
+			</h2>
+			<span flex></span>		
+			<span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>
+	
+     <md-content layout="column" layour-align="center center" layout-padding flex id="principal">
+
+        <md-grid-list
+            md-cols-xs="1" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="2"
+            md-row-height-xs="12:13" md-row-height-sm="5:4" md-row-height-md="11:12" md-row-height-gt-md="2:1" md-row-height-lg="6:5" md-row-height-xl="6:4" md-row-height="1:1"
+            md-gutter="12px" md-gutter-gt-sm="8px" >
+
+
+            <!-- PIE -->
+            <md-grid-tile class="md-whiteframe-z2">
+                <div layout-fill layout="column" layout-margin ng-controller="pieRecursoController" id="pieRecurso" ng-include="'src/dashboard/views/cobertura_recurso.html'">
+                    
+                </div>
+            </md-grid-tile>
+            <md-grid-tile class="md-whiteframe-z2">
+                <div layout-fill layout="column" layout-margin ng-controller="pieCalidadController" id="pieCalidad" ng-include="'src/dashboard/views/cobertura_calidad.html'">
+                    
+                </div>
+            </md-grid-tile>
+
+            <!-- RELOJ -->
+            <md-grid-tile class="md-whiteframe-z2" >
+                <div layout-fill ng-controller="gaugeRecursoController" id="gaugeRecursos" ng-include="'src/dashboard/views/gauge_recurso.html'">
+                    
+                </div>                
+            </md-grid-tile>
+            <md-grid-tile class="md-whiteframe-z2">
+                <div layout-fill ng-controller="gaugeCalidadController" id="gaugeCalidad" ng-include="'src/dashboard/views/gauge_calidad.html'">
+                    
+                </div>  
+            </md-grid-tile>
+
+            <!--<md-grid-tile class="md-whiteframe-z2">
+                <div layout-fill layout="column" layout-margin ng-controller="recursoController" id="recurso" ng-include="'src/dashboard/views/barra_recurso.html'">
+                    
+                </div>                
+            </md-grid-tile>
+            <md-grid-tile class="md-whiteframe-z2">
+                <div layout-fill layout="column" layout-margin ng-controller="calidadController" id="calidad" ng-include="'src/dashboard/views/barra_calidad.html'">
+                    
+                </div>
+            </md-grid-tile>-->
+        
+            <!-- INDICADORES -->
+            <md-grid-tile class="md-whiteframe-z2">
+                <div layout-fill layout="column" layout-margin ng-controller="alertaRecursoController" id="alertaRecurso" ng-include="'src/dashboard/views/alerta_recurso.html'">
+                    
+                </div>
+            </md-grid-tile>
+            <md-grid-tile class="md-whiteframe-z2">
+                <div layout-fill layout="column" layout-margin ng-controller="alertaCalidadController" id="alertaCalidad" ng-include="'src/dashboard/views/alerta_calidad.html'">
+                    
+                </div>
+            </md-grid-tile>
+
+            <!-- TOP -->
+            <md-grid-tile class="md-whiteframe-z2">
+                <div layout-fill layout="column" layout-margin ng-controller="globalRecursoController" id="globalRecurso" ng-include="'src/dashboard/views/global_recurso.html'">
+                    
+                </div>
+            </md-grid-tile>
+            <md-grid-tile class="md-whiteframe-z2">
+                <div layout-fill layout="column" layout-margin ng-controller="globalCalidadController" id="globalCalidad" ng-include="'src/dashboard/views/global_calidad.html'">
+                    
+                </div>
+            </md-grid-tile>
+        </md-grid-list>
+
+     </md-content>
+</div>

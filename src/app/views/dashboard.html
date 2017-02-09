@@ -1,0 +1,23 @@
+<md-sidenav layout="column" class="site-sidenav md-sidenav-left md-whiteframe-z2 md-closed ng-isolate-scope md-locked-open" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+
+<div layout="column" class="relative" layout-fill role="main" flex>
+	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}" >
+		<md-icon md-svg-icon="plus"></md-icon>
+  	</md-button>
+	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar >
+		<div class="md-toolbar-tools">    
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+		  <md-icon md-svg-icon="menu" ></md-icon>
+		    </md-button>   
+			<h2>
+			  <span>Dashboard</span>
+			</h2>
+			<span flex></span>		
+			<span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>	
+	
+	<md-content>					
+	</md-content>
+</div>

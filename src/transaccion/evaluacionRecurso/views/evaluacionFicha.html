@@ -1,0 +1,117 @@
+<md-dialog aria-label="FICHA" style="width:60%;">
+  <form role="form" name="forma" >
+  <md-toolbar >
+    <div class="md-toolbar-tools ">
+      <h2>{{ 'RECURSO' | translate }} </h2>
+      <span flex></span>      
+    
+      <md-button aria-label="{{ 'GENERAR' | translate }}" ng-click="generarImpreso();" ng-disabled="forma.$invalid">
+          <md-icon md-svg-icon="check"></md-icon>
+          {{ 'GENERAR' | translate }}
+      </md-button>
+  
+      <md-button class="md-icon-button" ng-click="hide()">
+          <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content > 
+    <div> 
+      <div layout="row" flex>
+      <div layout="column" flex id="content">
+        <md-content layout="column" flex class="md-padding">
+
+          <md-autocomplete 
+            md-selected-item="selectedItem"
+            md-search-text-change="searchTextChange(searchText)"
+            md-search-text="searchText"
+            md-selected-item-change="selectedItemChange(item)"
+            md-items="item in querySearch(searchText)"
+            md-item-text="item.nombre"
+            md-min-length="1"
+            placeholder="{{ 'UM' | translate }}"
+            md-delay="300"
+            ng-model="dato.idClues" 
+            md-input-name="idClues"
+
+            md-menu-class="autocomplete-custom-template">
+            
+              <md-item-template >
+                <span class="item-title">
+                  <md-icon md-svg-icon="hospital-building"></md-icon>
+                  <span> {{item.nombre}} </span>
+                  <md-icon md-svg-icon="star"></md-icon>
+                  <span> <strong style="font-size:.8em;">{{item.clues}}</strong> </span>
+                </span>
+                <span class="item-metadata" style="font-size:.8em">
+                  <span class="item-metastat" >
+                    <strong>{{ 'JURISDICCION' | translate }}: </strong> {{item.jurisdiccion}}
+                  </span>
+                  <span class="item-metastat">
+                    <strong>{{ 'MUNICIPIO' | translate }}: </strong>{{item.municipio}} 
+                  </span>
+                  <span class="item-metastat">
+                    <strong>{{ 'LOCALIDAD' | translate }}: </strong> {{item.localidad}}
+                  </span>
+                </span>
+                <span class="item-metadata" style="font-size:.6em">
+                  <md-icon md-svg-icon="map-marker"></md-icon>
+                  <span class="item-metastat">
+                    {{item.domicilio}} 
+                  </span>
+                </span>
+                <span class="item-metadata" style="font-size:.7em">
+                  <md-icon md-svg-icon="hospital-building"></md-icon>
+                  <span class="item-metastat">
+                    <strong>{{item.tipoUnidad}}</strong> 
+                  </span>
+                  <span class="item-metastat">
+                    <md-icon md-svg-icon="seat-flat"></md-icon>
+                    <strong>{{item.tipologia}}</strong> 
+                  </span>
+                </span>
+               </md-item-template>                                 
+              <md-not-found>
+                No hay resultados para  "{{searchText}}".
+              </md-not-found>
+              <div ng-messages="forma.idClues.$error" >
+                <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+                <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>                               
+            </div>
+          </md-autocomplete> 
+      
+        </md-content>
+      </div>
+    </div>                     
+      
+      <input type="hidden" ng-model="dato.id" />
+      <input type="hidden" aria-label="idCone" ng-model="dato.idCone" name="idCone" required>
+      
+    <section ng-init="cargarCatalogo('/Indicador?categoria=Recurso',indicadores)">						
+			<md-subheader class="md-primary" >
+				{{ 'INDICADOR_SEL' | translate }}                              
+			</md-subheader>
+			<md-list>												
+				<md-list-item ng-repeat="c in lista_indicadores" class="md-2-line">	
+            <md-checkbox aria-label="indicador" class="md-primary"  ng-checked="exists(c.id, tempIndicador)" ng-click="toggle(c, tempIndicador)">
+            
+            </md-checkbox>                                          
+            <div class="md-list-item-text">              
+              <h3>												
+                {{c.codigo}}
+                <span class="img-circle" style="background:{{c.color}}; position: relative; float: left; width: 0.7em; height: 0.7em; margin: 0; margin-right: 0.3em; padding: 0; display: block;">                  
+                </span>	
+                
+                <small> {{ c.nombre }} </small>										
+              </h3>                
+            </div>
+                          
+            <md-divider></md-divider>
+          </md-list-item>													
+			</md-list>
+			
+		</section>
+    </div>
+</md-dialog-content>
+</form>
+</md-dialog>    

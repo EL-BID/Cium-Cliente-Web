@@ -1,0 +1,105 @@
+<md-dialog aria-label="VALIDAR" style="width: 80%; height: auto;" md-theme="altTheme" id="validaciones">
+  <form role="form" name="forma">
+    <md-toolbar >
+      <div class="md-toolbar-tools ">
+        <h2>{{ 'PROBAR_VALIDACION' | translate }} </h2>
+        <span flex></span>
+        
+        
+      <md-button hide-md hide-sm hide-lg aria-label="{{ 'GUARDAR' | translate }}" ng-click="validar()">
+          <md-icon md-svg-icon="check"></md-icon>
+          {{ 'VALIDAR' | translate }}
+      </md-button>
+      <md-button class="md-icon-button"  hide show-sm show-md show-lg show-sm ng-click="validar()" aria-label="{{ 'VALIDAR' | translate }}" >
+        <md-icon md-svg-icon="check"></md-icon>
+        <md-tooltip hide-sm>
+            {{ 'VALIDAR' | translate }}
+          </md-tooltip>
+      </md-button>
+
+      <md-button class="md-icon-button" ng-click="hide()">
+        <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+      </md-button>
+      
+      </div>
+    </md-toolbar>
+    <md-dialog-content >
+      <md-content layout="column" layout-padding layout-margin>
+        
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th width="50px" align="left">N°</th>
+              <th align="left">{{ 'PREGUNTA' | translate }} 1</th>
+              <th align="left">{{ 'PREGUNTA' | translate }} 2</th>
+              <th align="left">{{ 'FORMULAS' | translate }} </th>
+              <th align="left">{{ 'RESULTADO' | translate }} </th>
+              <th> </th>
+            </tr>
+          </thead>          
+          <tbody>
+            <tr ng-repeat="item in validaciones">
+              <td valign="middle">           
+                {{$index+1}}
+              </td>
+              <td ng-init="p1 = item.preguntaNombre1">
+                <p ng-if="p1.tipo == 'date' || p1.tipo == 'boolean'">{{p1.nombre}} </p>        
+                <md-datepicker flex style="width: 80%;" ng-model="p1.pregunta1" id="pregunta1{{$index}}" md-placeholder="dd/mm/aaaa" ng-if="p1.tipo == 'date'" ng-disabled="p1.constante == '1' ? true : false" >
+                </md-datepicker>
+                
+                <md-radio-group layout="row" layout-wrap 
+                              ng-model="p1.pregunta1" 
+                              ng-if="p1.tipo == 'boolean'" id="pregunta1{{$index}}">
+                                  
+                      <md-radio-button value="1" ng-disabled="p1.constante == '1' ? true : false" class="md-primary">{{ 'SI' | translate}}</md-radio-button>
+                      <md-radio-button value="0" ng-disabled="p1.constante == '1' ? true : false" class="md-warn">{{ 'NO' | translate}}</md-radio-button>                                                      
+                </md-radio-group>
+
+                <md-input-container flex layout ng-if="p1.tipo != 'date' && p1.tipo != 'boolean'">  
+                  <label>{{p1.nombre}}</label>
+                  <input ng-model="p1.pregunta1" type="{{p1.tipo}}" id="pregunta1{{$index}}" flex ng-disabled="p1.constante == '1' ? true : false">
+                </md-input-container>
+                
+              </td>
+              <td ng-init="p2 = item.preguntaNombre2">
+                
+                <p ng-if="p2.tipo == 'date' || p2.tipo == 'boolean'">{{p2.nombre}}</p>
+                <md-datepicker flex style="width: 80%;" ng-model="p2.pregunta2" id="pregunta2{{$index}}" md-placeholder="dd/mm/aaaa" ng-if="p2.tipo == 'date'" ng-disabled="p2.constante == '1' ? true : false" >
+                </md-datepicker>
+                
+                <md-radio-group layout="row" layout-wrap 
+                              ng-model="p2.pregunta2" 
+                              ng-if="p2.tipo == 'boolean'"
+                              id="pregunta2{{$index}}">
+                                  
+                      <md-radio-button value="1" ng-disabled="p2.constante == '1' ? true : false" class="md-primary">{{ 'SI' | translate}}</md-radio-button>
+                      <md-radio-button value="0" ng-disabled="p2.constante == '1' ? true : false" class="md-warn">{{ 'NO' | translate}}</md-radio-button>                                                      
+                </md-radio-group>
+
+                <md-input-container flex layout ng-if="p2.tipo != 'date' && p2.tipo != 'boolean'">  
+                  <label>{{p2.nombre}}</label>
+                  <input ng-model="p2.pregunta2" type="{{p2.tipo}}" id="pregunta2{{$index}}" flex ng-disabled="p2.constante == '1' ? true : false" >
+                </md-input-container>
+              </td>
+              <td valign="middle">
+                ( {{ 'PREGUNTA' | translate }} 1 {{item.operadorAritmetico}} {{ 'PREGUNTA' | translate }} 2 ) {{item.operadorLogico}} {{item.valorComparativo}}
+              </td>
+              <td valign="middle">
+                <span id="result{{$index}}"></span>                 
+                
+              </td>
+               <td valign="middle">
+                <md-icon md-svg-icon="check" style="color: #7BE15E;" ng-show="false" id="bien{{$index}}"></md-icon>
+                <md-icon md-svg-icon="close" style="color: #FF3C3C;" ng-show="false" id="mal{{$index}}"></md-icon>                  
+                
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        
+      </md-content>
+    </md-dialog-content>
+
+  </form>
+</md-dialog>    
