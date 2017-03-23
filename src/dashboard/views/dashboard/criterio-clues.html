@@ -12,13 +12,13 @@
         <md-progress-linear ng-if="alertaDetalle" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
         <md-subheader class="md-primary">
             <span ng-if="tipo >= 0">
-        <a style="cursor:pointer; color:blue" ng-click="getAlertaDetalleClick2(event, valorGuardado[0], 0)">{{ 'JURISDICCION' | translate }}: </a> {{ valorGuardado[1] }} /
+        <a style="cursor:pointer; color:blue" ng-click="getAlertaDetalleClick2(event, valorGuardado[0], 0)">{{ 'CRITERIOS' | translate }}: </a> {{ valorGuardado[1] }} /
       </span>
             <span ng-if="tipo > 0">
-        <a style="cursor:pointer; color:blue" ng-if="tipo > 0" ng-click="getAlertaDetalleClick2(event, valorGuardado[1], 1)">{{ 'MUNICIPIO' | translate }} </a> {{ valorGuardado[2] }} /
+        <a style="cursor:pointer; color:blue" ng-if="tipo > 0" ng-click="getAlertaDetalleClick2(event, valorGuardado[1], 1)">{{ 'JURISDICCION' | translate }} </a> {{ valorGuardado[2] }} /
       </span>
             <span ng-if="tipo > 1">
-        <a style="cursor:pointer; color:blue" ng-if="tipo > 1" ng-click="getAlertaDetalleClick2(event, valorGuardado[2], 2)">{{ 'LOCALIDAD' | translate }}</a> {{ valorGuardado[3] }} /
+        <a style="cursor:pointer; color:blue" ng-if="tipo > 1" ng-click="getAlertaDetalleClick2(event, valorGuardado[2], 2)">{{ 'CLUES' | translate }}</a> {{ valorGuardado[3] }} /
       </span>
             <span ng-if="tipo > 2">
         <a style="cursor:pointer; color:blue" ng-if="tipo > 2" ng-click="getAlertaDetalleClick2(event, valorGuardado[3], 3)">{{ 'EVALUACION' | translate }}</a> {{ valorGuardado[4] }} /

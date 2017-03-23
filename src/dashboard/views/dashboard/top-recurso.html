@@ -20,20 +20,8 @@
                 <span flex>Top {{filtro.top}} {{ 'DE' | translate}} {{ 'RECURSO' | translate}}</span>                                 
             </h2>
                 <span flex></span>
-                <span>
-                <md-button class="md-icon-button" aria-label="Opciones"  ng-click="toggleRightOpciones('globalRecurso');">
-                    <md-icon md-svg-icon="settings"></md-icon>
-                    <md-tooltip hide-sm>
-                        {{ 'OPCIONES' | translate }}
-                    </md-tooltip>
-                </md-button>                                                               
-                
-                <md-button class="md-icon-button" aria-label="Máximizar" hide-sm ng-click="toggleFullScreen('max-globalRecurso')" id="max-globalRecurso">
-                    <md-icon md-svg-src="{{!isFullscreen ? 'fullscreen' : 'fullscreen-exit'}}"></md-icon>
-                    <md-tooltip hide-sm>
-                        {{ 'FULLSCREEN' | translate }}
-                    </md-tooltip>
-                </md-button>
+                <span>                                                             
+                                
             </span>
             </div>
             <md-progress-linear ng-if="globalRecurso" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
@@ -67,12 +55,14 @@
                     <div ng-show="!datosOk" layout="row" layout-align="center center">
                         <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
                     </div>
+                    
                 </md-content>
         </div>
         <div flex>
             <md-content flex>
                 <div ng-include="'src/dashboard/views/dashboard/filtros.html'"></div>
             </md-content>
+
         </div>
         </md-content>
 </div>

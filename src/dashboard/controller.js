@@ -1206,6 +1206,738 @@
         };
     })
 
+
+    // agregado para el grafico de criterios
+    angular.module('DashboardModule').controller('criterioRecursoController', function($scope, $localStorage, $http, $window, $location, $timeout, $route, flash, errorFlash, URLS, $mdDialog, $mdUtil, $mdSidenav, $translate, CrudDataApi) {
+
+        $scope.criterioRecurso = true;
+
+        $scope.datos = {};
+
+        $scope.showModal = false;
+        $scope.showModalCriterio = false;
+        $scope.chart;
+        $scope.vercriterioRecurso = "";
+        $scope.dimension = [];
+        $scope.datosOk = true;
+
+        $scope.tempIndicador = [];
+        $scope.toggle = function(item, list) {
+            var idx = list.indexOf(item);
+            if (idx > -1)
+                list.splice(idx, 1);
+            else {
+                list.push(item);
+            }
+        };
+        $scope.valorGuardado = [];
+        $scope.getCriterioDetalle = function(ev, value) {
+            $scope.indicadorSeleccionado = value;
+            $scope.showDialog = $mdDialog;
+            $scope.tipo = 0;
+            delete $scope.filtro.valor;
+            delete $scope.filtro.grado;
+            $scope.filtro.valor = '';
+            $scope.filtro.grado = 0;
+            var url = "/criterioDetalle";
+            $scope.cargando = true;
+            $scope.criterioRecurso = true;
+            $scope.filtro.id = value.codigo;
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.valorGuardado[0] = value;
+                    $scope.indicadorDetalle = data.data;
+                    $scope.criterioRecurso = false;
+                    $scope.datosOk = true;
+
+                    $scope.showDialog.show({
+                        targetEvent: ev,
+                        scope: $scope.$new(),
+                        templateUrl: 'src/dashboard/views/dashboard/criterio-detalle.html',
+                        clickOutsideToClose: true
+                    });
+
+                } else {
+                    $scope.criterioRecurso = false;
+                    $scope.datosOk = false;
+                }
+                $scope.cargando = false;
+                $scope.criterioRecurso = false;
+            }, function(e) {
+                $scope.criterio = false;
+                $scope.cargando = false;
+            });
+        }
+        $scope.criterioDetalle = false;
+        $scope.tipo = 0;
+        $scope.dimen = ['criterio', 'jurisdiccion', 'clues'];
+
+        $scope.getCriterioDetalleClick2 = function(ev, value, tipo) {
+            $scope.showDialog.show({
+                targetEvent: ev,
+                scope: $scope.$new(),
+                templateUrl: 'src/dashboard/views/dashboard/criterio-detalle.html',
+                clickOutsideToClose: true
+            });
+            $scope.getCriterioDetalleClick(ev, value, tipo);
+        }
+
+        $scope.getCriterioDetalleClick = function(ev, value, tipo) {
+            $scope.tipo = tipo;
+            var url = "/criterioDetalle";
+            $scope.criterioDetalle = true;
+            $scope.filtro.id = $scope.indicadorSeleccionado.codigo;
+            $scope.filtro.valor = $scope.filtro.valor + "|" + value;
+            $scope.filtro.grado = tipo;
+
+            angular.forEach($scope.valorGuardado, function(v, k) {
+                if (k > tipo) {
+                    $scope.valorGuardado[k] = "";
+                    delete $scope.valorGuardado[k];
+                }                
+            });
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.valorGuardado[tipo] = value;
+                    $scope.indicadorDetalle = data.data;
+                }
+                $scope.criterioDetalle = false;
+            }, function(e) {
+                $scope.criterioDetalle = false;
+            });
+        }
+
+        $scope.getCluesCriterios = function(ev, value, tipo) {
+            $scope.filtro.valor = $scope.filtro.valor + "|" + value;
+            $scope.filtro.grado = tipo;
+            $scope.filtro.indicador = $scope.indicadorSeleccionado.codigo;
+            var url = "/criterioDetalle";
+            $scope.criterioDetalle = true;
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.datoClues = data.data;
+                    $scope.editDialog = $mdDialog;
+                    $scope.editDialog.show({
+                        targetEvent: ev,
+                        scope: $scope.$new(),
+                        templateUrl: 'src/dashboard/views/dashboard/criterio-clues.html',
+                        clickOutsideToClose: true
+                    });
+                } else {
+                    $scope.criterioDetalle = false;
+                    errorFlash.error(data);
+                }
+                $scope.criterioDetalle = false;
+            }, function(e) {
+                errorFlash.error(e);
+                $scope.criterioDetalle = false;
+            });
+        }
+
+        /**
+         * @ngdoc method
+         * @name Transaccion.DashboardCtrl#verEvaluacion
+         * @methodOf Transaccion.DashboardCtrl
+         *
+         * @description
+         * Accion para el click del listado de evaluaciones que correspondan al segundo click
+         * @param {int} id identificador del objeto click
+         * @param {string} tipo tipo de categoria Recurso o Calidad
+         * @param {string} indicador codigo del indicador
+         */
+        $scope.verEvaluacion = function(ev, id) {
+            $scope.evaluacion_id = id;
+            $scope.filtro.valor = id;
+            $scope.filtro.grado = 5;
+            $scope.filtro.nivel = 3;
+            $scope.filtro.historial = false;
+            $scope.filtro.indicador = $scope.indicadorSeleccionado.codigo;
+            var url = "/criterioEvaluacion";
+            $scope.criterioDetalle = true;
+
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.evaluacion = data.data;
+                    $scope.editDialog = $mdDialog;
+                    $scope.editDialog.show({
+                        targetEvent: ev,
+                        scope: $scope.$new(),
+                        templateUrl: 'src/dashboard/views/dashboard/criterio-evaluacion.html',
+                        clickOutsideToClose: true
+                    });
+                } else {
+                    $scope.criterioDetalle = false;
+                    errorFlash.error(data);
+                }
+                $scope.criterioDetalle = false;
+            }, function(e) {
+                errorFlash.error(e);
+                $scope.criterioDetalle = false;
+            });
+        }
+        $scope.verEvaluacionCompleta = function() {
+            var id = $scope.evaluacion_id;
+            $location.path("/evaluacion-recurso/ver").search({ id: id, });
+        }
+
+        //lenar los check box tipo array
+        $scope.exists = function(item, list) {
+            return list.indexOf(item) > -1;
+        };
+
+        $scope.cambiarVerTodoIndicador = function() {
+            if ($scope.filtro.verTodosIndicadores) {
+                $scope.filtro.indicador = [];
+                $scope.chipIndicador = [];
+                $scope.tempIndicador = [];
+            }
+        }
+        $scope.cambiarVerTodoUM = function() {
+            if ($scope.filtro.verTodosUM) {
+                $scope.filtro.um = {};
+                $scope.filtro.um.tipo = 'municipio';
+            }
+        }
+
+        $scope.cambiarVerTodoClues = function() {
+            $scope.filtro.clues = [];
+        }
+
+        var d = new Date();
+        $scope.opcion = true;
+
+        $scope.filtro = {};
+        $scope.filtro.tipo = "Recurso";
+        $scope.filtro.visualizar = 'tiempo';
+        $scope.filtro.anio = d.getFullYear();
+        $scope.filtro.um = {};
+        $scope.filtro.um.tipo = 'municipio';
+        $scope.filtro.clues = [];
+        $scope.mostrarCategoria = [];
+        $scope.filtro.verTodosIndicadores = true;
+        $scope.filtro.verTodosUM = true;
+        $scope.filtro.verTodosClues = true;
+        $scope.chipIndicador = [];
+        $scope.filtros = {};
+        $scope.filtros.activo = false;
+        $scope.verInfo = false;
+        $scope.filtro.estricto = false;
+        $scope.filtro.valor = '';
+
+        //aplicar los filtros al area del grafico
+        $scope.aplicarFiltro = function(avanzado, item) {
+            $scope.filtros.activo = true;
+            $scope.filtro.indicador = $scope.tempIndicador;
+            if (!avanzado) {
+                $scope.filtro.indicador = [];
+                $scope.filtro.verTodosIndicadores = false;
+                if ($scope.filtro.indicador.indexOf(item.codigo) == -1) {
+                    $scope.filtro.indicador.push(item.codigo);
+                    $scope.chipIndicador[item.codigo] = item;
+                }
+
+            }
+            $scope.contador = 0;
+            $scope.intento = 0;
+            $scope.init();
+            $mdSidenav('criterioRecurso').close();
+        };
+        $scope.contador = 0;
+
+        //quitar los filtros seleccionados del dialog
+        $scope.quitarFiltro = function(avanzado) {
+            $scope.filtro.indicador = [];
+            $scope.filtro.clues = [];
+            $scope.filtro.um = {};
+            $scope.filtro.um.tipo = "municipio";
+            $scope.filtro.verTodosIndicadores = true;
+            $scope.filtro.verTodosUM = true;
+            $scope.filtros.activo = false;
+
+            $scope.intento = 0;
+            $scope.contador = 0;
+            $scope.init();
+            $mdSidenav('criterioRecurso').close();
+        };
+
+        // cerrar el dialog
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+        //cambiar a pantalla completa
+        $scope.isFullscreen = false;
+
+        $scope.toggleFullScreen = function(e) {
+            $scope.isFullscreen = !$scope.isFullscreen;
+        }
+        $scope.cargarFiltro = 0;
+        $scope.toggleRightOpciones = function(navID) {
+            $mdSidenav(navID)
+                .toggle()
+                .then(function() {
+                    if ($scope.cargarFiltro < 1) {
+                        $scope.getDimension('anio', 0);
+                        $scope.getDimension('month', 1);
+                        $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
+                        $scope.getDimension('jurisdiccion', 3);
+                        $scope.getDimension('municipio', 4);
+                        $scope.getDimension('zona', 5);
+                        $scope.getDimension('cone', 6);
+                        $scope.cargarFiltro++;
+                    }
+                });
+        };
+        $scope.cambiarAnio = function(anio) {
+            
+            $scope.filtro.anio = anio;
+            $scope.getDimension('month', 1);
+            $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
+            $scope.getDimension('jurisdiccion', 3);
+            $scope.getDimension('municipio', 4);
+            $scope.getDimension('zona', 5);
+            $scope.getDimension('cone', 6);
+        }
+        $scope.cambiarBimestre = function(bimestre) {
+            $scope.filtro.bimestre = bimestre;
+            $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
+            $scope.getDimension('jurisdiccion', 3);
+            $scope.getDimension('municipio', 4);
+            $scope.getDimension('zona', 5);
+            $scope.getDimension('cone', 6);
+        }
+        $scope.cambiarCategoria = function() {
+            $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
+
+        }
+
+        $scope.intentoOpcion = 0;
+        $scope.getDimension = function(nivel, c) {
+            $scope.opcion = true;
+            var url = "/calidadDimension";
+            if ($scope.filtro.tipo == "Recurso")
+                url = "/recursoDimension";
+
+            CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
+                $scope.datos[c] = data.data;
+                $scope.opcion = false;
+            }, function(e) {
+                if ($scope.intentoOpcion < 1) {
+                    $scope.getDimension(nivel, c);
+                    $scope.intentoOpcion++;
+                }
+                $scope.opcion = false;
+            });
+        };
+
+        // obtiene los datos necesarios para crear el grid (listado)
+        $scope.intento = 0;
+        $scope.init = function() {
+            var url = '/criterioDash';
+            if ($scope.filtro.estricto)
+                url = "/criterioEstricto";
+
+            $scope.criterioDetalle = true;
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.dato = data.data;
+                    $scope.total = data.total;
+                    $scope.anios = data.anio;
+                    $scope.criterioDetalle = false;
+                    $scope.datosOk = true;
+                } else {
+                    $scope.criterioDetalle = false;
+                    $scope.datosOk = false;
+                }
+                $scope.criterioDetalle = false;
+            }, function(e) {
+                if ($scope.intento < 1) {
+                    $scope.init();
+                    $scope.intento++;
+                }
+                $scope.criterioDetalle = false;
+            });
+        };
+        $scope.init();
+    })
+ 
+    angular.module('DashboardModule').controller('criterioCalidadController', function($scope, $localStorage, $http, $window, $location, $timeout, $route, flash, errorFlash, URLS, $mdDialog, $mdUtil, $mdSidenav, $translate, CrudDataApi) {
+
+        $scope.criterioCalidad = true;
+
+        $scope.datos = {};
+
+        $scope.showModal = false;
+        $scope.showModalCriterio = false;
+        $scope.chart;
+        $scope.vercriterioCalidad = "";
+        $scope.dimension = [];
+        $scope.datosOk = true;
+
+        $scope.tempIndicador = [];
+        $scope.toggle = function(item, list) {
+            var idx = list.indexOf(item);
+            if (idx > -1)
+                list.splice(idx, 1);
+            else {
+                list.push(item);
+            }
+        };
+        $scope.valorGuardado = [];
+        $scope.getCriterioDetalle = function(ev, value) {
+            $scope.indicadorSeleccionado = value;
+            $scope.showDialog = $mdDialog;
+            $scope.tipo = 0;
+            delete $scope.filtro.valor;
+            delete $scope.filtro.grado;
+            var url = "/criterioDetalle";
+            $scope.cargando = true;
+            $scope.criterioDetalle = true;
+            $scope.filtro.id = value.codigo;
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.valorGuardado[0] = value;
+                    $scope.indicadorDetalle = data.data;
+                    $scope.criterioDetalle = false;
+
+                    $scope.showDialog.show({
+                        targetEvent: ev,
+                        scope: $scope.$new(),
+                        templateUrl: 'src/dashboard/views/dashboard/criterio-detalle.html',
+                        clickOutsideToClose: true
+                    });
+                    $scope.datosOk = true;
+                } else {
+                    $scope.criterioDetalle = false;
+                    $scope.datosOk = false;
+                }
+                $scope.cargando = false;
+                $scope.criterioDetalle = false;
+            }, function(e) {
+                $scope.criterio = false;
+                $scope.cargando = false;
+            });
+        }
+        $scope.criterioDetalle = false;
+        $scope.tipo = 0;
+        $scope.dimen = ['criterio', 'jurisdiccion', 'clues'];
+
+        $scope.getCriterioDetalleClick2 = function(ev, value, tipo) {
+            $scope.showDialog.show({
+                targetEvent: ev,
+                scope: $scope.$new(),
+                templateUrl: 'src/dashboard/views/dashboard/criterio-detalle.html',
+                clickOutsideToClose: true
+            });
+            $scope.getCriterioDetalleClick(ev, value, tipo);
+        }
+         $scope.getCriterioDetalleClick = function(ev, value, tipo) {
+            $scope.tipo = tipo;
+            var url = "/criterioDetalle";
+            $scope.criterioDetalle = true;
+            $scope.filtro.id = $scope.indicadorSeleccionado.codigo;
+            $scope.filtro.valor = $scope.filtro.valor + "|" + value;
+            $scope.filtro.grado = tipo;
+
+            angular.forEach($scope.valorGuardado, function(v, k) {
+                if (k > tipo) {
+                    $scope.valorGuardado[k] = "";
+                    delete $scope.valorGuardado[k];
+                }
+            });
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.valorGuardado[tipo] = value;
+                    $scope.indicadorDetalle = data.data;
+                }
+                $scope.criterioDetalle = false;
+            }, function(e) {
+                $scope.criterioDetalle = false;
+            });
+        }
+
+        $scope.getCluesCriterios = function(ev, value, tipo) {
+            $scope.filtro.valor = $scope.filtro.valor + "|" + value;
+            $scope.filtro.grado = tipo;
+            $scope.filtro.indicador = $scope.indicadorSeleccionado.codigo;
+            var url = "/criterioDetalle";
+            $scope.criterioDetalle = true;
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.datoClues = data.data;
+                    $scope.editDialog = $mdDialog;
+                    $scope.editDialog.show({
+                        targetEvent: ev,
+                        scope: $scope.$new(),
+                        templateUrl: 'src/dashboard/views/dashboard/criterio-clues.html',
+                        clickOutsideToClose: true
+                    });
+                } else {
+                    $scope.criterioDetalle = false;
+                    errorFlash.error(data);
+                }
+                $scope.criterioDetalle = false;
+            }, function(e) {
+                errorFlash.error(e);
+                $scope.criterioDetalle = false;
+            });
+        }
+
+        /**
+         * @ngdoc method
+         * @name Transaccion.DashboardCtrl#verEvaluacion
+         * @methodOf Transaccion.DashboardCtrl
+         *
+         * @description
+         * Accion para el click del listado de evaluaciones que correspondan al segundo click
+         * @param {int} id identificador del objeto click
+         * @param {string} tipo tipo de categoria Recurso o Calidad
+         * @param {string} indicador codigo del indicador
+         */
+        $scope.verEvaluacion = function(ev, id) {
+            $scope.evaluacion_id = id;
+            $scope.filtro.valor = id;
+            $scope.filtro.grado = 5;
+            $scope.filtro.nivel = 3;
+            $scope.filtro.historial = false;
+            $scope.filtro.indicador = $scope.indicadorSeleccionado.codigo;
+            var url = "/criterioEvaluacion";
+            $scope.criterioDetalle = true;
+
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.evaluacion = data.data;
+                    $scope.editDialog = $mdDialog;
+                    $scope.editDialog.show({
+                        targetEvent: ev,
+                        scope: $scope.$new(),
+                        templateUrl: 'src/dashboard/views/dashboard/criterio-evaluacion.html',
+                        clickOutsideToClose: true
+                    });
+                } else {
+                    $scope.criterioDetalle = false;
+                    errorFlash.error(data);
+                }
+                $scope.criterioDetalle = false;
+            }, function(e) {
+                errorFlash.error(e);
+                $scope.criterioDetalle = false;
+            });
+        }
+        $scope.verEvaluacionCompleta = function() {
+                var id = $scope.evaluacion_id;
+                $location.path("/evaluacion-caliad/ver").search({ id: id, });
+            }
+            //lenar los check box tipo array
+        $scope.exists = function(item, list) {
+            return list.indexOf(item) > -1;
+        };
+
+        $scope.cambiarVerTodoIndicador = function() {
+            if ($scope.filtro.verTodosIndicadores) {
+                $scope.filtro.indicador = [];
+                $scope.chipIndicador = [];
+                $scope.tempIndicador = [];
+            }
+        }
+        $scope.cambiarVerTodoUM = function() {
+            if ($scope.filtro.verTodosUM) {
+                $scope.filtro.um = {};
+                $scope.filtro.um.tipo = 'municipio';
+            }
+        }
+
+        $scope.cambiarVerTodoClues = function() {
+            $scope.filtro.clues = [];
+        }
+
+        var d = new Date();
+        $scope.opcion = true;
+
+        $scope.filtro = {};
+        $scope.filtro.tipo = "Calidad";
+        $scope.filtro.visualizar = 'tiempo';
+        $scope.filtro.anio = d.getFullYear();
+        $scope.filtro.um = {};
+        $scope.filtro.um.tipo = 'municipio';
+        $scope.filtro.clues = [];
+        $scope.mostrarCategoria = [];
+        $scope.filtro.verTodosIndicadores = true;
+        $scope.filtro.verTodosUM = true;
+        $scope.filtro.verTodosClues = true;
+        $scope.chipIndicador = [];
+        $scope.filtros = {};
+        $scope.filtros.activo = false;
+        $scope.verInfo = false;
+        $scope.filtro.estricto = false;
+        $scope.filtro.valor = '';
+
+        //aplicar los filtros al area del grafico
+        $scope.aplicarFiltro = function(avanzado, item) {
+            $scope.filtros.activo = true;
+            $scope.filtro.indicador = $scope.tempIndicador;
+            if (!avanzado) {
+                $scope.filtro.indicador = [];
+                $scope.filtro.verTodosIndicadores = false;
+                if ($scope.filtro.indicador.indexOf(item.codigo) == -1) {
+                    $scope.filtro.indicador.push(item.codigo);
+                    $scope.chipIndicador[item.codigo] = item;
+                }
+
+            }
+            $scope.contador = 0;
+            $scope.intento = 0;
+            $scope.init();
+            $mdSidenav('criterioCalidad').close();
+        };
+        $scope.contador = 0;
+
+        //quitar los filtros seleccionados del dialog
+        $scope.quitarFiltro = function(avanzado) {
+            $scope.filtro.indicador = [];
+            $scope.filtro.clues = [];
+            $scope.filtro.um = {};
+            $scope.filtro.um.tipo = "municipio";
+            $scope.filtro.verTodosIndicadores = true;
+            $scope.filtro.verTodosUM = true;
+            $scope.filtros.activo = false;
+
+            $scope.intento = 0;
+            $scope.contador = 0;
+            $scope.init();
+            $mdSidenav('criterioCalidad').close();
+        };
+
+        // cerrar el dialog
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+        //cambiar a pantalla completa
+        $scope.isFullscreen = false;
+
+        $scope.toggleFullScreen = function(e) {
+            $scope.isFullscreen = !$scope.isFullscreen;
+        }
+        $scope.cargarFiltro = 0;
+        $scope.toggleRightOpciones = function(navID) {
+            $mdSidenav(navID)
+                .toggle()
+                .then(function() {
+                    if ($scope.cargarFiltro < 1) {
+                        $scope.getDimension('anio', 0);
+                        $scope.getDimension('month', 1);
+                        $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
+                        $scope.getDimension('jurisdiccion', 3);
+                        $scope.getDimension('municipio', 4);
+                        $scope.getDimension('zona', 5);
+                        $scope.getDimension('cone', 6);
+                        $scope.cargarFiltro++;
+                    }
+                });
+        };
+        $scope.cambiarAnio = function(anio) {
+            
+            $scope.filtro.anio = anio;
+            $scope.getDimension('month', 1);
+            $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
+            $scope.getDimension('jurisdiccion', 3);
+            $scope.getDimension('municipio', 4);
+            $scope.getDimension('zona', 5);
+            $scope.getDimension('cone', 6);
+        }
+        $scope.cambiarBimestre = function(bimestre) {
+            $scope.filtro.bimestre = bimestre;
+            $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
+            $scope.getDimension('jurisdiccion', 3);
+            $scope.getDimension('municipio', 4);
+            $scope.getDimension('zona', 5);
+            $scope.getDimension('cone', 6);
+        }
+        $scope.cambiarCategoria = function() {
+            $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
+        }
+
+        $scope.intentoOpcion = 0;
+        $scope.getDimension = function(nivel, c) {
+            $scope.opcion = true;
+            var url = "/calidadDimension";
+            if ($scope.filtro.tipo == "Recurso")
+                url = "/recursoDimension";
+
+            CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
+                $scope.datos[c] = data.data;
+                $scope.opcion = false;
+            }, function(e) {
+                if ($scope.intentoOpcion < 1) {
+                    $scope.getDimension(nivel, c);
+                    $scope.intentoOpcion++;
+                }
+                $scope.opcion = false;
+            });
+        };
+
+        // obtiene los datos necesarios para crear el grid (listado)
+        $scope.intento = 0;
+        $scope.init = function() {
+            var url = '/criterioDash';
+            if ($scope.filtro.estricto)
+                url = "/criterioEstricto";
+
+            $scope.criterioDetalle = true;
+            CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
+                if (data.status == '407')
+                    $window.location = "acceso";
+
+                if (data.status == 200) {
+                    $scope.dato = data.data;
+                    $scope.total = data.total;
+                    $scope.anios = data.anio;
+                    $scope.criterioDetalle = false;
+                    $scope.datosOk = true;
+                } else {
+                    $scope.criterioDetalle = false;
+                    $scope.datosOk = false;
+                }
+                $scope.criterioDetalle = false;
+            }, function(e) {
+                if ($scope.intento < 1) {
+                    $scope.init();
+                    $scope.intento++;
+                }
+                $scope.criterioDetalle = false;
+            });
+        };
+        $scope.init();
+    })
+    // fin criterios
+
+
     angular.module('DashboardModule').controller('alertaRecursoController', function($scope, $localStorage, $http, $window, $location, $timeout, $route, flash, errorFlash, URLS, $mdDialog, $mdUtil, $mdSidenav, $translate, CrudDataApi) {
 
         $scope.alertaRecurso = true;
@@ -1930,6 +2662,7 @@
         };
         $scope.init();
     })
+    
 
     angular.module('DashboardModule').controller('globalRecursoController', function($scope, $http, $window, $location, $timeout, $route, flash, errorFlash, URLS, $mdDialog, $mdUtil, $mdSidenav, $translate, CrudDataApi) {
 

@@ -129,35 +129,35 @@
           <tr md-auto-select ng-repeat="item in dato.indicador_validaciones">   
             <td>
               <md-input-container flex layout>
-                <md-select placeholder="Seleccione" ng-model="item.pregunta1" flex ng-disabled="bool1[$index]" ng-change="pregunta1(item.pregunta1, item.pregunta2, $index)">
+                <md-select placeholder="Seleccione" ng-model="item.pregunta1" flex >
                   <md-option ng-repeat="pregunta in dato.indicador_preguntas" value="{{pregunta.id}}">{{pregunta.nombre}} </md-option>
                 </md-select>
               </md-input-container>
             </td>
             <td>
               <md-input-container flex layout>             
-                <md-select placeholder="Seleccione" ng-model="item.operadorAritmetico" flex ng-disabled="bool[$index]">
+                <md-select placeholder="Seleccione" ng-model="item.operadorAritmetico" flex >
                   <md-option ng-repeat="ope in operadoresAritmeticos" value="{{ope.id}}">{{ope.nombre}}</md-option>
                 </md-select>
               </md-input-container>
             </td>
             <td>
               <md-input-container flex layout>
-                <md-select placeholder="Seleccione" ng-model="item.pregunta2" flex ng-disabled="bool2[$index]" ng-change="pregunta1(item.pregunta1, item.pregunta2, $index)">
+                <md-select placeholder="Seleccione" ng-model="item.pregunta2" flex  >
                   <md-option ng-repeat="pregunta in dato.indicador_preguntas" value="{{pregunta.id}}">{{pregunta.nombre}}</md-option>
                 </md-select>
               </md-input-container>
             </td>
             <td>
               <md-input-container flex layout>                
-                <md-select placeholder="Seleccione" ng-model="item.unidadMedida" flex ng-disabled="bool[$index]">
+                <md-select placeholder="Seleccione" ng-model="item.unidadMedida" flex >
                   <md-option ng-repeat="uniMe in unidadMedidas" value="{{uniMe.id}}">{{uniMe.nombre}}</md-option>
                 </md-select>
               </md-input-container>
             </td>
             <td>
               <md-input-container flex layout>             
-                <md-select placeholder="Seleccione" ng-model="item.operadorLogico" flex ng-disabled="bool[$index]">
+                <md-select placeholder="Seleccione" ng-model="item.operadorLogico" flex >
                   <md-option ng-repeat="ope in operadoresLogicos" value="{{ope.id}}">{{ope.nombre}}</md-option>
                 </md-select>
               </md-input-container>

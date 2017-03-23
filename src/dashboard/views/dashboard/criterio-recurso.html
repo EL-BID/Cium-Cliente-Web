@@ -1,0 +1,76 @@
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+    <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+    <md-toolbar style="z-index: 59;">
+        <div class="md-toolbar-tools">
+            <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <h2>
+              <span>Dashboard   </span>
+            </h2>
+            <span flex></span>
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+    
+    <md-content layout="row" layour-align="center center" layout-padding flex id="principal" style="background-color:#FFFFFF" ng-controller="criterioRecursoController" ng-init="toggleRightOpciones('criterioRecurso');">
+        <div flex>
+            <div class="md-toolbar-tools" style="background:gainsboro">
+                <h2>
+                <span flex>{{ 'INDICADOR_ALERTA' | translate}} {{ 'RECURSO' | translate}}</span>                                 
+            </h2>
+                <span flex></span>
+                
+            </div>
+            <md-progress-linear ng-if="criterioDetalle" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+            <md-content flex >
+                <md-data-table-container ng-show="datosOk">
+                    <table md-data-table md-progress="datos">
+                        <thead md-order="query.order" md-trigger="onOrderChange">
+                            <tr>
+                                <th width="1%" name="{{ 'CODIGO' | translate }}"></th>
+                                <th name="{{ 'INDICADOR' | translate }}"></th>
+                                <th name="{{ 'PORCENTAJE' | translate }}"></th>
+                                <th ng-if="filtro.estricto" name="{{ 'CUMPLE' | translate }}"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="value in dato" ng-click="getCriterioDetalle(event, value)" style="cursor: pointer;">
+                                <td>{{ value.codigo }}</td>
+                                <td>{{ value.nombre }}</td>
+                                <td>
+                                    <div class="progress" ng-if="!filtro.estricto">
+                                        <div class="progress-bar progress-bar-striped active progress-bar-default" role="progressbar" aria-valuenow="{{ value.porcentaje }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ value.porcentaje }}%; background:{{ value.color }}">
+                                            {{ value.porcentaje == '99.99' ? 100 : value.porcentaje }}%
+                                        </div>
+                                    </div>
+                                    <div ng-if="filtro.estricto">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped active progress-bar-default" role="progressbar" aria-valuenow="{{ value.porcentaje }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ value.porcentaje }}%; background:{{ value.color }}">
+                                                {{ value.porcentaje == '99.99' ? 100 : value.porcentaje }}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td ng-if="filtro.estricto">
+                                    {{ value.cumple }} / {{ value.cumple + value.noCumple }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-data-table-container>
+                
+                <div ng-show="!datosOk" layout="row" layout-align="center center">
+                    <h3>{{ 'NO_HAY_DATOS' | translate}}</h3>
+                </div>
+                <md-sidenav layout="column" layout-fill class="md-sidenav-right md-whiteframe-z2" md-component-id="criterioRecurso" ></md-sidenav>
+            </md-content>
+        </div>
+        <div flex>
+            <md-content flex>
+                <div ng-include="'src/dashboard/views/dashboard/filtros.html'"></div>
+            </md-content>
+        </div>
+    </md-content>
+</div>
