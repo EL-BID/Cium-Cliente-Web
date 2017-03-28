@@ -7,7 +7,7 @@ El proyecto CIUM cliente web consume la api rest de CIUM API para dar soporte a 
 
 ## Manual de usuario
 
-[Manual]('assets/manual%20usuario')
+[Manual](assets/manual%20usuario/Output/print/book.pdf)
 
 ## Tecnología
 * Angular
