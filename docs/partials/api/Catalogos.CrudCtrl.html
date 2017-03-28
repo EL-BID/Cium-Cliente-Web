@@ -1,0 +1,105 @@
+<h1><code ng:non-bindable="">CrudCtrl</code>
+<div><span class="hint">service in module <code ng:non-bindable="">Catalogos</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="catalogos-crudctrl-page"><p>Controlador general que maneja el CRUD(crear,leer,actualizar,eliminar) de la pagina</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_agregarclues">agregarClues(value)</h3>
+<div class="agregarclues"><div class="catalogos-crudctrl-agregarclues-page"><p>Agrega un elemento a la lista si este no existe</p>
+</div><h5 id="methods_agregarclues_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>value</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-agregarclues-page"><p>valor</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_borrar">borrar(id, $index)</h3>
+<div class="borrar"><div class="catalogos-crudctrl-borrar-page"><p>Elimina el recurso especificado</p>
+</div><h5 id="methods_borrar_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>id</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-crudctrl-borrar-page"><p>contiene el identificador del elemento a eliminar</p>
+</div></td></tr><tr><td>$index</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-crudctrl-borrar-page"><p>contiene el identificador del elemento a quitar del moodelo en caso de que el evento se ejecute en un listado</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_borrarclues">borrarClues($index)</h3>
+<div class="borrarclues"><div class="catalogos-crudctrl-borrarclues-page"><p>Quita un elemento a la lista si este existe</p>
+</div><h5 id="methods_borrarclues_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>$index</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-crudctrl-borrarclues-page"><p>posicion del elemento en la lista</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_buscarl">buscarL(buscar, columna)</h3>
+<div class="buscarl"><div class="catalogos-crudctrl-buscarl-page"><p>incia la busqueda con los parametros, columna = campo donde buscar, buscar = valor para la busqueda</p>
+</div><h5 id="methods_buscarl_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>buscar</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-buscarl-page"><p>contiene el texto a buscar en la base de datos</p>
+</div></td></tr><tr><td>columna</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-buscarl-page"><p>contiene el nombre de la columna en donde hacer la busqueda</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_cambiartipo">cambiarTipo(tipo)</h3>
+<div class="cambiartipo"><div class="catalogos-crudctrl-cambiartipo-page"><p>Evento para cambiar el llenado del autocomplete por clues o por jurisdicción</p>
+</div><h5 id="methods_cambiartipo_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tipo</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-cambiartipo-page"><p>valor</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_cargarcatalogo">cargarCatalogo(url, cat)</h3>
+<div class="cargarcatalogo"><div class="catalogos-crudctrl-cargarcatalogo-page"><p>Carga los datos como catalago de la url</p>
+</div><h5 id="methods_cargarcatalogo_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>url</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-cargarcatalogo-page"><p>url para hacer la petición</p>
+</div></td></tr><tr><td>cat</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-cargarcatalogo-page"><p>nombre del catalogo a crear</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_getclues">getClues()</h3>
+<div class="getclues"><div class="catalogos-crudctrl-getclues-page"><p>Obtiene la lista de clues filtrado o no por jurisdiccion</p>
+</div></div>
+</li>
+<li><h3 id="methods_guardar">guardar(form)</h3>
+<div class="guardar"><div class="catalogos-crudctrl-guardar-page"><p>Envia la petición para crear un nuevo registro con los datos especificados</p>
+</div><h5 id="methods_guardar_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>form</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-crudctrl-guardar-page"><p>para identificar el formulario que lanzo la petición para procesar los datos y limpiar el formulario una vez se reciba un mensaje de confirmacion de parte de la api</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_index">index(ruta)</h3>
+<div class="index"><div class="catalogos-crudctrl-index-page"><p>inicializa las rutas para crear los href correspondientes en la vista actual</p>
+</div><h5 id="methods_index_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>ruta</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-index-page"><p>ruta del módulo actual</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_init">init(buscar, columna)</h3>
+<div class="init"><div class="catalogos-crudctrl-init-page"><p>obtiene los datos necesarios para crear el grid (listado) con ayuda del servicio CrudDataApi</p>
+</div><h5 id="methods_init_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>buscar</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-init-page"><p>contiene el texto a buscar en la base de datos</p>
+</div></td></tr><tr><td>columna</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-init-page"><p>contiene el nombre de la columna en donde hacer la busqueda</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_modificar">modificar(id)</h3>
+<div class="modificar"><div class="catalogos-crudctrl-modificar-page"><p>Actualiza el recurso con los datos que envia el usuario</p>
+</div><h5 id="methods_modificar_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>id</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-crudctrl-modificar-page"><p>contiene el identificador del elemento a modificar</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_mostrarsearch">mostrarSearch(t)</h3>
+<div class="mostrarsearch"><div class="catalogos-crudctrl-mostrarsearch-page"><p>Oculta o muestra la barra de busqueda en las vistas tipo lista.</p>
+</div><h5 id="methods_mostrarsearch_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>t</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-crudctrl-mostrarsearch-page"><p>bandera para regresar los datos antes de la busqueda</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_onorderchange">onOrderChange(page, limit)</h3>
+<div class="onorderchange"><div class="catalogos-crudctrl-onorderchange-page"><p>Evento para el control del paginado.</p>
+</div><h5 id="methods_onorderchange_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>page</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-crudctrl-onorderchange-page"><p>pagina actual</p>
+</div></td></tr><tr><td>limit</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-crudctrl-onorderchange-page"><p>resultados por pagina</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_onorderchange">onOrderChange()</h3>
+<div class="onorderchange"><div class="catalogos-crudctrl-onorderchange-page"><p>Evento para el boton nuevo, redirecciona a la vista nuevo</p>
+</div></div>
+</li>
+<li><h3 id="methods_onorderchange">onOrderChange(order)</h3>
+<div class="onorderchange"><div class="catalogos-crudctrl-onorderchange-page"><p>Evento para incializar el ordenamiento segun la columna clickeada</p>
+</div><h5 id="methods_onorderchange_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>order</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-onorderchange-page"><p>campo para el ordenamiento</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_querysearch">querySearch(query)</h3>
+<div class="querysearch"><div class="catalogos-crudctrl-querysearch-page"><p>Carga los datos para el autocomplete</p>
+</div><h5 id="methods_querysearch_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>query</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-querysearch-page"><p>valor para hacer la busqueda</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_selecteditemchange">selectedItemChange(item)</h3>
+<div class="selecteditemchange"><div class="catalogos-crudctrl-selecteditemchange-page"><p>Evento para cuando se selecciona un elemento del autocomplete</p>
+</div><h5 id="methods_selecteditemchange_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>item</td><td><a href="" class="label type-hint type-hint-objet">objet</a></td><td><div class="catalogos-crudctrl-selecteditemchange-page"><p>objeto del elemento</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_ver">ver(ruta)</h3>
+<div class="ver"><div class="catalogos-crudctrl-ver-page"><p>Muestra los datos del elemento que se le pase como parametro</p>
+</div><h5 id="methods_ver_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>ruta</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-crudctrl-ver-page"><p>contiene la ruta para hacer la petición a la api</p>
+</div></td></tr></tbody></table></div>
+</li>
+</ul>
+</div>
+</div>

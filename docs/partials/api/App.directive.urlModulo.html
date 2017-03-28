@@ -1,0 +1,26 @@
+<h1><code ng:non-bindable="">urlModulo</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">App</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="app-directive-page app-directive-urlmodulo-page"><p>Genera la url (modificar, nuevo, ver, listar) de las vistas, sin necesidad de poner la ruta completa, solamente al metodo acceder.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as attribute<pre class="prettyprint linenums">&lt;ANY url-modulo&gt;
+   ...
+&lt;/ANY&gt;</pre>
+</div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="app-directive-page app-directive-urlmodulo-page"><h4 id="example_source">Source</h4>
+<div source-edit="urlModulo" source-edit-deps="angular.js" source-edit-html="index.html" source-edit-css="" source-edit-js="" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div class="tabbable"><div class="tab-pane" title="index.html">
+<pre class="prettyprint linenums" ng-set-text="index.html" ng-html-wrap-loaded="urlModulo angular.js"></pre>
+<script type="text/ng-template" id="index.html">
+    <a url-modulo="modificar?id={{ dato.id }}">Modificar</a>
+</script>
+</div>
+</div><h4 id="example_demo">Demo</h4>
+<div class="well doc-example-live animate-container" ng-embed-app="urlModulo" ng-set-html="index.html" ng-eval-javascript=""></div>
+</div></div>
+</div>

@@ -1,0 +1,72 @@
+<h1><code ng:non-bindable="">CrudDataApi</code>
+<div><span class="hint">service in module <code ng:non-bindable="">Catalogos</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="catalogos-service-page catalogos-service-cruddataapi-page"><p>Contiene los metodos para las peticiones a la api restfull.</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_crear">crear(url, data, success, error)</h3>
+<div class="crear"><div class="catalogos-cruddataapi-crear-page"><p>Envia a la api la peticion para insertar un dato al recurso </p>
+</div><h5 id="methods_crear_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>url</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-cruddataapi-crear-page"><p>direccion para hacer la peticion</p>
+</div></td></tr><tr><td>data</td><td><a href="" class="label type-hint type-hint-objet">objet</a></td><td><div class="catalogos-cruddataapi-crear-page"><p>json con los datos a insertar</p>
+</div></td></tr><tr><td>success</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-crear-page"><p>contiene el data de los resultados</p>
+</div></td></tr><tr><td>error</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-crear-page"><p>contiene el error en caso de fallos</p>
+</div></td></tr></tbody></table><h5 id="methods_crear_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-json">json</a></td><td><div class="catalogos-cruddataapi-crear-page"><p>con los resultados.</p>
+</div></td></tr></table><h4 id="methods_crear_example">Example</h4>
+<div class="example"><div class="catalogos-cruddataapi-crear-page"><p>CrudDataApi.crear(url, data, function (data) {},function (e) {} );</p>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_editar">editar(url, id, data, success, error)</h3>
+<div class="editar"><div class="catalogos-cruddataapi-editar-page"><p>Envia a la api la peticion para actualizar un dato especifico del recurso </p>
+</div><h5 id="methods_editar_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>url</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>direccion para hacer la peticion</p>
+</div></td></tr><tr><td>id</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>identificador del recurso a recuperar la información</p>
+</div></td></tr><tr><td>data</td><td><a href="" class="label type-hint type-hint-objet">objet</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>json con los datos a insertar</p>
+</div></td></tr><tr><td>success</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>contiene el data de los resultados</p>
+</div></td></tr><tr><td>error</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>contiene el error en caso de fallos</p>
+</div></td></tr></tbody></table><h5 id="methods_editar_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-json">json</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>con los resultados.</p>
+</div></td></tr></table><h4 id="methods_editar_example">Example</h4>
+<div class="example"><div class="catalogos-cruddataapi-editar-page"><p>CrudDataApi.editar(url, data, function (data) {},function (e) {} );</p>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_editar">editar(url, id, success, error)</h3>
+<div class="editar"><div class="catalogos-cruddataapi-editar-page"><p>Elimina un dato del recurso especificado </p>
+</div><h5 id="methods_editar_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>url</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>direccion para hacer la peticion</p>
+</div></td></tr><tr><td>id</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>identificador del recurso a recuperar la información</p>
+</div></td></tr><tr><td>success</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>contiene el data de los resultados</p>
+</div></td></tr><tr><td>error</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>contiene el error en caso de fallos</p>
+</div></td></tr></tbody></table><h5 id="methods_editar_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-json">json</a></td><td><div class="catalogos-cruddataapi-editar-page"><p>con los resultados.</p>
+</div></td></tr></table><h4 id="methods_editar_example">Example</h4>
+<div class="example"><div class="catalogos-cruddataapi-editar-page"><p>CrudDataApi.eliminar(url, data, function (data) {},function (e) {} );</p>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_lista">lista(url, success, error)</h3>
+<div class="lista"><div class="catalogos-cruddataapi-lista-page"><p>Obtiene la lista de los recursos  </p>
+</div><h5 id="methods_lista_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>url</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-cruddataapi-lista-page"><p>direccion para hacer la peticion</p>
+</div></td></tr><tr><td>success</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-lista-page"><p>contiene el data de los resultados</p>
+</div></td></tr><tr><td>error</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-lista-page"><p>contiene el error en caso de fallos</p>
+</div></td></tr></tbody></table><h5 id="methods_lista_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-json">json</a></td><td><div class="catalogos-cruddataapi-lista-page"><p>con los resultados.</p>
+</div></td></tr></table><h4 id="methods_lista_example">Example</h4>
+<div class="example"><div class="catalogos-cruddataapi-lista-page"><p>CrudDataApi.lista(url, function (data) {},function (e) {} );</p>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_ver">ver(url, id, success, error)</h3>
+<div class="ver"><div class="catalogos-cruddataapi-ver-page"><p>Obtiene los datos de un recurso especificado </p>
+</div><h5 id="methods_ver_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>url</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="catalogos-cruddataapi-ver-page"><p>direccion para hacer la peticion</p>
+</div></td></tr><tr><td>id</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="catalogos-cruddataapi-ver-page"><p>identificador del recurso a recuperar la información</p>
+</div></td></tr><tr><td>success</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-ver-page"><p>contiene el data de los resultados</p>
+</div></td></tr><tr><td>error</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="catalogos-cruddataapi-ver-page"><p>contiene el error en caso de fallos</p>
+</div></td></tr></tbody></table><h5 id="methods_ver_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-json">json</a></td><td><div class="catalogos-cruddataapi-ver-page"><p>con los resultados.</p>
+</div></td></tr></table><h4 id="methods_ver_example">Example</h4>
+<div class="example"><div class="catalogos-cruddataapi-ver-page"><p>CrudDataApi.ver(url, id, function (data) {},function (e) {} );</p>
+</div></div>
+</div>
+</li>
+</ul>
+</div>
+</div>

@@ -1,0 +1,92 @@
+<h1><code ng:non-bindable="">UsuarioCtrl</code>
+<div><span class="hint">service in module <code ng:non-bindable="">Sistema</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="sistema-usuarioctrl-page"><p>Complemento del controlador CrudCtrl  para tareas especificas en Usuario</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_cargarcatalogo">cargarCatalogo(url, cat)</h3>
+<div class="cargarcatalogo"><div class="sistema-usuario-cargarcatalogo-page"><p>Carga los datos como catalago de la url</p>
+</div><h5 id="methods_cargarcatalogo_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>url</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="sistema-usuario-cargarcatalogo-page"><p>url para hacer la petición</p>
+</div></td></tr><tr><td>cat</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="sistema-usuario-cargarcatalogo-page"><p>nombre del catalogo a crear</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_clueschange">CluesChange(value)</h3>
+<div class="clueschange"><div class="sistema-usuarioctrl-clueschange-page"><p>Carga los datos de la ficha para clues</p>
+</div><h5 id="methods_clueschange_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>value</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="sistema-usuarioctrl-clueschange-page"><p>codigo de la clues</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_cluesusuario">CluesUsuario(value)</h3>
+<div class="cluesusuario"><div class="sistema-usuarioctrl-cluesusuario-page"><p>Agrega un elemento a la lista si este no existe</p>
+</div><h5 id="methods_cluesusuario_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>value</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="sistema-usuarioctrl-cluesusuario-page"><p>valor</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_cluesusuarioborrar">CluesUsuarioBorrar($index)</h3>
+<div class="cluesusuarioborrar"><div class="sistema-usuarioctrl-cluesusuarioborrar-page"><p>Quita un elemento a la lista si este existe</p>
+</div><h5 id="methods_cluesusuarioborrar_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>$index</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="sistema-usuarioctrl-cluesusuarioborrar-page"><p>posicion del elemento en la lista</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_addequipo">addEquipo(id)</h3>
+<div class="addequipo"><div class="sistema-usuarioctrl-addequipo-page"><p>Agrega un equipo a la lista</p>
+</div><h5 id="methods_addequipo_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>id</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="sistema-usuarioctrl-addequipo-page"><p>identificador del equipo</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_addjurisdiccion">addJurisdiccion(id)</h3>
+<div class="addjurisdiccion"><div class="sistema-usuarioctrl-addjurisdiccion-page"><p>Agrega una jurisdiccion a la lista</p>
+</div><h5 id="methods_addjurisdiccion_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>id</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="sistema-usuarioctrl-addjurisdiccion-page"><p>identificador de la jurisdiccion</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_cambiartipo">cambiarTipo(tipo)</h3>
+<div class="cambiartipo"><div class="sistema-usuarioctrl-cambiartipo-page"><p>Evento para cambiar el llenado del autocomplete por clues o por jurisdicción</p>
+</div><h5 id="methods_cambiartipo_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tipo</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="sistema-usuarioctrl-cambiartipo-page"><p>valor</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_equipoborrar">equipoBorrar($index)</h3>
+<div class="equipoborrar"><div class="sistema-usuarioctrl-equipoborrar-page"><p>Quita el equipo de la lista</p>
+</div><h5 id="methods_equipoborrar_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>$index</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="sistema-usuarioctrl-equipoborrar-page"><p>posicion del elemento en la lista</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_getclues">getClues()</h3>
+<div class="getclues"><div class="sistema-usuarioctrl-getclues-page"><p>Obtiene la lista de clues filtrado o no por jurisdiccion</p>
+</div></div>
+</li>
+<li><h3 id="methods_getequipos">getEquipos(juris)</h3>
+<div class="getequipos"><div class="sistema-usuarioctrl-getequipos-page"><p>Obtieene la lista de equipos de una jurisdicción</p>
+</div><h5 id="methods_getequipos_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>juris</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="sistema-usuarioctrl-getequipos-page"><p>identificador de la jurisdiccion</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_getjurisdiccion">getJurisdiccion()</h3>
+<div class="getjurisdiccion"><div class="sistema-usuarioctrl-getjurisdiccion-page"><p>Obtiene la lista de jurisdicciones</p>
+</div></div>
+</li>
+<li><h3 id="methods_limpiarzona">limpiarZona()</h3>
+<div class="limpiarzona"><div class="sistema-usuarioctrl-limpiarzona-page"><p>Limpia los modelos  para la lista de las zonas</p>
+</div></div>
+</li>
+<li><h3 id="methods_permisoeditgrupo">permisoEditGrupo()</h3>
+<div class="permisoeditgrupo"><div class="sistema-usuarioctrl-permisoeditgrupo-page"><p>Muestra la lista de los permisos para el grupo en modo editar</p>
+</div></div>
+</li>
+<li><h3 id="methods_permisogrupo">permisoGrupo()</h3>
+<div class="permisogrupo"><div class="sistema-usuarioctrl-permisogrupo-page"><p>Optiene los permisos del grupo</p>
+</div></div>
+</li>
+<li><h3 id="methods_permisogrupodelete">permisoGrupoDelete()</h3>
+<div class="permisogrupodelete"><div class="sistema-usuarioctrl-permisogrupodelete-page"><p>Limpia los checkbox para los permisos denegados</p>
+</div></div>
+</li>
+<li><h3 id="methods_querysearch">querySearch(query)</h3>
+<div class="querysearch"><div class="sistema-usuarioctrl-querysearch-page"><p>Carga los datos para el autocomplete</p>
+</div><h5 id="methods_querysearch_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>query</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="sistema-usuarioctrl-querysearch-page"><p>valor para hacer la busqueda</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_selecteditemchange">selectedItemChange(item)</h3>
+<div class="selecteditemchange"><div class="sistema-usuarioctrl-selecteditemchange-page"><p>Evento para cuando se selecciona un elemento del autocomplete</p>
+</div><h5 id="methods_selecteditemchange_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>item</td><td><a href="" class="label type-hint type-hint-objet">objet</a></td><td><div class="sistema-usuarioctrl-selecteditemchange-page"><p>objeto del elemento</p>
+</div></td></tr></tbody></table></div>
+</li>
+</ul>
+</div>
+</div>

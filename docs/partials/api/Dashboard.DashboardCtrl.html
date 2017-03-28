@@ -1,0 +1,75 @@
+<h1><code ng:non-bindable="">DashboardCtrl</code>
+<div><span class="hint">service in module <code ng:non-bindable="">Dashboard</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="dashboard-dashboardctrl-page"><p>Manejo de los eventos del gráfico en el dashboard</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_aplicarfiltro">aplicarFiltro(avanzado, item)</h3>
+<div class="aplicarfiltro"><div class="dashboard-dashboardctrl-aplicarfiltro-page"><p>Accion para procesar el filtro en la base de datos</p>
+</div><h5 id="methods_aplicarfiltro_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>avanzado</td><td><a href="" class="label type-hint type-hint-bool">bool</a></td><td><div class="dashboard-dashboardctrl-aplicarfiltro-page"><p>compprueba si el filtro es avanzado o de la lista de indicadores activos</p>
+</div></td></tr><tr><td>item</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="dashboard-dashboardctrl-aplicarfiltro-page"><p>compsolo tiene un datorueba si indicadores es un array o</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_buildtoggler">buildToggler(navID)</h3>
+<div class="buildtoggler"><div class="dashboard-dashboardctrl-buildtoggler-page"><p>Crea un sidenav con las opciones de filtrado</p>
+</div><h5 id="methods_buildtoggler_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>navID</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="dashboard-dashboardctrl-buildtoggler-page"><p>identificador del sidenav</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_cambiaranio">cambiarAnio()</h3>
+<div class="cambiaranio"><div class="dashboard-dashboardctrl-cambiaranio-page"><p>Evento change para el filtro año</p>
+</div></div>
+</li>
+<li><h3 id="methods_cambiarbimestre">cambiarBimestre()</h3>
+<div class="cambiarbimestre"><div class="dashboard-dashboardctrl-cambiarbimestre-page"><p>Evento change para el filtro bimestre</p>
+</div></div>
+</li>
+<li><h3 id="methods_cambiarvertodoindicador">cambiarVerTodoIndicador()</h3>
+<div class="cambiarvertodoindicador"><div class="dashboard-dashboardctrl-cambiarvertodoindicador-page"><p>Mostrar u ocultar la lista de indicadores agrupado por categoria</p>
+</div></div>
+</li>
+<li><h3 id="methods_cambiarvertodoum">cambiarVerTodoUM()</h3>
+<div class="cambiarvertodoum"><div class="dashboard-dashboardctrl-cambiarvertodoum-page"><p>Mostrar u ocultar las opciones de filtrado por parametros</p>
+</div></div>
+</li>
+<li><h3 id="methods_cambiarvertodoum">cambiarVerTodoUM()</h3>
+<div class="cambiarvertodoum"><div class="dashboard-dashboardctrl-cambiarvertodoum-page"><p>Mostrar u ocultar las opciones de filtrado por clues</p>
+</div></div>
+</li>
+<li><h3 id="methods_exists">exists(item, list)</h3>
+<div class="exists"><div class="dashboard-dashboardctrl-exists-page"><p>Comrpueba que el item no exista en el modelo</p>
+</div><h5 id="methods_exists_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>item</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="dashboard-dashboardctrl-exists-page"><p>valor a insertar</p>
+</div></td></tr><tr><td>list</td><td><a href="" class="label type-hint type-hint-model">model</a></td><td><div class="dashboard-dashboardctrl-exists-page"><p>modelo</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_getdimension">getDimension(nivel, c)</h3>
+<div class="getdimension"><div class="dashboard-dashboardctrl-getdimension-page"><p>Cargar las opciones de filtrado por nivel</p>
+</div><h5 id="methods_getdimension_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>nivel</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="dashboard-dashboardctrl-getdimension-page"><p>nivel a extraer de la base de datos</p>
+</div></td></tr><tr><td>c</td><td><a href="" class="label type-hint type-hint-int">int</a></td><td><div class="dashboard-dashboardctrl-getdimension-page"><p>posicion para almacenar la información en el modelo datos</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_getdimension">getDimension()</h3>
+<div class="getdimension"><div class="dashboard-dashboardctrl-getdimension-page"><p>obtiene los datos necesarios para crear el gráfico</p>
+</div></div>
+</li>
+<li><h3 id="methods_quitarfiltro">quitarFiltro(avanzado)</h3>
+<div class="quitarfiltro"><div class="dashboard-dashboardctrl-quitarfiltro-page"><p>Accion para quitar el filtro en la base de datos</p>
+</div><h5 id="methods_quitarfiltro_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>avanzado</td><td><a href="" class="label type-hint type-hint-bool">bool</a></td><td><div class="dashboard-dashboardctrl-quitarfiltro-page"><p>compprueba si el filtro es avanzado o de la lista de indicadores activos</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_quitarfiltro">quitarFiltro(e)</h3>
+<div class="quitarfiltro"><div class="dashboard-dashboardctrl-quitarfiltro-page"><p>Accion para poner en modo fullscreen el área del gráfico</p>
+</div><h5 id="methods_quitarfiltro_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>e</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="dashboard-dashboardctrl-quitarfiltro-page"><p>área para hacer el fullscreen</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_toggle">toggle(item, list)</h3>
+<div class="toggle"><div class="dashboard-dashboardctrl-toggle-page"><p>Agrega un dato a un modelo tipo array</p>
+</div><h5 id="methods_toggle_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>item</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="dashboard-dashboardctrl-toggle-page"><p>valor a insertar</p>
+</div></td></tr><tr><td>list</td><td><a href="" class="label type-hint type-hint-model">model</a></td><td><div class="dashboard-dashboardctrl-toggle-page"><p>modelo</p>
+</div></td></tr></tbody></table></div>
+</li>
+</ul>
+</div>
+</div>
