@@ -41,6 +41,7 @@
 	"CERRAR_SESION": "Salir",
 	"ACERCA_DE": "Acerca de...",
 	"MANUAL_USUARIO": "Manual de usuario",
+	"MANUAL_WEB": "Manual web",
 	"SELECCIONE_IDIOMA": "Seleccione un idioma",
 	"CONNECTION_REFUSED": "El servidor está rechazando las peticiones",
 	"OBTENER_CUENTA_OAUTH": "Obtener Salud ID",

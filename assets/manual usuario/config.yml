@@ -15,7 +15,9 @@ book:
         - { element: cover }
         - { element: toc   }
         - { element: chapter, number: 1, content: introduccion.md }
-        - { element: chapter, number: 2, content: evaluaciones.md }
+        - { element: chapter, number: 2, content: catalogos.md }
+        - { element: chapter, number: 3, content: sistema.md }
+        - { element: chapter, number: 4, content: evaluaciones.md }
 
     editions:
         ebook:

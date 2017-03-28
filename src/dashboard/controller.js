@@ -52,7 +52,7 @@
                         targetEvent: $event
                     });
                 };
-
+                
                 // cierra la session para salir del sistema
                 $scope.logout = function() {
                     Auth.logout(function() {

@@ -41,6 +41,7 @@
 	"CERRAR_SESION": "Logout",
 	"ACERCA_DE": "About...",
 	"MANUAL_USUARIO": "User manual...",
+	"MANUAL_WEB": "WEB manual...",
 	"SELECCIONE_IDIOMA": "Select a language",
 	"CONNECTION_REFUSED": "The server's connection is refused",
 	"OBTENER_CUENTA_OAUTH": "Get Salud ID",

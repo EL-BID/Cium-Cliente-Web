@@ -46,13 +46,13 @@
 		  <a>Manual de usuario <i class="fa fa-caret-right"></i></a>
 		</li>
 		<li class="active">
-		  <a href="">Evaluaciones</a>
+		  <a href="">Catálogos</a>
 		</li>
 	  </ul>
       <ul class="nav navbar-nav navbar-right">
         				<li><a  href="./capitulo-1.html">&larr; Anterior </a></li>
 			
-							<li><a class="disabled">Siguiente </a></li>
+							<li><a href="./capitulo-3.html">Siguiente &rarr; </a></li>
 			      </ul>
     </div>
   </nav>
@@ -79,14 +79,39 @@
 				</li>
 													
 				<li class="active">
-					<a href="./capitulo-2.html" ><i class="fa fa-book"></i> Evaluaciones </a>				  
+					<a href="./capitulo-2.html" ><i class="fa fa-book"></i> Catálogos </a>				  
 					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
 						
-																																												<li><a href="./capitulo-2.html#recursos"><i class="fa fa-file"></i> Recursos</a></li>
-																															<li><a href="./capitulo-2.html#calidad"><i class="fa fa-file"></i> Calidad</a></li>
-																															<li><a href="./capitulo-2.html#hallazgo"><i class="fa fa-file"></i> Hallazgo</a></li>
-																															<li><a href="./capitulo-2.html#dashboard"><i class="fa fa-file"></i> Dashboard</a></li>
+																																												<li><a href="./capitulo-2.html#acciones"><i class="fa fa-file"></i> Acciones</a></li>
+																															<li><a href="./capitulo-2.html#alertas"><i class="fa fa-file"></i> Alertas</a></li>
+																															<li><a href="./capitulo-2.html#clues"><i class="fa fa-file"></i> Clues</a></li>
+																															<li><a href="./capitulo-2.html#cone"><i class="fa fa-file"></i> Cone</a></li>
+																															<li><a href="./capitulo-2.html#criterio"><i class="fa fa-file"></i> Criterio</a></li>
+																															<li><a href="./capitulo-2.html#indicador"><i class="fa fa-file"></i> Indicador</a></li>
+																															<li><a href="./capitulo-2.html#lugar-de-verificacion"><i class="fa fa-file"></i> Lugar de Verificación</a></li>
+																															<li><a href="./capitulo-2.html#plazo-accion"><i class="fa fa-file"></i> Plazo acción</a></li>
+																															<li><a href="./capitulo-2.html#zona"><i class="fa fa-file"></i> Zona</a></li>
 																						
+												
+													
+					</ul>
+					
+				</li>
+													
+				<li class="">
+					<a href="./capitulo-3.html" ><i class="fa fa-book"></i> Sistema </a>				  
+					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
+						
+												
+													
+					</ul>
+					
+				</li>
+													
+				<li class="">
+					<a href="./capitulo-4.html" ><i class="fa fa-book"></i> Evaluaciones </a>				  
+					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
+						
 												
 													
 					</ul>
@@ -113,16 +138,16 @@
               <div class="panel-body" >
                 
 				
-    <h1 id="evaluaciones"> Evaluaciones</h1>
+    <h1 id="catalogos"> Catálogos</h1>
     <p style="text-align: justify;">
-En este apartado se encuentra las parte transaccional de la aplicación es decir la parte donde se generan y procesan los datos recabados de las evaluaciónes.
+En términos generales, un catálogo es la lista ordenada o clasificada que se hará sobre los datos que necesita el sistema para operar. Normalmente estos catálogos no cambian su contenido. Se crean una sola vez y después se utilizan muchas veces en operaciones y reportes.
 <br/>
+Todos los catalogos tiene un listado con las opciones como se describen. 
 <br/>
-Las evaluaciónes de recursos y calidad tiene un listado con el formato y las opciones siguientes:
 </p>
 
 <div class="figure" id="figure-2-1">
-    <img src="images/evaluacion_lista.png" alt="" />
+    <img src="images/catalogo_lista.png" alt="" />
 
 </div>
 
@@ -131,18 +156,16 @@ Las evaluaciónes de recursos y calidad tiene un listado con el formato y las op
   <p><strong>Listado</strong></p>
   
   <ul>
-  <li>1.- Despegar el campo de busqueda</li>
-  <li>2.- Agregar una evaluación nueva</li>
-  <li>3.- Generar una evaluación impresa para llevar a las unidades médicas que no tengan internet </li>
-  <li>4.- Estado de la evaluación verde terminado, amarillo en edición. Al hacer click en la linea se abre la evaluación</li>
-  <li>5.- Eliminar la evaluación solo disponible para las que no se han cerrado</li>
-  <li>6.- Datos</li>
-  <li>7.- Paginación y limites por página</li>
+  <li>1.- Datos</li>
+  <li>2.- Paginación y limites por página</li>
+  <li>3.- Opciones por registro de izquierda a derecha: ver, modificar y eliminar</li>
+  <li>4.- Despegar el campo de busqueda</li>
+  <li>5.- Agregar un registro nuevo</li>
   </ul>
 </blockquote>
 
 <div class="figure" id="figure-2-2">
-    <img src="images/evaluacion_lista_buscar.png" alt="" />
+    <img src="images/catalogo_lista_buscar.png" alt="" />
 
 </div>
 
@@ -151,40 +174,72 @@ Las evaluaciónes de recursos y calidad tiene un listado con el formato y las op
   <p><strong>Listado buscar</strong></p>
   
   <ul>
-  <li>8.- Regresar y restablecer las opciones</li>
-  <li>9.- Campo de busqueda: escribir y dar enter para iniciar la busqueda</li>
+  <li>6.- Regresar y restablecer las opciones</li>
+  <li>7.- Campo de busqueda: escribir y dar enter para iniciar la busqueda</li>
   </ul>
 </blockquote>
 
-<h2 id="recursos">2.1 Recursos</h2>
+<p>Algunos encabeceados tiene la función de ordenar por el nombre de esa columna</p>
+
+<h2 id="acciones">2.1 Acciones</h2>
 
 <p style="text-align: justify;">
-Recursos es la evaluación que en las unidades médicas se encarga de monitoriar los indicadores de medición del tipo abasto y equipos, asi como los recursos humanos.
+Acciones contiene todos los datos a seleccionar cuando en una evaluación se encuentra un hallazgo. 
 </p>
 
-<h3 id="crear-una-nueva-evaluacion">2.1.1 Crear una nueva evaluación</h3>
-
-<h4 id="en-el-listado-de-recursos">2.1.1.1 En el listado de recursos</h4>
-
 <div class="figure" id="figure-2-3">
-    <img src="images/recurso_nuevo_1.png" alt="" />
+    <img src="images/accion.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p><strong>Nuevo</strong></p>
+  <p><strong>Crear / Editar</strong></p>
   
   <ul>
-  <li>1.- Click en el menu lateral izquierdo RECURSO</li>
-  <li>2.- Click en nuevo</li>
+  <li>1.- Nombre de la accion</li>
+  <li>2.- Tipo de evaluacion en la que estara disponible</li>
+  <li>3.- Regresar al listado</li>
+  <li>4.- Guardar </li>
+  <li>5.- Eliminar</li>
+  <li>6.- Ir a crear un registro nuevo</li>
   </ul>
 </blockquote>
 
-<h4 id="abre-un-pantalla-para-crear-la-ficha-tecnica">2.1.1.2 Abre un pantalla para crear la ficha técnica</h4>
+<h2 id="alertas">2.2 Alertas</h2>
+
+<p style="text-align: justify;">
+Alerta contiene todos los datos a seleccionar para identifcar las alertas por el valor que tome los indicadores en las evaluaciones. 
+</p>
 
 <div class="figure" id="figure-2-4">
-    <img src="images/recurso_nuevo_2.png" alt="" />
+    <img src="images/alerta.png" alt="" />
+
+</div>
+
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Nombre de la alerta</li>
+  <li>2.- Color </li>
+  <li>3.- Regresar al listado</li>
+  <li>4.- Guardar </li>
+  <li>5.- Eliminar</li>
+  <li>6.- Ir a crear un registro nuevo</li>
+  </ul>
+</blockquote>
+
+<h2 id="clues">2.3 Clues</h2>
+
+<p style="text-align: justify;">
+Clues contiene un listado de todas las unidades medicas con su informacion de la ficha tecnica. clues solo cuenta con 2 secciones listado y ficha tecnica para 
+crear o modificar solicitarlo al administrador de los catalosgos de la seceretaia de salud
+</p>
+
+<div class="figure" id="figure-2-5">
+    <img src="images/clues.png" alt="" />
 
 </div>
 
@@ -193,902 +248,271 @@ Recursos es la evaluación que en las unidades médicas se encarga de monitoriar
   <p><strong>Ficha</strong></p>
   
   <ul>
-  <li>1.- Buscar la unidad medica, puede buscar por jurisdicción, municipio, equipo zonal, nivel de cone, nombre clues o clave clues</li>
-  <li>2.- Regresar al listado</li>
-  <li>3.- Botón para crear la ficha este se habilita al seleccionar una unidad médica</li>
+  <li>1.- Regresar al listado</li>
+  <li>2.- Imprimir (Exportar pdf) </li>
   </ul>
 </blockquote>
 
-<div class="figure" id="figure-2-5">
-    <img src="images/recurso_nuevo_3.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Seleccionar Unidad</strong></p>
-  
-  <ul>
-  <li>1.- Al escribir se crea una lista con los resultado</li>
-  <li>2.- Si los resultados son muchos se crea un scroll a lado de la lista para navegar entre los resultados</li>
-  <li>3.- Al seleccionar una unidad se llena la ficha técnica</li>
-  <li>4.- Se habilita el botón crear</li>
-  <li>5.- Cambiar de unidad médica</li>
-  </ul>
-</blockquote>
+<h2 id="cone">2.4 Cone</h2>
 
 <p style="text-align: justify;">
-Para crear la evaluación hacer click en el botón que se habilito (CREAR). Se muestra un mensaje y cambia de pantalla para seleccionar los indicadores a evaluar.
+Cone (Cuidado obstétrico y neonatal esencial) este catálogo agrupa las unidades medicas, es de suma importancia ya que todo los criterios dependen del nivel de cone de cada unidad médica. 
 </p>
 
-<h3 id="agregar-indicadores">2.1.2 Agregar indicadores</h3>
-
-<h4 id="pantalla-de-evaluacion">2.1.2.1 Pantalla de evaluación</h4>
-
 <div class="figure" id="figure-2-6">
-    <img src="images/recurso_nuevo_4.png" alt="" />
+    <img src="images/cone.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p><strong>Pantalla inicial</strong></p>
+  <p><strong>Crear / Editar</strong></p>
   
   <ul>
-  <li>1.- Fecha y nombre de la clues</li>
-  <li>2.- Menú de indicadores</li>
-  <li>3.- Indicadores agregados a la evaluación, si no se ha agregado ninguno muestra el mensaje "No se ha agregado ningun indicador" si ya hay por lo menos un indicador muestra "Seleccione un indicador"</li>
-  <li>4.- Regresar al listado</li>
-  <li>5.- Ver/Editar ficha técnica</li>
+  <li>1.- Nombre del cone</li>
+  <li>2.- Jurisdicción </li>
+  <li>3.- Buscar clues que pertenecerá al nivel de cone a crear</li>
+  <li>4.- Unidades médicas agregadas </li>
+  <li>5.- Eliminar la unidad de la lista </li>
+  <li>6.- Regresar al listado</li>
+  <li>7.- Guardar </li>
+  <li>8.- Eliminar</li>
+  <li>9.- Ir a crear un registro nuevo</li>
   </ul>
 </blockquote>
 
+<h2 id="criterio">2.5 Criterio</h2>
+
 <p style="text-align: justify;">
-Si nos equivocamos al seleccionar la unidad podemos cambiarla en la opcion ficha técnica
+Criterio este catálogo contiene todos los puntos a evaluar se relaciona con indicador, cone y lugar de verificación para obtener el listado correspondiente a cada de las unidades médicas, el lugar de verificación sirve para agrupar los criterios. 
 </p>
 
 <div class="figure" id="figure-2-7">
-    <img src="images/recurso_nuevo_5.png" alt="" />
+    <img src="images/criterio_lista.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p><strong>Fichar Ver/Editar</strong></p>
+  <p><strong>Lista</strong></p>
   
   <ul>
-  <li>1.- Si se quiere cambiar la unidad médica click en editar</li>
+  <li>1.- Numero del indicador al que pertenece el criterio</li>
+  <li>2.- Nombre del criterio, este campo es editable, por lo tanto, se puede cambiar el nombre desde aca, para guardar solo pulse tab o cambie de campo </li>
+  <li>3.- Este campo es para determinar el orden en el que aprecera el criterio en la lista de evaluaciones</li>
   </ul>
 </blockquote>
 
 <div class="figure" id="figure-2-8">
-    <img src="images/recurso_nuevo_6.png" alt="" />
+    <img src="images/criterio.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p><strong>Ficha Editar</strong></p>
+  <p><strong>Crear / Editar</strong></p>
   
   <ul>
-  <li>2.- El botón cambia a guardar para cambiar la unidad médica, al hacer click cierra la ventana</li>
-  <li>3.- Buscar la unidad médica. Misma mecanica que al crear</li>
-  <li>4.- Cerrar la ventana</li>
+  <li>1.- Pestaña general, contiene informacion general del criterio</li>
+  <li>2.- Pestaña de validaciones, configurar las validaciones del criterio </li>
+  <li>3.- Nombre del criterio</li>
+  <li>4.- Orden en el que aprecera en las evaluaciones</li>
+  <li>5.- Seleccionar el indicador, nivel o niveles de cone y el lugar de verificación. Si el color del criterio es azul el dato es correcto, si es naranja le hace falta lugar de verificación si es rojo le hace falta selecionar un nivel de cone</li>
+  <li>6.- Ir a crear un registro nuevo</li>
   </ul>
 </blockquote>
 
-<h4 id="agregar-un-indicador">2.1.2.2 Agregar un indicador</h4>
-
 <div class="figure" id="figure-2-9">
-    <img src="images/recurso_nuevo_7.png" alt="" />
+    <img src="images/criterio_validacion.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p><strong>Menú indicador</strong></p>
+  <p><strong>Validacion preguntas</strong></p>
   
   <ul>
-  <li>1.- Click en el botón menu indicador</li>
-  <li>2.- Seleccionar un indicador, al selecionar uno se quita del menu y se agrega a la lista desplegable, y se cargan los criterios</li>
-  <li>3.- Si esta evaluando un indicador y le da seleccionar otro el sistema pide confirmación por que se borrara los datos del indicador que no ha guardado</li>
-  <li>4.- Aceptar el cambio y cargar otros datos </li>
-  <li>5.- Cancelar el cambio</li>
+  <li>7.- Pestaña de preguntas</li>
+  <li>8.- Pestaña de formulas</li>
+  <li>9.- Agregar otra pregunta</li>
+  <li>10.- Limpiar todas las preguntas</li>
+  <li>11.- Preguntas creadas</li>
+  <li>12.- Tipo de pregunta</li>
+  <li>13.- Dar un valor constante a una pregunta</li>
+  <li>14.- Dependiendo del tipo de pregunta, se asigna el valor contante en este caso fecha</li>
+  <li>15.- Campo para el valor contante</li>
+  <li>16.- Eliminar la pregunta</li>
   </ul>
 </blockquote>
 
 <div class="figure" id="figure-2-10">
-    <img src="images/recurso_nuevo_8.png" alt="" />
+    <img src="images/criterio_validacion_formula.png" alt="" />
 
 </div>
 
 
 <blockquote>
+  <p><strong>Validacion formula</strong></p>
+  
   <ul>
-  <li>6.- Indicador actual evaluando</li>
-  <li>7.- Lista de indicadores que tienen información en la evaluación, si es rojo quiere decir que aun no esta completo si es ver esta completo</li>
+  <li>17.- Pestaña de formula</li>
+  <li>18.- Validar la configuracion de la formula mustra una ventana para probar si se logra obtener el valor deseado</li>
+  <li>19.- Seleccionar la prengunta 1, de la lsita de preguntas anteriormente registradas, las preguntas son unicas por criterio por lo que se crean al instante</li>
+  <li>20.- Seleccionar el operador aritmetico para obtener un resultado entre las 2 preguntas</li>
+  <li>21.- Seleccionar pregunta 2</li>
+  <li>22.- Seleccionar la unidad de medida del resultado</li>
+  <li>23.- Operador logico comparativo</li>
+  <li>24.- Valor constante a comparar con el resultado para determinar si cumple o no</li>
+  <li>25.- Eliminar la formula</li>
   </ul>
 </blockquote>
 
-<h4 id="criterios">2.1.2.3 Criterios</h4>
+<h2 id="indicador">2.6 Indicador</h2>
+
+<p style="text-align: justify;">
+Indicador este catálogo contiene todos los indicadores para generar las evaluaciones. Se relaciona con alertaIndicador para generar los colores segun el porcentaje obtenido.
+</p>
 
 <div class="figure" id="figure-2-11">
-    <img src="images/recurso_nuevo_9.png" alt="" />
+    <img src="images/indicador.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p><strong>Menú indicador</strong></p>
+  <p><strong>Pestaña general</strong></p>
   
   <ul>
-  <li>1.- Muestra la cantidad de criterios y el total evaluados</li>
-  <li>2.- Lugar donde se tienen que verificar los criterios</li>
-  <li>3.- Criterios a evaluar</li>
-  <li>4.- Opciones de respuesta Si/No</li>
-  <li>5.- Hallazgo se habilita cuando en el indicador marcamos un no en un criterio</li>
-  <li>6.- Acciones para resolver el hallazgo</li>
-  <li>7.- Boton guardar se habilita una vez completado los criterios y el hallazgo si existe</li>
+  <li>1.- Codigo del indicador</li>
+  <li>2.- Nombre del indicador </li>
+  <li>3.- Categoria para la evaluación que estará disponible</li>
+  <li>4.- color para identificar el indicador</li>
+  <li>5.- Ir agregar un nuevo indicador</li>
   </ul>
 </blockquote>
 
 <div class="figure" id="figure-2-12">
-    <img src="images/recurso_nuevo_10.png" alt="" />
+    <img src="images/indicador_alertas.png" alt="" />
 
 </div>
 
 
 <blockquote>
+  <p><strong>Pestaña alertas</strong></p>
+  
   <ul>
-  <li>8.- Cuando todos los indicadores estan completa su evaluación el botón cerra aparece</li>
-  <li>9.- Si hacemos click en el botn cerrar el sistema pide confirmación y aparecer un mensaje</li>
-  <li>10.- Si el indicador guardado no era el indicado se puede eliminar</li>
+  <li>6.- Agregar una alerta</li>
+  <li>7.- Limpiar todas las alertas</li>
+  <li>8.- Rango minimo</li>
+  <li>9.- Rango maximo</li>
+  <li>10.- Color</li>
+  <li>11.- Quitar alerta</li>
   </ul>
 </blockquote>
-
-<h4 id="resultado-de-la-evaluacion">2.1.2.4 Resultado de la evaluación</h4>
 
 <div class="figure" id="figure-2-13">
-    <img src="images/recurso_nuevo_11.png" alt="" />
+    <img src="images/indicador_validacion.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <ul>
-  <li>1.- Regresar al listado</li>
-  <li>2.- Fecha de creación de la evaluación</li>
-  <li>3.- Ficha técnica de la unidad médica evaluada</li>
-  <li>4.- Resultado de los indicadores evaluados</li>
-  <li>5.- Detalle de los indicadores desglose de criterios y su valor de la evaluación</li>
-  <li>6.- Ocultar/Mostrar el detalle de criterios para incluir en la impresión o no</li>
-  <li><p>7.- Generar/Imprimir evaluación</p></li>
-  <li><p>8.- Por ultimo la firma del responsable de la unidad. Si la evaluación fue realizada con la APP MOVIL aparacera la firma digital
-  <div class="figure" id="figure-2-14">
-    <img src="images/recurso_nuevo_12.png" alt="" />
-
-</div>
-</li>
-  </ul>
+  <p><strong>Pestaña validacion</strong></p>
 </blockquote>
 
-<h2 id="calidad">2.2 Calidad</h2>
-
 <p style="text-align: justify;">
-Calidad es la evaluación que en las unidades médicas se encarga de monitoriar los indicadores de medición que tienen que ver con la calidad de la atención.
+La validacion de indicadores funciona de la misma forma que la de criterios
 </p>
 
-<h3 id="crear-una-nueva-evaluacion-2">2.2.1 Crear una nueva evaluación</h3>
+<div class="figure" id="figure-2-14">
+    <img src="images/indicador_indicacion.png" alt="" />
 
-<h4 id="en-el-listado-de-calidad">2.2.1.1 En el listado de calidad</h4>
+</div>
+
+
+<blockquote>
+  <p><strong>Pestaña validacion</strong></p>
+</blockquote>
+
+<p style="text-align: justify;">
+Aca se escribe una indicación para el evaluador en caso del que el indicador tenga complejidad y se necesite aclarar la fuente de datos
+</p>
+
+<h2 id="lugar-de-verificacion">2.7 Lugar de Verificación</h2>
+
+<p style="text-align: justify;">
+LugarVerificacion este catálogo contiene los lugares de verificacion para agrupar los criterios de cada indicador para las unidades médicas.
+</p>
 
 <div class="figure" id="figure-2-15">
-    <img src="images/calidad_nuevo_1.png" alt="" />
+    <img src="images/lugar.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p><strong>Nuevo</strong></p>
+  <p><strong>Crear / Editar</strong></p>
   
   <ul>
-  <li>1.- Click en el menu lateral izquierdo CALIDAD</li>
-  <li>2.- Click en nuevo</li>
+  <li>1.- Nombre del lugar de verificación</li>
+  <li>2.- Regresar al listado</li>
+  <li>3.- Guardar </li>
+  <li>4.- Eliminar</li>
+  <li>5.- Ir a crear un registro nuevo</li>
   </ul>
 </blockquote>
 
-<h4 id="abre-un-pantalla-para-crear-la-ficha-tecnica-2">2.2.1.2 Abre un pantalla para crear la ficha técnica</h4>
+<h2 id="plazo-accion">2.8 Plazo acción</h2>
+
+<p style="text-align: justify;">
+PlazoAccion este catálogo contiene los lugares de verificacion para agrupar los criterios de cada indicador para las unidades médicas.
+</p>
 
 <div class="figure" id="figure-2-16">
-    <img src="images/calidad_nuevo_2.png" alt="" />
+    <img src="images/plazo.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p><strong>Ficha</strong></p>
+  <p><strong>Crear / Editar</strong></p>
   
   <ul>
-  <li>1.- Buscar la unidad medica, puede buscar por jurisdicción, municipio, equipo zonal, nivel de cone, nombre clues o clave clues</li>
-  <li>2.- Regresar al listado</li>
-  <li>3.- Botón para crear la ficha este se habilita al seleccionar una unidad médica</li>
+  <li>1.- Nombre del plazo de la acción</li>
+  <li>2.- Tipo (tiempo)</li>
+  <li>3.- Valor con respecto al tipo</li>
+  <li>4.- Regresar al listado</li>
+  <li>5.- Guardar </li>
+  <li>6.- Eliminar</li>
+  <li>7.- Ir a crear un registro nuevo</li>
   </ul>
 </blockquote>
+
+<h2 id="zona">2.9 Zona</h2>
+
+<p style="text-align: justify;">
+Zona este catálogo contiene las zonas y las unidades médicas que la conforman, Debido a que cada zona puede tener muchas unidades médiacas y para no hacer tardio la carga del listado se recomienda descargar el listado y depues hacer un recorrido de cada uno de los resultados para extraer los datos del metodo show.
+</p>
 
 <div class="figure" id="figure-2-17">
-    <img src="images/calidad_nuevo_3.png" alt="" />
+    <img src="images/zona.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p><strong>Seleccionar Unidad</strong></p>
+  <p><strong>Crear / Editar</strong></p>
   
   <ul>
-  <li>1.- Al escribir se crea una lista con los resultado</li>
-  <li>2.- Si los resultados son muchos se crea un scroll a lado de la lista para navegar entre los resultados</li>
-  <li>3.- Al seleccionar una unidad se llena la ficha técnica</li>
-  <li>4.- Se habilita el botón crear</li>
-  <li>5.- Cambiar de unidad médica</li>
-  </ul>
-</blockquote>
-
-<p style="text-align: justify;">
-Para crear la evaluación hacer click en el botón que se habilito (CREAR) y se muestra un mensaje y cambia de pantalla para seleccionar los indicadores a evaluar.
-</p>
-
-<h3 id="agregar-indicadores-2">2.2.2 Agregar indicadores</h3>
-
-<h4 id="pantalla-de-evaluacion-2">2.2.2.1 Pantalla de evaluación</h4>
-
-<div class="figure" id="figure-2-18">
-    <img src="images/calidad_nuevo_4.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Pantalla inicial</strong></p>
-  
-  <ul>
-  <li>1.- Fecha y nombre de la clues</li>
-  <li>2.- Menú de indicadores</li>
-  <li>3.- Indicadores agregados a la evaluación, si no se ha agregado ninguno muestra el mensaje "No se ha agregado ningun indicador" si ya hay por lo menos un indicador muestra "Seleccione un indicador"</li>
-  <li>4.- Regresar al listado</li>
-  <li>5.- Ver/Editar ficha técnica</li>
-  </ul>
-</blockquote>
-
-<p style="text-align: justify;">
-Si nos equivocamos al seleccionar la unidad podemos cambiarla en la opcion ficha técnica
-</p>
-
-<div class="figure" id="figure-2-19">
-    <img src="images/calidad_nuevo_5.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Fichar Ver/Editar</strong></p>
-  
-  <ul>
-  <li>1.- Si se quiere cambiar la unidad médica click en editar</li>
-  </ul>
-</blockquote>
-
-<div class="figure" id="figure-2-20">
-    <img src="images/calidad_nuevo_6.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Ficha Editar</strong></p>
-  
-  <ul>
-  <li>2.- El botón cambia a guardar para cambiar la unidad médica, al hacer click cierra la ventana</li>
-  <li>3.- Buscar la unidad médica. Misma mecanica que al crear</li>
-  <li>4.- Cerrar la ventana</li>
-  </ul>
-</blockquote>
-
-<h4 id="agregar-un-indicador-2">2.2.2.2 Agregar un indicador</h4>
-
-<div class="figure" id="figure-2-21">
-    <img src="images/calidad_nuevo_7.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Menú indicador</strong></p>
-  
-  <ul>
-  <li>1.- Click en el botón menu indicador</li>
-  <li>2.- Seleccionar un indicador, al selecionar uno se quita del menu y se agrega a la lista desplegable, y se cargan los criterios</li>
-  <li>3.- Si esta evaluando un indicador y le da seleccionar otro el sistema pide confirmación por que se borrara los datos del indicador que no ha guardado</li>
-  <li>4.- Aceptar el cambio y cargar otros datos </li>
-  <li>5.- Cancelar el cambio</li>
-  </ul>
-</blockquote>
-
-<div class="figure" id="figure-2-22">
-    <img src="images/calidad_nuevo_8.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>6.- Indicador actual evaluando</li>
-  <li>7.- Lista de indicadores que tienen información en la evaluación, si es rojo quiere decir que aun no esta completo si es ver esta completo</li>
-  </ul>
-</blockquote>
-
-<h4 id="criterios-2">2.2.2.3 Criterios</h4>
-
-<div class="figure" id="figure-2-23">
-    <img src="images/calidad_nuevo_9.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Menú indicador</strong></p>
-  
-  <ul>
-  <li>1.- Escribir el número del expediente a agregar (no se debe repetir en elmismo indicador)</li>
-  <li>2.- Agregar el expediente al indicador</li>
-  <li>3.- Expedientes agregados, se puede cambiar de uno a otro</li>
-  <li>4.- Expedientes agregados, se puede cambiar de uno a otro</li>
-  <li>5.- Criterios a evaluar</li>
-  <li>6.- Opciones de respuesta Si/No</li>
-  <li>7.- Porcentaje del expediente. Con un no el expediente no cumple</li>
-  <li>8.- Hallazgo se habilita cuando en el indicador el porcentaje general es menor a 80</li>
-  <li>9.- Acciones para resolver el hallazgo</li>
-  <li>10.- Porcentaje general del indicador</li>
-  <li>11.- Eliminar el expediente</li>
-  <li>12.- Número total de croterios y la cantidad rvaluada</li>
-  <li>13.- Eliminar el indicador completo</li>
-  <li>14.- Botón guardar se habilita si el indicador y todos sus expediente estan completos</li>
-  <li>15.- Cerrar evaluación se habilita si todos los indicadores estan completos. El sistema pide confirmación antes de cerrar</li>
-  </ul>
-</blockquote>
-
-<h4 id="resultado-de-la-evaluacion-2">2.2.2.4 Resultado de la evaluación</h4>
-
-<div class="figure" id="figure-2-24">
-    <img src="images/calidad_nuevo_11.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>1.- Regresar al listado</li>
-  <li>2.- Fecha de creación de la evaluación</li>
-  <li>3.- Ficha técnica de la unidad médica evaluada</li>
-  <li>4.- Resultado de los indicadores evaluados</li>
-  <li>5.- Detalle de los indicadores desglose de criterios y su valor de la evaluación</li>
-  <li>6.- Ocultar/Mostrar el detalle de criterios para incluir en la impresión o no</li>
-  <li>7.- Detalle general del indicador para los expedientes</li>
-  <li>8.- Resultado de la evaluacion por criterios y por expediente</li>
-  <li><p>9.- Generar/Imprimir evaluación</p></li>
-  <li><p>10.- Por ultimo la firma del responsable de la unidad. Si la evaluación fue realizada con la APP MOVIL aparacera la firma digital
-  <div class="figure" id="figure-2-25">
-    <img src="images/calidad_nuevo_12.png" alt="" />
-
-</div>
-</li>
-  </ul>
-</blockquote>
-
-<h2 id="hallazgo">2.3 Hallazgo</h2>
-
-<p style="text-align: justify;">
-Hallazgos módulo que muestra de entrada los problemas principales actuales o historico segun el filtro por unidad médica y por criterio.
-</p>
-
-<h3 id="listado-criterios">2.3.1 Listado Criterios</h3>
-
-<blockquote>
-  <p><strong>Criterios</strong></p>
-</blockquote>
-
-<div class="figure" id="figure-2-26">
-    <img src="images/hallazgo_criterio_1.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>1.- Acceder a los hallazgos</li>
-  <li>2.- Tabs categoria mostrar criterio y unidades médicas</li>
-  <li>3.- Buscar en la lista de criterios</li>
-  <li>4.- Lista de criterios mustra tambien el número de unidades médicas afectadas y si es de calidad el número de expedientes</li>
-  <li>5.- Categoria de los inidcadores (CALIDAD/RECURSOS)</li>
-  <li>6.- Ordenar con respecto al numero de unidades afectadas</li>
-  <li>7.- Agrupar criterios por indicador</li>
-  <li>8.- Mostrar el campo de busqueda</li>
-  <li>9.- Abrir las opciones de filtrado</li>
-  <li>10.- Lista de indicadores que en el momento actual tiene problemas</li>
-  <li>11.- Habilitar/Deshabilitar historial, si se habilita el historial muestra los problemas desde la primera evalación hasta la ultima</li>
-  </ul>
-  
-  <p><strong>Buscar</strong></p>
-</blockquote>
-
-<div class="figure" id="figure-2-27">
-    <img src="images/hallazgo_criterio_2.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>1.- Campo de busqueda</li>
-  <li>2.- Regresar el menú</li>
-  <li>3.- Indicador y criterios agrupados</li>
-  </ul>
-  
-  <p><strong>Unidades Médicas</strong></p>
-</blockquote>
-
-<div class="figure" id="figure-2-28">
-    <img src="images/hallazgo_criterio_3.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>1.- Lista de unidades afectadas</li>
-  <li>2.- Paginación y limites por página</li>
-  </ul>
-</blockquote>
-
-<h3 id="lista-de-indicadores-con-detalle">2.3.2 Lista de indicadores con detalle</h3>
-
-<div class="figure" id="figure-2-29">
-    <img src="images/hallazgo_criterio_4.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>1.- Lista de indicadores por los que se esta filtrando</li>
-  <li>2.- Lista de indicadores con problema</li>
-  <li>3.- Número de indicadores con problema</li>
-  </ul>
-</blockquote>
-
-<h3 id="opciones-de-filtrado">2.3.3 Opciones de filtrado</h3>
-
-<p style="text-align: justify;">
-Las opciones de filtrado toma en cuenta si el historial esta activado, y filtra segun sea el caso. al activar el historial la lista de indicadores con problema desaparece. hal filtrar se afecta a las dos categorias o tabs criterios y unidades medicas
-</p>
-
-<blockquote>
-  <p><strong>Historial habilitado</strong></p>
-</blockquote>
-
-<div class="figure" id="figure-2-30">
-    <img src="images/hallazgo_criterio_5.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Opciones</strong></p>
-</blockquote>
-
-<div class="figure" id="figure-2-31">
-    <img src="images/hallazgo_criterio_6.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>1.- Toolbar con los botones</li>
-  <li>2.- Pestañas separadoras de opciones</li>
-  <li>3.- Para la pestaña periodo, Año disponibles para filtrar pude seleccionar 1 o mas</li>
-  <li>4.- Limpiar la opción de filtrado año</li>
-  <li>5.- Bimestres con información disponibles pude seleccionar 1 o mas</li>
-  <li>6.- Limpiar la opción de filtrado bimestre</li>
-  <li>7.- Filtrado por periodos incio</li>
-  <li>8.- Filtrado por periodos fin</li>
-  <li>9.- Para la pestaña Indicador, ver todo: muestra todos los indicadores </li>
-  <li>10.- Por indicador: puede seleccionar uno o mas indicadores</li>
-  <li>11.- Lista de indicadores disponibles. Muestra tambien el numero de unidades afectadas</li>
-  <li>12.- Para la pestaña Indicador, ver todo: muestra todos la información si filtro por parametro </li>
-  <li>13.- Filtro: permite seleccionar los filtros especificos por parametro</li>
-  <li>14.- Seleccionar uno o mas niveles de cone</li>
-  <li>15.- Limpiar la opción cone</li>
-  <li>16.- Seleccionar uno o mas niveles de jurisdicción</li>
-  <li>17.- Limpiar la opción jurisdicción</li>
-  <li>18.- Intercalar las opciones por municipio o por zona</li>
-  <li>19.- Seleccionar uno o mas niveles de municipio o zona </li>
-  <li>20.- Limpiar la opción de municipio o zona</li>
-  <li>21.- Aplicar los filtros</li>
-  <li>22.- Quitar los filtros</li>
-  </ul>
-</blockquote>
-
-<h3 id="detalle-del-problema">2.3.4 Detalle del problema</h3>
-
-<p style="text-align: justify;">
-Al Hacer click sobre el criterio para el tab PROBLEMAS DETECTADOS o en la unidad médica para el tab UNIDADES MÉDICAS AFECTADAS se puede acceder al detalle del problema de esta manera:
-</p>
-
-<blockquote>
-  <p><strong>Criterios</strong></p>
-</blockquote>
-
-<div class="figure" id="figure-2-32">
-    <img src="images/hallazgo_criterio_7.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>1.- Al hacer click en un criterio se habre una ventana con la lista de evaluaciones</li>
-  <li>2.- Lista de evaluaciones con detalle. Si el historial esta deshabilitado muestra solo la ultima evalación si no muestra todas las evaluaciones</li>
-  </ul>
-  
-  <p><strong>Unidades médicas</strong></p>
-</blockquote>
-
-<div class="figure" id="figure-2-33">
-    <img src="images/hallazgo_criterio_8.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>1.- Al hacer click en una unidad se habre una lista de los indicadores afectados, si en el filtro se habilito solo un indicador se pasa directo a la lista de evaluaciones</li>
-  <li>2.- Al hacer click en un inidcador se habre una lista de las evaluaciones</li>
-  <li>3.- Lista de evaluaciones. Si esta deshabilitado historial solo muestra la evaluacion mas actual si no todas. Al hacer click muestra el detalle del o los inidcadores con sus criterios</li>
-  </ul>
-</blockquote>
-
-<p>Para los dos criterio o unidades médicas llegamos a la vista detalle.</p>
-
-<div class="figure" id="figure-2-34">
-    <img src="images/hallazgo_criterio_9.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <ul>
-  <li>1.- Detalle del o los indicadores unicamente los que tienen detalle</li>
-  <li>2.- Abrir la evaluación completa y mostrar todos los indicadores que se evaluo</li>
-  </ul>
-</blockquote>
-
-<h2 id="dashboard">2.4 Dashboard</h2>
-
-<p style="text-align: justify;">
-En este apartado se encuentra todos los reportes gráficos que se generan con las evaluaciónes capturadas de recursos y calidad. Este es un conjunto de de 5 reportes para cada uno haciendo un total de 10 reportes en la pantalla del dashboard
-</p>
-
-<h3 id="hallazgos">2.4.1 Hallazgos</h3>
-
-<p style="text-align: justify;">
-Gráficos tipo gauge que mustran la cantidad de unidades médicas que tiene en su ultima evaluación algun detalle. La aguja muestra el nivel de detalle entre mas cerca este a 0 mejor.
-</p>
-
-<div class="figure" id="figure-2-35">
-    <img src="images/gauge.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Gauge</strong></p>
-  
-  <ul>
-  <li>1.- Toolbar con el nombre del gráfico</li>
-  <li>2.- Señalamiento de las alertas</li>
-  <li>3.- Indicadores con detalles</li>
-  <li>4.- Cantidad de unidades médicas con detalle</li>
-  <li>5.- Opciones de filtrado, se deplega un menu en el lado derecho de la pantall</li>
-  <li>6.- Poner en modo pantalla completa el gráfico</li>
-  <li>7.- Menú de filtrado </li>
-  </ul>
-</blockquote>
-
-<div class="figure" id="figure-2-36">
-    <img src="images/gauge_menu.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Gauge Menú</strong></p>
-  
-  <ul>
-  <li>1.- Toolbar con los botones</li>
-  <li>2.- Pestañas separadoras de opciones</li>
-  <li>3.- Para la pestaña periodo, Año disponibles para filtrar pude seleccionar 1 o mas</li>
-  <li>4.- Limpiar la opción de filtrado año</li>
-  <li>5.- Bimestres con información disponibles pude seleccionar 1 o mas</li>
-  <li>6.- Limpiar la opción de filtrado bimestre</li>
-  <li>7.- Filtrado por periodos incio</li>
-  <li>8.- Filtrado por periodos fin</li>
-  <li>9.- Para la pestaña Indicador, ver todo: muestra todos los indicadores </li>
-  <li>10.- Por indicador: puede seleccionar uno o mas indicadores</li>
-  <li>11.- Lista de indicadores disponibles</li>
-  <li>12.- Para la pestaña Indicador, ver todo: muestra todos la información si filtro por parametro </li>
-  <li>13.- Filtro: permite seleccionar los filtros especificos por parametro</li>
-  <li>14.- Seleccionar uno o mas niveles de cone</li>
-  <li>15.- Limpiar la opción cone</li>
-  <li>16.- Seleccionar uno o mas niveles de jurisdicción</li>
-  <li>17.- Limpiar la opción jurisdicción</li>
-  <li>18.- Intercalar las opciones por municipio o por zona</li>
-  <li>19.- Seleccionar uno o mas niveles de municipio o zona </li>
-  <li>20.- Limpiar la opción de municipio o zona</li>
-  <li>21.- Aplicar los filtros</li>
-  <li>22.- Quitar los filtros</li>
-  </ul>
-</blockquote>
-
-<h3 id="reporte-de-unidad">2.4.2 Reporte de unidad</h3>
-
-<p style="text-align: justify;">
-Gráficos de barra que mustran la información en porcentaje por unidad de su ultima evaluación.
-</p>
-
-<div class="figure" id="figure-2-37">
-    <img src="images/barra.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Barra</strong></p>
-  
-  <ul>
-  <li>1.- Toolbar con el nombre del gráfico</li>
-  <li>2.- Señalamiento del porcentaje de la evalución en barras</li>
-  <li>3.- Nombre de los indicadores con detalles</li>
-  <li>4.- Nombre del nivel de desglose</li>
-  <li>5.- Información, aparece solo en el nivel de desglose CLUES. Indica que se puede acceder a las evaluaciónes con un click en el gr'afico</li>
-  <li>6.- Poner o quitar el contorno de alertas</li>
-  <li>7.- Opciones de filtrado, se deplega un menu en el lado derecho de la pantall</li>
-  <li>8.- Poner en modo pantalla completa el gráfico</li>
-  <li>9.- Menú de filtrado </li>
-  </ul>
-</blockquote>
-
-<div class="figure" id="figure-2-38">
-    <img src="images/barra_menu.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Barra Menú</strong></p>
-  
-  <ul>
-  <li>1.- Toolbar con los botones</li>
-  <li>2.- Pestañas separadoras de opciones</li>
-  <li>3.- Para la pestaña periodo, Año disponibles para filtrar pude seleccionar 1 o mas</li>
-  <li>4.- Limpiar la opción de filtrado año</li>
-  <li>5.- Bimestres con información disponibles pude seleccionar 1 o mas</li>
-  <li>6.- Limpiar la opción de filtrado bimestre</li>
-  <li>7.- Filtrado por periodos incio</li>
-  <li>8.- Filtrado por periodos fin</li>
-  <li>9.- Para la pestaña Indicador, ver todo: muestra todos los indicadores </li>
-  <li>10.- Por indicador: puede seleccionar uno o mas indicadores</li>
-  <li>11.- Lista de indicadores disponibles</li>
-  <li>12.- Para la pestaña Indicador, ver todo: muestra todos la información si filtro por parametro </li>
-  <li>13.- Filtro: permite seleccionar los filtros especificos por parametro</li>
-  <li>14.- Seleccionar uno o mas niveles de cone</li>
-  <li>15.- Limpiar la opción cone</li>
-  <li>16.- Seleccionar uno o mas niveles de jurisdicción</li>
-  <li>17.- Limpiar la opción jurisdicción</li>
-  <li>18.- Intercalar las opciones por municipio o por zona</li>
-  <li>19.- Seleccionar uno o mas niveles de municipio o zona </li>
-  <li>20.- Limpiar la opción de municipio o zona</li>
-  <li>21.- Seleccionar el tipo de desgloce de la información</li>
-  <li>22.- Si se selecciona clues aparece filtrar clues y crea otra pestaña con la lista de clues disponibles</li>
-  <li>23.- Seleccionar el nivel de desgloce por default es tiempo, si queremos visaulizar por otro tipo seleccionar por parametro </li>
-  <li>24.- Descmarcar todas las clues que estaban marcadas</li>
-  <li>25.- Buscar en la lista de clues</li>
-  <li>26.- Clues disponibles para seleccionar</li>
-  <li>27.- Aplicar los filtros</li>
-  <li>28.- Quitar los filtros</li>
-  </ul>
-</blockquote>
-
-<h3 id="cobertura">2.4.3 Cobertura</h3>
-
-<p style="text-align: justify;">
-Gráficos de pastel que muestra en 2 colores la cantidad de visitas que se hacen a las unidades médicas.
-</p>
-
-<div class="figure" id="figure-2-39">
-    <img src="images/pie.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Pie</strong></p>
-  
-  <ul>
-  <li>1.- Toolbar con el nombre del gráfico</li>
-  <li>2.- Area que indica la cantidad de visitas</li>
-  <li>3.- Area que indica la cantidad de unidades no visitadas</li>
-  <li>4.- Etiquetas de colores</li>
-  <li>5.- Opciones de filtrado, se deplega un menu en el lado derecho de la pantall</li>
-  <li>6.- Poner en modo pantalla completa el gráfico</li>
-  <li>7.- Menú de filtrado </li>
-  </ul>
-</blockquote>
-
-<div class="figure" id="figure-2-40">
-    <img src="images/gauge_menu.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Pie Menú</strong></p>
-  
-  <ul>
-  <li>1.- Toolbar con los botones</li>
-  <li>2.- Pestañas separadoras de opciones</li>
-  <li>3.- Para la pestaña periodo, Año disponibles para filtrar pude seleccionar 1 o mas</li>
-  <li>4.- Limpiar la opción de filtrado año</li>
-  <li>5.- Bimestres con información disponibles pude seleccionar 1 o mas</li>
-  <li>6.- Limpiar la opción de filtrado bimestre</li>
-  <li>7.- Filtrado por periodos incio</li>
-  <li>8.- Filtrado por periodos fin</li>
-  <li>9.- Para la pestaña Indicador, ver todo: muestra todos los indicadores </li>
-  <li>10.- Por indicador: puede seleccionar uno o mas indicadores</li>
-  <li>11.- Lista de indicadores disponibles</li>
-  <li>12.- Para la pestaña Indicador, ver todo: muestra todos la información si filtro por parametro </li>
-  <li>13.- Filtro: permite seleccionar los filtros especificos por parametro</li>
-  <li>14.- Seleccionar uno o mas niveles de cone</li>
-  <li>15.- Limpiar la opción cone</li>
-  <li>16.- Seleccionar uno o mas niveles de jurisdicción</li>
-  <li>17.- Limpiar la opción jurisdicción</li>
-  <li>18.- Intercalar las opciones por municipio o por zona</li>
-  <li>19.- Seleccionar uno o mas niveles de municipio o zona </li>
-  <li>20.- Limpiar la opción de municipio o zona</li>
-  <li>21.- Aplicar los filtros</li>
-  <li>22.- Quitar los filtros</li>
-  </ul>
-</blockquote>
-
-<h3 id="indicadores-y-su-alerta">2.4.4 Indicadores y su alerta</h3>
-
-<p style="text-align: justify;">
-Lista que muestra el porcentaje de la evaluación y el color que toma de las alertas con respecto al porcentaje.
-</p>
-
-<div class="figure" id="figure-2-41">
-    <img src="images/alertas.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Indicador</strong></p>
-  
-  <ul>
-  <li>1.- Toolbar con el nombre del gráfico</li>
-  <li>2.- Codigo del indicador</li>
-  <li>3.- Nombre del indicador</li>
-  <li>4.- Porcentaje obtenido en la evaluación</li>
-  <li>5.- Opciones de filtrado, se deplega un menu en el lado derecho de la pantall</li>
-  <li>6.- Poner en modo pantalla completa el gráfico</li>
-  </ul>
-</blockquote>
-
-<div class="figure" id="figure-2-42">
-    <img src="images/gauge_menu.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Indicador Menú</strong></p>
-  
-  <ul>
-  <li>1.- Toolbar con los botones</li>
-  <li>2.- Pestañas separadoras de opciones</li>
-  <li>3.- Para la pestaña periodo, Año disponibles para filtrar pude seleccionar 1 o mas</li>
-  <li>4.- Limpiar la opción de filtrado año</li>
-  <li>5.- Bimestres con información disponibles pude seleccionar 1 o mas</li>
-  <li>6.- Limpiar la opción de filtrado bimestre</li>
-  <li>7.- Filtrado por periodos incio</li>
-  <li>8.- Filtrado por periodos fin</li>
-  <li>9.- Para la pestaña Indicador, ver todo: muestra todos los indicadores </li>
-  <li>10.- Por indicador: puede seleccionar uno o mas indicadores</li>
-  <li>11.- Lista de indicadores disponibles</li>
-  <li>12.- Para la pestaña Indicador, ver todo: muestra todos la información si filtro por parametro </li>
-  <li>13.- Filtro: permite seleccionar los filtros especificos por parametro</li>
-  <li>14.- Seleccionar uno o mas niveles de cone</li>
-  <li>15.- Limpiar la opción cone</li>
-  <li>16.- Seleccionar uno o mas niveles de jurisdicción</li>
-  <li>17.- Limpiar la opción jurisdicción</li>
-  <li>18.- Intercalar las opciones por municipio o por zona</li>
-  <li>19.- Seleccionar uno o mas niveles de municipio o zona </li>
-  <li>20.- Limpiar la opción de municipio o zona</li>
-  <li>21.- Aplicar los filtros</li>
-  <li>22.- Quitar los filtros</li>
-  </ul>
-</blockquote>
-
-<h3 id="top-mejores-y-peores">2.4.5 Top mejores y peores</h3>
-
-<p style="text-align: justify;">
-Lista el top de las mejores y peores unidades médicas según la ultima evaluación.
-</p>
-
-<div class="figure" id="figure-2-43">
-    <img src="images/top.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Indicador</strong></p>
-  
-  <ul>
-  <li>1.- Toolbar con el nombre del gráfico</li>
-  <li>2.- Posición en la lista, para peores el primero es le perdedor</li>
-  <li>3.- Clave de la unidad médica</li>
-  <li>4.- Nombre de la unidad médica</li>
-  <li>6.- Nombre de la unidad médica</li>
-  <li>7.- Opciones de filtrado, se deplega un menu en el lado derecho de la pantall</li>
-  <li>8.- Poner en modo pantalla completa el gráfico</li>
-  </ul>
-</blockquote>
-
-<div class="figure" id="figure-2-44">
-    <img src="images/top_menu.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p><strong>Top Menú</strong></p>
-  
-  <ul>
-  <li>A.- Mostrar el tipo del TOP default ambos</li>
-  <li><p>B.- Seleccionar el número del TOP</p></li>
-  <li><p>1.- Toolbar con los botones</p></li>
-  <li>2.- Pestañas separadoras de opciones</li>
-  <li>3.- Para la pestaña periodo, Año disponibles para filtrar pude seleccionar 1 o mas</li>
-  <li>4.- Limpiar la opción de filtrado año</li>
-  <li>5.- Bimestres con información disponibles pude seleccionar 1 o mas</li>
-  <li>6.- Limpiar la opción de filtrado bimestre</li>
-  <li>7.- Filtrado por periodos incio</li>
-  <li>8.- Filtrado por periodos fin</li>
-  <li>9.- Para la pestaña Indicador, ver todo: muestra todos los indicadores </li>
-  <li>10.- Por indicador: puede seleccionar uno o mas indicadores</li>
-  <li>11.- Lista de indicadores disponibles</li>
-  <li>12.- Para la pestaña Indicador, ver todo: muestra todos la información si filtro por parametro </li>
-  <li>13.- Filtro: permite seleccionar los filtros especificos por parametro</li>
-  <li>14.- Seleccionar uno o mas niveles de cone</li>
-  <li>15.- Limpiar la opción cone</li>
-  <li>16.- Seleccionar uno o mas niveles de jurisdicción</li>
-  <li>17.- Limpiar la opción jurisdicción</li>
-  <li>18.- Intercalar las opciones por municipio o por zona</li>
-  <li>19.- Seleccionar uno o mas niveles de municipio o zona </li>
-  <li>20.- Limpiar la opción de municipio o zona</li>
-  <li>21.- Aplicar los filtros</li>
-  <li>22.- Quitar los filtros</li>
+  <li>1.- Nombre de la zona o equipo</li>
+  <li>2.- Jurisdicción </li>
+  <li>3.- Buscar clues que pertenecerá al nivel de cone a crear</li>
+  <li>4.- Unidades médicas agregadas </li>
+  <li>5.- Eliminar la unidad de la lista </li>
+  <li>6.- Regresar al listado</li>
+  <li>7.- Guardar </li>
+  <li>8.- Eliminar</li>
+  <li>9.- Ir a crear un registro nuevo</li>
   </ul>
 </blockquote>
 

@@ -1,9 +1,16 @@
+/**
+ * @ngdoc interface
+ * @name App.interface:URLS
+ * @description
+ * constantes para las urls utilizadas en la aplicación.
+ */  
 (function(){
 	'use strict';
 	angular.module('App').constant('URLS', {
-    	BASE: 'http://laravel-ip/laravel-api/public',
-    	BASE_API: 'http://laravel-ip/laravel-api/public/v1',
+    	BASE: 'http://localhost/Cium_2017/APIRESTfull/public',
+    	BASE_API: 'http://localhost/Cium_2017/APIRESTfull/public/v1',
 		OAUTH_CLIENTE: 'http://sistemas.salud.chiapas.gob.mx/salud-id',
-		OAUTH_API: 'http://187.217.219.54/v1',		
+		OAUTH_SERVER: 'http://localhost/SSA_MATERIAL/oauth2-server/public'
+
    	});	
 })();

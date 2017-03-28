@@ -92,8 +92,7 @@
 					<a href="./capitulo-3.html" ><i class="fa fa-book"></i> Sistema </a>				  
 					<ul id="chunk_toc" class='nav collapse submenu in'  aria-expanded="true">		
 						
-																																												<li><a href="./capitulo-3.html#grupo"><i class="fa fa-file"></i> Grupo</a></li>
-																															<li><a href="./capitulo-3.html#modulo"><i class="fa fa-file"></i> Modulo</a></li>
+																																												<li><a href="./capitulo-3.html#roles"><i class="fa fa-file"></i> Roles</a></li>
 																															<li><a href="./capitulo-3.html#usuario"><i class="fa fa-file"></i> Usuario</a></li>
 																						
 												
@@ -147,14 +146,13 @@ Todos los modulos tiene un listado con las opciones como se describen.
 
 
 <blockquote>
-  <p>** Listado **</p>
+  <p><strong>Listado</strong></p>
   
   <ul>
-  <li>1.- Datos</li>
-  <li>2.- Paginación y limites por página</li>
-  <li>3.- Opciones por registro de izquierda a derecha: ver, modificar y eliminar</li>
-  <li>4.- Despegar el campo de busqueda</li>
-  <li>5.- Agregar un registro nuevo</li>
+  <li>1.- Buscar</li>
+  <li>2.- Datos</li>
+  <li>3.- Eliminar</li>
+  <li>4.- Agregar un registro nuevo</li>
   </ul>
 </blockquote>
 
@@ -165,18 +163,18 @@ Todos los modulos tiene un listado con las opciones como se describen.
 
 
 <blockquote>
-  <p>** Listado buscar **</p>
+  <p><strong>Listado buscar</strong></p>
   
   <ul>
-  <li>6.- Regresar y restablecer las opciones</li>
-  <li>7.- Campo de busqueda: escribir y dar enter para iniciar la busqueda</li>
+  <li>5.- Regresar y restablecer las opciones</li>
+  <li>6.- Campo de busqueda: escribir y dar enter para iniciar la busqueda</li>
   </ul>
 </blockquote>
 
-<h2 id="grupo">3.1 Grupo</h2>
+<h2 id="roles">3.1 Roles</h2>
 
 <p style="text-align: justify;">
-Grupo creacion y administracion de los gurpos y configuracion de las acceso a modulos por accion. 
+Roles creacion y administracion de los roles y configuracion de las acceso a modulos por accion. 
 </p>
 
 <div class="figure" id="figure-3-3">
@@ -186,83 +184,54 @@ Grupo creacion y administracion de los gurpos y configuracion de las acceso a mo
 
 
 <blockquote>
-  <p>** Crear / Editar **</p>
+  <p><strong>Crear / Editar</strong></p>
   
   <ul>
   <li>1.- Nombre del grupo</li>
-  <li>2.- Módulos</li>
+  <li>2.- Módulos disponibles</li>
   <li>3.- Acciones en el módulo</li>
   <li>4.- Regresar al listado</li>
   <li>5.- Guardar </li>
   <li>6.- Eliminar</li>
-  <li>7.- Ir a crear un registro nuevo</li>
   </ul>
 </blockquote>
 
-<h2 id="modulo">3.2 Modulo</h2>
-
-<p style="text-align: justify;">
-Modulo administra los modulos y controladores de laravel para crear las acciones por modulo, se usa para generar los permisos por grupo. 
-</p>
-
-<div class="figure" id="figure-3-4">
-    <img src="images/modulo.png" alt="" />
-
-</div>
-
-
-<blockquote>
-  <p>** Crear / Editar **</p>
-  
-  <ul>
-  <li>1.- Nombre del modulo</li>
-  <li>2.- Categoria a la que pertenece, si es que pertenece</li>
-  <li>3.- Nombre en el controlador laravel para proteger el acceso con ese nombre</li>
-  <li>4.- Si el modulo tiene una vista para administrar</li>
-  <li>5.- Metodos o acciones accesibles en el módulo. Nombre común</li>
-  <li>6.- Recurso como se encuentra en el controlador laravel </li>
-  <li>7.- Metodo para la peticion HTTP </li>
-  <li>8.- Eliminar la fila de la lista</li>
-  <li>9.- Agregar una linea a la lista</li>
-  <li>10.- Regresar al listado</li>
-  <li>11.- Guardar </li>
-  <li>12.- Eliminar</li>
-  <li>13.- Ir a crear un registro nuevo</li>
-  </ul>
-</blockquote>
-
-<h2 id="usuario">3.3 Usuario</h2>
+<h2 id="usuario">3.2 Usuario</h2>
 
 <p style="text-align: justify;">
 Usuario administra los usuarios que provienen de SALUD-ID (OAUTH2.0) para que puedan tener acceso al sistema. 
 </p>
 
-<div class="figure" id="figure-3-5">
+<div class="figure" id="figure-3-4">
     <img src="images/usuario1.png" alt="" />
 
 </div>
 
-<div class="figure" id="figure-3-6">
+
+<blockquote>
+  <p><strong>Crear / Editar</strong></p>
+  
+  <ul>
+  <li>1.- Correo del usuario, este es el correo con el que se dio de alta en SALUD-ID</li>
+  <li>2.- Rol o grupo de usuario. Puede ser uno o más, se puede eliminar desde la x</li>
+  <li>3.- Buscar agrergar rol </li>
+  </ul>
+</blockquote>
+
+<div class="figure" id="figure-3-5">
     <img src="images/usuario2.png" alt="" />
 
 </div>
 
 
 <blockquote>
-  <p>** Crear / Editar **</p>
-  
   <ul>
-  <li>1.- Correo del usuario, este es el correo con el que se dio de alta en SALUD-ID</li>
-  <li>2.- Rol o grupo de usuario. Puede ser uno o más </li>
-  <li>3.- Denegar permisos al usuario </li>
-  <li>4.- Desmarcar las casillas marcadas</li>
-  <li>5.- Apartado zona. Nivel de permiso: Estatal( todas las unidades médicas del estado), Jurisdiccional (todas las unidades médicas de la jurisdiccion), Zonal (todas las unidades médicas de la zona)</li>
-  <li>6.- Detalle del nivel de permiso ya sea por jurisdiccion o por clues </li>
-  <li>7.- Eliminar la fila  </li>
-  <li>8.- Regresar al listado</li>
-  <li>9.- Guardar </li>
-  <li>10.- Eliminar</li>
-  <li>11.- Ir a crear un registro nuevo</li>
+  <li>4.- Apartado zona. Nivel de permiso: Estatal(todas las unidades médicas del estado), Jurisdiccional (todas las unidades médicas de la jurisdiccion), Zonal (todas las unidades médicas de la zona)</li>
+  <li>5.- Detalle del nivel de permiso ya sea por jurisdiccion o por clues </li>
+  <li>6.- Eliminar la fila  </li>
+  <li>7.- Regresar al listado</li>
+  <li>8.- Eliminar </li>
+  <li>9.- Guardar</li>
   </ul>
 </blockquote>
 

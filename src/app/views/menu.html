@@ -66,5 +66,12 @@
 		    <p ng-show="menuIsOpen" ng-style="menuSelected == '/manual-usuario' ? { 'font-weight':'bold' }: { 'font-weight': 'inherit' }" translate="MANUAL_USUARIO"></p>
 		</md-list-item>
 
+		<md-list-item ng-click="ir('/manual-web')" aria-label=" 'MANUAL_WEB' | translate">
+		  	<md-icon ng-class="{'md-primary': menuSelected == '/manual-web'}" md-svg-icon="book-open-page-variant">
+		  		<md-tooltip md-direction="right" show-gt-sm>{{'MANUAL_WEB'|translate}}</md-tooltip>
+		  	</md-icon>
+		    <p ng-show="menuIsOpen" ng-style="menuSelected == '/manual-web' ? { 'font-weight':'bold' }: { 'font-weight': 'inherit' }" translate="MANUAL_WEB"></p>
+		</md-list-item>
+
 	</md-list>
 </md-content>

@@ -114,6 +114,10 @@
 			templateUrl: 'src/app/views/manual-usuario.html',
 			controller: 'DashboardCtrl',
 		})
+		.when('/manual-web',{
+			templateUrl: 'src/app/views/manual-web.html',
+			controller: 'DashboardCtrl',
+		})
 		.otherwise({ redirectTo: '/dashboard' });
 		
 		$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
@@ -204,7 +208,7 @@
 					var path =  next.$$route.originalPath.split('/');
 					// Aquí deberiamos comprobar permisos para acciones de "subrutas"
 					
-					if(!Menu.existePath("/"+path[1]) && "/"+path[1] != '/acerca-de' && "/"+path[1] != '/acceso-denegado' && "/"+path[1] != '/no-encontrado' && "/"+path[1] != '/manual-usuario'  ){
+					if(!Menu.existePath("/"+path[1]) && "/"+path[1] != '/acerca-de' && "/"+path[1] != '/acceso-denegado' && "/"+path[1] != '/no-encontrado' && "/"+path[1] != '/manual-usuario' && "/"+path[1] != '/manual-web'  ){
 						$location.path('/dashboard');
 					}					
 				}				
