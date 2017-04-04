@@ -22,7 +22,7 @@ la información que se haya recabado con la base de datos una vez el evaluador a
 Como todo sistema de la secretaria de salud esta protegido por usuario y contraseña, asi tambien el CIUM para poder tener acceso es necesario contar con un usuario OAUTH de SALUDID
 y que nuestro usuario tenga permisos para acceder al CIUM, en el siguiente esquema se eplica como iniciar sesión.
 </p>
-![](login.png)
+![](images/login.png)
 
 >**Iniciando sesión**
 
@@ -45,8 +45,8 @@ a la información. los permisos los asigna el administrador del sistema CIUM
 Los elemntos generales son los que siempre estan visibles en cada página del sistema, esta pantalla es el dashboar que nos presenta el sistema al momento de poner nuestras credenciales.
 </p>
 
-![](general.png)
-![](general2.png)
+![](images/general.png)
+![](images/general2.png)
 
 >**General**
 

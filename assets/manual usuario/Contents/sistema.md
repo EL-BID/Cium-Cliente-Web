@@ -8,7 +8,7 @@ Todos los modulos tiene un listado con las opciones como se describen.
 <br>
 </p>
 
-![](sistema_lista.png)
+![](images/sistema_lista.png)
 
 >**Listado**
 
@@ -17,7 +17,7 @@ Todos los modulos tiene un listado con las opciones como se describen.
 > - 3.- Eliminar
 > - 4.- Agregar un registro nuevo
 
-![](sistema_lista_buscar.png)
+![](images/sistema_lista_buscar.png)
 
 >**Listado buscar**
 
@@ -31,7 +31,7 @@ Todos los modulos tiene un listado con las opciones como se describen.
 Roles creacion y administracion de los roles y configuracion de las acceso a modulos por accion. 
 </p>
 
-![](grupo.png)
+![](images/grupo.png)
 
 >**Crear / Editar**
 
@@ -49,7 +49,7 @@ Roles creacion y administracion de los roles y configuracion de las acceso a mod
 Usuario administra los usuarios que provienen de SALUD-ID (OAUTH2.0) para que puedan tener acceso al sistema. 
 </p>
 
-![](usuario1.png)
+![](images/usuario1.png)
 
 >**Crear / Editar**
 
@@ -57,7 +57,7 @@ Usuario administra los usuarios que provienen de SALUD-ID (OAUTH2.0) para que pu
 > - 2.- Rol o grupo de usuario. Puede ser uno o más, se puede eliminar desde la x
 > - 3.- Buscar agrergar rol 
 
-![](usuario2.png)
+![](images/usuario2.png)
 
 > - 4.- Apartado zona. Nivel de permiso: Estatal(todas las unidades médicas del estado), Jurisdiccional (todas las unidades médicas de la jurisdiccion), Zonal (todas las unidades médicas de la zona)
 > - 5.- Detalle del nivel de permiso ya sea por jurisdiccion o por clues 

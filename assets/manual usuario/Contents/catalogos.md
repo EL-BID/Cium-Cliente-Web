@@ -8,7 +8,7 @@ Todos los catalogos tiene un listado con las opciones como se describen.
 <br>
 </p>
 
-![](catalogo_lista.png)
+![](images/catalogo_lista.png)
 
 >**Listado**
 
@@ -18,7 +18,7 @@ Todos los catalogos tiene un listado con las opciones como se describen.
 > - 4.- Despegar el campo de busqueda
 > - 5.- Agregar un registro nuevo
 
-![](catalogo_lista_buscar.png)
+![](images/catalogo_lista_buscar.png)
 
 >**Listado buscar**
 
@@ -35,7 +35,7 @@ Algunos encabeceados tiene la función de ordenar por el nombre de esa columna
 Acciones contiene todos los datos a seleccionar cuando en una evaluación se encuentra un hallazgo. 
 </p>
 
-![](accion.png)
+![](images/accion.png)
 
 >**Crear / Editar**
 
@@ -54,7 +54,7 @@ Alerta contiene todos los datos a seleccionar para identifcar las alertas por el
 </p>
 
 
-![](alerta.png)
+![](images/alerta.png)
 
 >**Crear / Editar**
 
@@ -73,7 +73,7 @@ Clues contiene un listado de todas las unidades medicas con su informacion de la
 crear o modificar solicitarlo al administrador de los catalosgos de la seceretaia de salud
 </p>
 
-![](clues.png)
+![](images/clues.png)
 
 >**Ficha**
 
@@ -87,7 +87,7 @@ crear o modificar solicitarlo al administrador de los catalosgos de la seceretai
 Cone (Cuidado obstétrico y neonatal esencial) este catálogo agrupa las unidades medicas, es de suma importancia ya que todo los criterios dependen del nivel de cone de cada unidad médica. 
 </p>
 
-![](cone.png)
+![](images/cone.png)
 
 >**Crear / Editar**
 
@@ -108,7 +108,7 @@ Cone (Cuidado obstétrico y neonatal esencial) este catálogo agrupa las unidade
 Criterio este catálogo contiene todos los puntos a evaluar se relaciona con indicador, cone y lugar de verificación para obtener el listado correspondiente a cada de las unidades médicas, el lugar de verificación sirve para agrupar los criterios. 
 </p>
 
-![](criterio_lista.png)
+![](images/criterio_lista.png)
 
 >**Lista**
 
@@ -116,7 +116,7 @@ Criterio este catálogo contiene todos los puntos a evaluar se relaciona con ind
 > - 2.- Nombre del criterio, este campo es editable, por lo tanto, se puede cambiar el nombre desde aca, para guardar solo pulse tab o cambie de campo 
 > - 3.- Este campo es para determinar el orden en el que aprecera el criterio en la lista de evaluaciones
 
-![](criterio.png)
+![](images/criterio.png)
 
 >**Crear / Editar**
 
@@ -127,7 +127,7 @@ Criterio este catálogo contiene todos los puntos a evaluar se relaciona con ind
 > - 5.- Seleccionar el indicador, nivel o niveles de cone y el lugar de verificación. Si el color del criterio es azul el dato es correcto, si es naranja le hace falta lugar de verificación si es rojo le hace falta selecionar un nivel de cone
 > - 6.- Ir a crear un registro nuevo
 
-![](criterio_validacion.png)
+![](images/criterio_validacion.png)
 
 >**Validacion preguntas**
 
@@ -142,7 +142,7 @@ Criterio este catálogo contiene todos los puntos a evaluar se relaciona con ind
 > - 15.- Campo para el valor contante
 > - 16.- Eliminar la pregunta
 
-![](criterio_validacion_formula.png)
+![](images/criterio_validacion_formula.png)
 
 >**Validacion formula**
 
@@ -164,7 +164,7 @@ Criterio este catálogo contiene todos los puntos a evaluar se relaciona con ind
 Indicador este catálogo contiene todos los indicadores para generar las evaluaciones. Se relaciona con alertaIndicador para generar los colores segun el porcentaje obtenido.
 </p>
 
-![](indicador.png)
+![](images/indicador.png)
 
 >**Pestaña general**
 
@@ -174,7 +174,7 @@ Indicador este catálogo contiene todos los indicadores para generar las evaluac
 > - 4.- color para identificar el indicador
 > - 5.- Ir agregar un nuevo indicador
 
-![](indicador_alertas.png)
+![](images/indicador_alertas.png)
 
 >**Pestaña alertas**
 
@@ -185,7 +185,7 @@ Indicador este catálogo contiene todos los indicadores para generar las evaluac
 > - 10.- Color
 > - 11.- Quitar alerta
 
-![](indicador_validacion.png)
+![](images/indicador_validacion.png)
 
 >**Pestaña validacion**
 
@@ -193,7 +193,7 @@ Indicador este catálogo contiene todos los indicadores para generar las evaluac
 La validacion de indicadores funciona de la misma forma que la de criterios
 </p>
 
-![](indicador_indicacion.png)
+![](images/indicador_indicacion.png)
 
 >**Pestaña validacion**
 
@@ -209,7 +209,7 @@ Aca se escribe una indicación para el evaluador en caso del que el indicador te
 LugarVerificacion este catálogo contiene los lugares de verificacion para agrupar los criterios de cada indicador para las unidades médicas.
 </p>
 
-![](lugar.png)
+![](images/lugar.png)
 
 >**Crear / Editar**
 
@@ -226,7 +226,7 @@ LugarVerificacion este catálogo contiene los lugares de verificacion para agrup
 PlazoAccion este catálogo contiene los lugares de verificacion para agrupar los criterios de cada indicador para las unidades médicas.
 </p>
 
-![](plazo.png)
+![](images/plazo.png)
 
 >**Crear / Editar**
 
@@ -245,7 +245,7 @@ PlazoAccion este catálogo contiene los lugares de verificacion para agrupar los
 Zona este catálogo contiene las zonas y las unidades médicas que la conforman, Debido a que cada zona puede tener muchas unidades médiacas y para no hacer tardio la carga del listado se recomienda descargar el listado y depues hacer un recorrido de cada uno de los resultados para extraer los datos del metodo show.
 </p>
 
-![](zona.png)
+![](images/zona.png)
 
 >**Crear / Editar**
 
