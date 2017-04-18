@@ -765,6 +765,18 @@
             return list.indexOf(item) > -1;
         };
 
+        $scope.getCluesDetalle = function(ev, value) {
+            $scope.clues_ver = $scope.clues_view[value];
+            $scope.clues_tipo = value;
+            $scope.showDialog = $mdDialog;
+            $scope.showDialog.show({
+                targetEvent: ev,
+                scope: $scope.$new(),
+                templateUrl: 'src/dashboard/views/dashboard/clues-detalle.html',
+                clickOutsideToClose: true
+            });
+        }
+        
         $scope.cambiarVerTodoIndicador = function() {
             if ($scope.filtro.verTodosIndicadores) {
                 $scope.filtro.indicador = [];
@@ -909,7 +921,7 @@
         $scope.intento = 0;
         $scope.init = function() {
             var url = '/pieVisita';
-
+             $scope.clues_view = [];
             $scope.pieRecurso = true;
             CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
                 if (data.status == '407')
@@ -920,6 +932,11 @@
                     $scope.total = data.total;
                     $scope.anios = data.anio;
                     $scope.pieRecurso = false;
+
+                    $scope.clues_view['Clues Total'] = data['Clues Total'];
+                    $scope.clues_view['Visitado']    = data['Visitado'];
+                    $scope.clues_view['No Visitado'] = data['No Visitado'];
+
                 } else {
                     $scope.pieRecurso = false;
                     errorFlash.error(data);
@@ -998,7 +1015,17 @@
         $scope.exists = function(item, list) {
             return list.indexOf(item) > -1;
         };
-
+        $scope.getCluesDetalle = function(ev, value) {
+            $scope.clues_ver = $scope.clues_view[value];
+            $scope.clues_tipo = value;
+            $scope.showDialog = $mdDialog;
+            $scope.showDialog.show({
+                targetEvent: ev,
+                scope: $scope.$new(),
+                templateUrl: 'src/dashboard/views/dashboard/clues-detalle.html',
+                clickOutsideToClose: true
+            });
+        }
         $scope.cambiarVerTodoIndicador = function() {
             if ($scope.filtro.verTodosIndicadores) {
                 $scope.filtro.indicador = [];
@@ -1145,6 +1172,7 @@
             var url = '/pieVisita';
 
             $scope.pieCalidad = true;
+            $scope.clues_view = [];
             CrudDataApi.lista(url + "?filtro=" + JSON.stringify($scope.filtro), function(data) {
                 if (data.status == '407')
                     $window.location = "acceso";
@@ -1154,6 +1182,10 @@
                     $scope.total = data.total;
                     $scope.anios = data.anio;
                     $scope.pieCalidad = false;
+
+                    $scope.clues_view['Clues Total'] = data['Clues Total'];
+                    $scope.clues_view['Visitado']    = data['Visitado'];
+                    $scope.clues_view['No Visitado'] = data['No Visitado'];
                 } else {
                     $scope.pieCalidad = false;
                     errorFlash.error(data);

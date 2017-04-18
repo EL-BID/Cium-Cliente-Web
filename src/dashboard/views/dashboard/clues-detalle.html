@@ -1,0 +1,45 @@
+<md-dialog aria-label="clues" flex>
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools ">
+            <h2>
+                <strong>
+                    {{clues_tipo}}
+                </strong>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="hide()">
+                <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content flex style="overflow: overlay">
+        <section>
+            <div style="min-height: 500px; max-height: 716px; overflow: auto;" flex>
+                <md-content flex>
+                    <md-data-table-container>
+                        <table md-data-table md-progress="datos">
+                            <thead md-order="query.order" md-trigger="onOrderChange">
+                                <tr>
+                                    <th name ="#"></th>
+                                    <th name="{{ 'CLUES' | translate }}" ></th>
+                                    <th name="{{ 'NOMBRE' | translate }}" ></th>
+                                    <th name="{{ 'JURISDICCION' | translate }}" ></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="value in clues_ver" >
+                                    <td>{{$index + 1}}</td>
+                                    <td><strong>{{  value.clues }}</strong></td>
+                                    <td>{{ value.nombre }}</td>
+                                    <td>{{ value.jurisdiccion }}</td>                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-data-table-container>
+
+                </md-content>
+            </div>
+        </section>
+
+    </md-dialog-content>
+</md-dialog>

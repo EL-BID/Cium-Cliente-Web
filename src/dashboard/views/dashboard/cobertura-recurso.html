@@ -29,13 +29,13 @@
                     <canvas tc-chartjs-pie chart-options="options" chart-data="data" ng-click="chartClick($event)" chart="chart" id="chartChart" flex></canvas>
                 </md-content>
                 <ul class="tc-chart-js-legend">
-                    <li ng-repeat="item in data.datasets[0].backgroundColor" style="float: none; padding: 0px">
+                    <li ng-repeat="item in data.datasets[0].backgroundColor" ng-click="getCluesDetalle(event, data.labels[$index])" style="cursor: pointer; float: none; padding: 0px" >
                         <span style="background-color:{{item}}; width:32%">
                             <strong style="font-size:14px; color:#fff;position: absolute; margin: 2px 0px 2px 10px;">{{data.labels[$index]}}: {{data.datasets[0].data[$index]}} UMs</strong>
                         </span>
                         <strong style="font-size:14px;"></strong>
                     </li>
-                    <li style="float: none; padding: 0px">
+                    <li ng-click="getCluesDetalle(event, 'Clues Total')" style="cursor: pointer; float: none; padding: 0px" >
                         <span style="background-color:gainsboro; width:32%">
                             <strong style="font-size:14px; color:#000;position: absolute; margin: 2px 0px 2px 10px;">Total: {{data.datasets[0].data[0] + data.datasets[0].data[1]}}  UMs</strong>
                         </span>

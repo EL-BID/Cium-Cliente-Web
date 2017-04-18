@@ -334,5 +334,7 @@
 	"mam-MX": "Mame",
 	"VERSION-APP": "version App",
 	"VERSIONAPP": "version App",
-	"REPORTE": "Reporte"
+	"REPORTE": "Reporte",
+	"NUEVA_EVA_RECURSO": "Nueva Evaluación Recurso",
+	"NUEVA_EVA_PROCESO": "Nueva Evaluación Proceso"
 }
