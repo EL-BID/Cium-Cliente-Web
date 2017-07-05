@@ -59,6 +59,13 @@
 		    <p ng-show="menuIsOpen" ng-style="menuSelected == '/acerca-de' ? { 'font-weight':'bold' }: { 'font-weight': 'inherit' }" translate="ACERCA_DE"></p>
 		</md-list-item>
 
+		<md-list-item ng-click="ir('/descargar-app',1)" aria-label=" 'Descargar APP' | translate">
+		  	<md-icon ng-class="{'md-primary': menuSelected == '/descargar-app'}" md-svg-icon="android">
+		  		<md-tooltip md-direction="right" show-gt-sm>{{'Descargar APP'|translate}}</md-tooltip>
+		  	</md-icon>
+		    <p ng-show="menuIsOpen" ng-style="menuSelected == '/descargar-app' ? { 'font-weight':'bold' }: { 'font-weight': 'inherit' }" translate="Descargar APP"></p>
+		</md-list-item>
+
 		<md-list-item ng-click="ir('/manual-usuario')" aria-label=" 'MANUAL_USUARIO' | translate">
 		  	<md-icon ng-class="{'md-primary': menuSelected == '/manual-usuario'}" md-svg-icon="book-open-page-variant">
 		  		<md-tooltip md-direction="right" show-gt-sm>{{'MANUAL_USUARIO'|translate}}</md-tooltip>

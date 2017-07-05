@@ -61,10 +61,14 @@
                 };
 
                 // redirecciona a la página que se le pase como parametro
-                $scope.ir = function(path) {
-                    $scope.menuSelected = path;
-                    $location.path(path).search({ id: null });
-                };
+                $scope.ir = function(path, fuera){
+                    if(fuera == 1){
+                        location.href = URLS.BASE + path;
+                    }else{
+                        $scope.menuSelected = path;
+                        $location.path(path).search({id: null});
+                    };
+                }
 
             }
         ]);

@@ -73,10 +73,14 @@ $scope.menuSelected = '';
      * @description
      * Redirecciona a la pagina solicitada     
      */
-$scope.ir = function(path){
-            $scope.menuSelected = path;
-           $location.path(path).search({id: null});
-        };
+$scope.ir = function(path, fuera){
+    if(fuera == 1){
+        location.href = URLS.BASE + path;
+    }else{
+        $scope.menuSelected = path;
+        $location.path(path).search({id: null});
+    };
+}
 
 $scope.menuPublico = MENU_PUBLICO;
     /**
@@ -111,10 +115,14 @@ $scope.toggleMenu  = function  () {
             
             $scope.menuSelected = '';
             
-            $scope.ir = function(path){
-                $scope.menuSelected = path;
-                $location.path(path);
-            };
+            $scope.ir = function(path, fuera){
+                if(fuera == 1){
+                    location.href = URLS.BASE + path;
+                }else{
+                    $scope.menuSelected = path;
+                   $location.path(path);
+                };
+            }
             
             $scope.menuPublico = MENU_PUBLICO;
             
@@ -134,10 +142,14 @@ $scope.toggleMenu  = function  () {
             
             $scope.menuSelected = '';
             
-            $scope.ir = function(path){
-                $scope.menuSelected = path;
-                $location.path(path);
-            };
+            $scope.ir = function(path, fuera){
+                if(fuera == 1){
+                    location.href = URLS.BASE + path;
+                }else{
+                    $scope.menuSelected = path;
+                   $location.path(path);
+                };
+            }
             
             $scope.menuPublico = MENU_PUBLICO;
             
@@ -207,10 +219,15 @@ $scope.toggleMenu  = function  () {
                });
             };
             
-            $scope.ir = function(path){                
-                $scope.menuSelected = path;
-                $location.path(path);
-            };
+
+            $scope.ir = function(path, fuera){
+                if(fuera == 1){
+                    location.href = URLS.BASE + path;
+                }else{
+                    $scope.menuSelected = path;
+                   $location.path(path);
+                };
+            }
     		
     				
     	}]);
