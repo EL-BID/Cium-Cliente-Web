@@ -271,6 +271,7 @@
                  * @param {bool} avanzado compprueba si el filtro es avanzado o de la lista de indicadores activos 
                  */
             $scope.quitarFiltro = function(avanzado) {
+                $scope.filtro.bimestre = [];
                 $scope.filtro.indicador = [];
                 $scope.filtro.clues = [];
                 $scope.filtro.um = {};
@@ -338,7 +339,7 @@
              * Evento change para el filtro año
              */
             $scope.cambiarAnio = function(anio) {
-                    
+                    $scope.filtro.bimestre = [];
                     $scope.filtro.anio = anio;
                     $scope.getDimension('month', 1);
                     $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -382,11 +383,12 @@
                     $scope.selectedIndex = 3;
                 }
                 var hacer = true;
-                    if(c > 0){                    	
-                    	if($scope.datos.length == 0 || $scope.filtro.anio == '') 
-                    		hacer = false;
-                    }
-                    if(hacer){
+                if(c > 0){                    	
+                	if($scope.datos.length == 0 || $scope.filtro.anio == '') 
+                		hacer = false;
+                }
+                if(hacer){
+                    $scope.datos[c] = [];
 	                CrudDataApi.lista('/recursoDimension?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
 	                    $scope.datos[c] = data.data;
 	                    $scope.opcion = false;
@@ -641,7 +643,7 @@
                 });
         };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -667,11 +669,12 @@
                     $scope.selectedIndex = 3;
                 }
                 var hacer = true;
-                    if(c > 0){                    	
-                    	if($scope.datos.length == 0 || $scope.filtro.anio == '') 
-                    		hacer = false;
-                    }
-                    if(hacer){
+                if(c > 0){                    	
+                	if($scope.datos.length == 0 || $scope.filtro.anio == '') 
+                		hacer = false;
+                }
+                if(hacer){
+                    $scope.datos[c] = [];
 	                CrudDataApi.lista('/recursoDimension?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
 	                    $scope.datos[c] = data.data;
 	                    $scope.opcion = false;
@@ -881,7 +884,7 @@
                     });
             };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -908,7 +911,7 @@
             var url = "/calidadDimension";
             if ($scope.filtro.tipo == "Recurso")
                 url = "/recursoDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
@@ -1130,7 +1133,7 @@
                     });
             };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -1157,7 +1160,7 @@
             var url = "/calidadDimension";
             if ($scope.filtro.tipo == "Recurso")
                 url = "/recursoDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
@@ -1536,7 +1539,7 @@
                 });
         };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -1564,7 +1567,7 @@
             var url = "/calidadDimension";
             if ($scope.filtro.tipo == "Recurso")
                 url = "/recursoDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
@@ -1898,7 +1901,7 @@
                 });
         };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -1925,7 +1928,7 @@
             var url = "/calidadDimension";
             if ($scope.filtro.tipo == "Recurso")
                 url = "/recursoDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
@@ -2263,7 +2266,7 @@
                 });
         };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -2291,7 +2294,7 @@
             var url = "/calidadDimension";
             if ($scope.filtro.tipo == "Recurso")
                 url = "/recursoDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
@@ -2625,7 +2628,7 @@
                 });
         };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -2652,7 +2655,7 @@
             var url = "/calidadDimension";
             if ($scope.filtro.tipo == "Recurso")
                 url = "/recursoDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
@@ -2865,7 +2868,7 @@
                 });
         };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -2890,7 +2893,7 @@
         $scope.getDimension = function(nivel, c) {
             $scope.opcion = true;
             var url = "/recursoDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
@@ -3101,7 +3104,7 @@
                 });
         };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -3126,7 +3129,7 @@
         $scope.getDimension = function(nivel, c) {
             $scope.opcion = true;
             var url = "/calidadDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
@@ -3302,7 +3305,7 @@
                 });
         };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -3323,7 +3326,7 @@
         $scope.intentoOpcion = 0;
         $scope.getDimension = function(nivel, c) {
             var url = "/recursoDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
@@ -3506,7 +3509,7 @@
                 });
         };
         $scope.cambiarAnio = function(anio) {
-            
+            $scope.filtro.bimestre = [];
             $scope.filtro.anio = anio;
             $scope.getDimension('month', 1);
             $scope.getDimension("codigo,indicador,color, '" + $scope.filtro.tipo + "' as categoriaEvaluacion", 2);
@@ -3528,7 +3531,7 @@
         $scope.getDimension = function(nivel, c) {
             $scope.opcion = true;
             var url = "/calidadDimension";
-
+            $scope.datos[c] = [];
             CrudDataApi.lista(url + '?filtro=' + JSON.stringify($scope.filtro) + '&nivel=' + nivel, function(data) {
                 $scope.datos[c] = data.data;
                 $scope.opcion = false;
