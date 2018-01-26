@@ -1,0 +1,57 @@
+
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'"></md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex ng-controller="pivotRecursoController">
+    <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+    <md-toolbar style="z-index: 59;">
+        <div class="md-toolbar-tools">
+            <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <h2>
+              <span>Pivot Recurso   </span>
+            </h2>
+            <span flex></span>
+
+            <md-button ng-if="email == 'ramirez.esquinca@gmail.com'" aria-label="Resetear" ng-click="resetear_reporte()">
+                <md-icon md-svg-icon="delete"></md-icon>
+                Resetear
+            </md-button>
+
+            <md-button hide-md hide-sm hide-lg aria-label="Exportar a excel" ng-click="excel('Evaluaciones de Recurso')"  >
+                <md-icon md-svg-icon="file-excel"></md-icon>
+                 Exportar a excel
+            </md-button>
+            <md-button class="md-icon-button" hide show-sm show-md show-lg ng-click="excel('Evaluaciones de Recurso')" aria-label="Exportar a excel" >
+                <md-icon md-svg-icon="file-excel"></md-icon>
+                <md-tooltip hide-sm>
+                     Exportar a excel
+                </md-tooltip>
+            </md-button>
+
+            <span ng-include="'src/app/views/menu-opciones.html'"></span>
+        </div>
+    </md-toolbar>
+    <md-content layout="row" layour-align="center center" layout-padding flex id="principal" style="background-color:#FFFFFF" ng-init="toggleRightOpciones('cargando');">
+        <div flex style="min-height: calc(100vh - 118px);">
+            
+            <md-progress-linear ng-if="cargando" class="md-accent" md-theme="altTheme" md-mode="indeterminate"></md-progress-linear>
+            <md-content flex >
+                <div id="output" style="min-height: calc(100vh - 118px);"></div>
+            </md-content>
+        </div>
+    </md-content>
+
+    <div id="exportar_datos" style="display:none">
+        <table id="tabla_datos" class="table is-striped  is-fullwidth" *ngIf="ctrl.tipo_grid && !ctrl.cargando ">
+            <thead>
+                <tr>
+                    <th ng-repeat="(key, value) in datos[0]">{{key}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(key, value) in datos">
+                    <th ng-repeat="(k, v) in value">{{v}}</th>
+                </tr>
+        </table>
+    </div>
+</div>

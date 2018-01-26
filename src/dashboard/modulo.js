@@ -53,5 +53,13 @@
                 templateUrl: 'src/dashboard/views/dashboard/criterio-calidad.html',
                 controller: 'DashboardCtrl'
             })
+            .when('/dashboard/pivot-calidad', {
+                templateUrl: 'src/dashboard/views/pivot/calidad.html',
+                controller: 'DashboardCtrl'
+            })
+            .when('/dashboard/pivot-recurso', {
+                templateUrl: 'src/dashboard/views/pivot/recurso.html',
+                controller: 'DashboardCtrl'
+            })
     }]);
 })();

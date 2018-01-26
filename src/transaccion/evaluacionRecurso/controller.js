@@ -38,6 +38,7 @@
 
             // inicia la inimación de cargando
             $scope.cargando = true;
+            $scope.cargando2 = true;
 
             // inicializa el modulo ruta y url se le asigna el valor de la página actual
             //TODO: Revisar
@@ -1071,7 +1072,7 @@
              */
             $scope.cargarCriteriosVer = function() {
                 var idev = $location.search().id;
-                $scope.cargando = true;
+                $scope.cargando2 = true;
                 $http.get(URLS.BASE_API + '/EvaluacionRecursoCriterio/' + idev)
                     .success(function(data, status, headers, config) {
                         if (data.status == '407')
@@ -1083,10 +1084,10 @@
                         } else {
                             flash('danger', "Ooops! Ocurrio un error (" + data.status + ") ->" + data.messages);
                         }
-                        $scope.cargando = false;
+                        $scope.cargando2 = false;
                     })
                     .error(function(data, status, headers, config) {
-                        $scope.cargando = false;
+                        $scope.cargando2 = false;
                         errorFlash.error(data);
                     });
             };

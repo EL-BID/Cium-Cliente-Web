@@ -1,7 +1,7 @@
 <md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'"></md-sidenav>
 <div layout="column" class="relative" layout-fill role="main" flex>
 
-    <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+    <md-progress-linear ng-if="cargando || cargando2" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
     <md-toolbar>
         <div class="md-toolbar-tools" ng-init="ver('/EvaluacionRecurso')">
             <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">

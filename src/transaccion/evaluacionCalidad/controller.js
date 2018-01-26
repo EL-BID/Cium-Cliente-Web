@@ -47,6 +47,7 @@
 
             // inicia la inimación de cargando
             $scope.cargando = true;
+            $scope.cargando2 = true;
 
             // inicializa el modulo ruta y url se le asigna el valor de la página actual
             $scope.ruta = "";
@@ -1831,7 +1832,7 @@
              */
             $scope.cargarCriteriosVer = function() {
                 var idev = $location.search().id;
-                $scope.cargando = true;
+                $scope.cargando2 = true;
                 $http.get(URLS.BASE_API + '/EvaluacionCalidadCriterio/' + idev)
                     .success(function(data, status, headers, config) {
                         if (data.status == '407')
@@ -1857,13 +1858,14 @@
                                 });
 
                             });
-                            $scope.cargando = false;
+                            $scope.cargando2 = false;
                         } else {
-                            $scope.cargando = false;
+                            $scope.cargando2 = false;
                             flash('danger', "Ooops! Ocurrio un error (" + data.status + ") ->" + data.messages);
                         }
                     })
                     .error(function(data, status, headers, config) {
+                        $scope.cargando2 = false;
                         errorFlash.error(data);
                     });
             };

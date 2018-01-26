@@ -2,7 +2,7 @@
 </md-sidenav>
 <div layout="column" class="relative" layout-fill role="main" flex>
 
-    <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+    <md-progress-linear ng-if="cargando || cargando2" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
     <md-toolbar>
         <div class="md-toolbar-tools" ng-init="ver('/EvaluacionCalidad')">
             <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
