@@ -38,6 +38,18 @@
 			<md-divider></md-divider>
 		</md-content>
 
+		<md-list-item aria-label=" 'eTAB' | translate">
+						
+			<div class="md-button md-no-style" style=" height: 50px; width: 110%; position: absolute; left: -16px; ">
+				<a  class="md-no-style md-button md-ink-ripple" href="http://etab.saludchiapas.gob.mx/" target="_blank">
+					<img src="http://etab.saludchiapas.gob.mx/bundles/indicadores/images/logo.png" width="28px" style=" float: left;     margin-top: 10px;">
+					<md-tooltip md-direction="right" show-gt-sm>{{'eTAB'| translate}}</md-tooltip>
+					<p ng-show="menuIsOpen" translate="eTAB" style="margin-top: -3px;margin-left: 10px;position: absolute;left: 62px;     margin-top: 10px;"></p>
+				</a>
+			</div>
+			
+		</md-list-item>
+
 		<div ng-repeat="grupo in menu">
 			<md-subheader ng-show="menuIsOpen && grupo.grupo" class="md-no-sticky">{{ grupo.grupo | translate}}</md-subheader>
 			<md-divider></md-divider>
