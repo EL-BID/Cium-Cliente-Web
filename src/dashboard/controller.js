@@ -7,10 +7,11 @@
 (function () {
     'use strict';
     angular.module('DashboardModule')
-        .controller('DashboardCtrl', ['$rootScope', '$scope', '$translate', '$mdSidenav', '$location', '$mdBottomSheet', 'Auth', 'UsuarioData', 'Menu', '$http', '$window', '$timeout', '$route', 'flash', 'errorFlash', 'listaOpcion', 'Criterios', 'CrudDataApi', 'URLS',
-            function ($rootScope, $scope, $translate, $mdSidenav, $location, $mdBottomSheet, Auth, UsuarioData, Menu, $http, $window, $timeout, $route, flash, errorFlash, listaOpcion, Criterios, CrudDataApi, URLS) {
+        .controller('DashboardCtrl', ['$rootScope', '$scope', '$translate', '$localStorage', '$mdSidenav', '$location', '$mdBottomSheet', 'Auth', 'UsuarioData', 'Menu', '$http', '$window', '$timeout', '$route', 'flash', 'errorFlash', 'listaOpcion', 'Criterios', 'CrudDataApi', 'URLS',
+            function ($rootScope, $scope, $translate, $localStorage, $mdSidenav, $location, $mdBottomSheet, Auth, UsuarioData, Menu, $http, $window, $timeout, $route, flash, errorFlash, listaOpcion, Criterios, CrudDataApi, URLS) {
 
                 // cambia de color el menu seleccionado
+                $scope.email = $localStorage.cium.user_email;
 
                 $scope.menuSelected = $location.path();
                 $scope.menuIsOpen = false;
@@ -70,6 +71,15 @@
                     };
                 }
 
+                $scope.resetear_reporte = function(){
+                    CrudDataApi.lista('/ResetearReportes', function (mps) {
+                    });
+                }
+
+                $scope.resetear_resincronizacion = function(){
+                    CrudDataApi.lista('/ResetearResincronizacion', function (mps) {
+                    });
+                }
             }
         ]);
 
@@ -3707,10 +3717,7 @@
 
             $scope.email = $localStorage.cium.user_email;
 
-            $scope.resetear_reporte = function(){
-                CrudDataApi.lista('/ResetearReportes', function (mps) {
-                });
-            }
+            
 
             $scope.cargar_datos = function () {
                 try {

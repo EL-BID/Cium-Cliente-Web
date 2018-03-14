@@ -11,6 +11,16 @@
                 <span>Dashboard   </span>
             </h2>
             <span flex></span>
+            <md-button ng-if="email == 'ramirez.esquinca@gmail.com'" aria-label="Resetear" ng-click="resetear_reporte()">
+                <md-icon md-svg-icon="delete"></md-icon>
+                Resetear Reporte
+            </md-button>
+
+            <md-button ng-if="email == 'ramirez.esquinca@gmail.com'" aria-label="Resetear" ng-click="resetear_resincronizacion()">
+                <md-icon md-svg-icon="delete"></md-icon>
+                Resetear Resincronización
+            </md-button>
+
             <span ng-include="'src/app/views/menu-opciones.html'"></span>
         </div>
     </md-toolbar>

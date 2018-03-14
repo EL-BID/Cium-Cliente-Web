@@ -30,6 +30,7 @@
 									'DashboardModule',
 									'DatoModule',
 									'HallazgoModule',
+									'FormularioModule',
 									'DashboardModule',
 									'UsuariosModule',
 									'RolesModule']);

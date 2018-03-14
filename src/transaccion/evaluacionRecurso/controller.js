@@ -686,6 +686,24 @@
              * @param {function} callback ejecutar alguna función después de un resultado exitoso
              */
             $scope.lista_indicadores = [];
+
+            $scope.cat_cone = [];
+            $scope.cat_jurisdiccion = [];
+            $scope.cat_usuario = [];
+
+            $scope.cargarCat = function(url, modelo) {
+                $scope.cargando = true;
+                
+                listaOpcion.options(url).success(function(data) {                    
+                    angular.forEach(data.data, function(val, key) {
+                        modelo.push(val);
+                    });                                            
+                });
+            };
+            $scope.cargarCat('/Cone', $scope.cat_cone);
+            $scope.cargarCat('/Jurisdiccion', $scope.cat_jurisdiccion);
+            $scope.cargarCat('/usuarios', $scope.cat_usuario);
+
             $scope.cargarCatalogo = function(url) {
                 $scope.cargando = true;
                 if (!angular.isUndefined($scope.dato.idCone))
@@ -768,9 +786,16 @@
 
             //Se ejecuta al dar click en una fila del listado
             $scope.opcionEvaluacion = function(ir, id) {
-                $location.path($location.path() + "/" + ir).search({
-                    id: id
-                });
+                if(ir == 'ver'){
+                    var viewPath = $location.path() + "/" + ir + "?id=" + id;
+                    var currentPath = window.location.href.substr(0, window.location.href.indexOf('#') + 1);
+                    var fullPath = currentPath + viewPath;
+                    $window.open(fullPath );
+                } else{
+                    $location.path($location.path() + "/" + ir).search({
+                        id: id
+                    });
+                }
             }
 
             // evento para el boton nuevo, redirecciona a la vista nuevo
@@ -840,38 +865,56 @@
                 $location.path("evaluacion-recurso/evaluacionImpresa");
             }
             $scope.vistaImpreso = function() {
-                    $scope.dato = $localStorage.cium.recurso.imprimir.um;
-                    $scope.indicadores = [];
-                    var cone = $scope.dato.idCone;
-                    angular.forEach($localStorage.cium.recurso.imprimir.indicadores, function(val, key) {
-                        CrudDataApi.lista('/CriterioEvaluacionRecursoImprimir/' + cone + '/' + val, function(data) {
-                            if (data.status == 200) {
-                                $scope.indicadores.push(data.data);
-                            }
-                        }, function(e) {
-                            errorFlash.error(e);
-                        });
+                $scope.dato = $localStorage.cium.recurso.imprimir.um;
+                $scope.indicadores = [];
+                var cone = $scope.dato.idCone;
+                angular.forEach($localStorage.cium.recurso.imprimir.indicadores, function(val, key) {
+                    CrudDataApi.lista('/CriterioEvaluacionRecursoImprimir/' + cone + '/' + val, function(data) {
+                        if (data.status == 200) {
+                            $scope.indicadores.push(data.data);
+                        }
+                    }, function(e) {
+                        errorFlash.error(e);
                     });
-                    $scope.cargando = false;
-                }
-                // fin generar impreso
+                });
+                $scope.cargando = false;
+            }
+            // fin generar impreso
 
+            $scope.jurisdiccion = '';
+            $scope.email = '';
+            $scope.cone = '';
+            $scope.cerrado = 1;
+            $scope.desde = '';
+            $scope.hasta = '';
 
             // obtiene los datos necesarios para crear el grid (listado)
             $scope.init = function(buscar, columna) {
                 var url = $scope.ruta;
-                buscar = $scope.buscar;
+                buscar = $scope.buscar ? $scope.buscar : '';
                 var pagina = $scope.paginacion.pag;
                 var limite = $scope.paginacion.lim;
 
+                var jurisdiccion = $scope.jurisdiccion;
+                var email = $scope.email;
+                var cone = $scope.cone;
+                var cerrado = $scope.cerrado;
+                var desde = desde ? moment($scope.desde).format('YYYY-MM-DD') : '';
+                var hasta = hasta ? moment($scope.hasta).format('YYYY-MM-DD') : '';
+
                 var order = $scope.query.order;
 
-                if (!angular.isUndefined(buscar))
-                    limite = limite + "&columna=" + columna + "&valor=" + buscar + "&buscar=true";
+                limite = limite + "&columna=" + columna + "&valor=" + buscar + "&buscar=true";
 
                 $scope.cargando = true;
 
-                CrudDataApi.lista(url + '?pagina=' + pagina + '&limite=' + limite + "&order=" + order, function(data) {
+                CrudDataApi.lista(url + '?pagina=' + pagina + '&limite=' + limite + "&order=" + order
+                    + "&jurisdiccion=" + jurisdiccion
+                    + "&email=" + email
+                    + "&cone=" + cone
+                    + "&cerrado=" + cerrado
+                    + "&desde=" + desde
+                    + "&hasta=" + hasta, function(data) {
                     if (data.status == '407')
                         $window.location = "acceso";
 

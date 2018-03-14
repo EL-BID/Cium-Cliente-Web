@@ -64,7 +64,51 @@
 		</div>
 	</md-toolbar>
 	<md-content>
-	
+
+<div layout="column" layout-fill>
+	<md-toolbar md-colors="{background: 'blue-100'}">
+		<div class="md-toolbar-tools">
+			<md-select flex placeholder="{{ 'CONE' | translate }}" ng-model="cone">                             
+				<md-option ng-repeat="item in cat_cone" value="{{item.nombre}}">
+				  {{item.nombre}}
+				</md-option>                      
+			</md-select>
+			<md-select flex placeholder="{{ 'JURISDICCION' | translate }}" ng-model="jurisdiccion">                             
+				<md-option ng-repeat="item in cat_jurisdiccion" value="{{item.jurisdiccion}}">
+				  {{item.jurisdiccion}}
+				</md-option>                      
+			</md-select>
+			<md-select flex placeholder="{{ 'USUARIO' | translate }}" ng-model="email">                             
+				<md-option ng-repeat="item in cat_usuario" value="{{item.email}}">
+				  {{item.email}}
+				</md-option>                      
+			</md-select>
+			<div layout-gt-xs="row" style="padding: 26px;">
+				<div flex-gt-xs>
+					<md-datepicker ng-model="desde" md-placeholder="{{ 'DESDE' | translate }}" md-open-on-focus></md-datepicker>
+				</div>
+			    <div flex-gt-xs>
+					<md-datepicker ng-model="hasta" md-placeholder="{{ 'HASTA' | translate }}" md-open-on-focus></md-datepicker>
+				</div>
+			</div>
+
+			<md-select flex placeholder="{{ 'TERMINADO' | translate }}" ng-model="cerrado">                             
+				<md-option value="1">
+				  {{ 'SI' | translate}}
+				</md-option>  
+				<md-option value="0">
+				  {{ 'NO' | translate}}
+				</md-option>                      
+			</md-select>
+
+			<md-button ng-click="init()">
+				<md-icon md-svg-icon="magnify"></md-icon>
+				{{ 'BUSCAR' | translate }}
+			</md-button>
+		</div>
+	</md-toolbar>
+</div>
+
 <md-data-table-container>
   <table md-data-table md-progress="datos">
     <thead md-order="query.order" md-trigger="onOrderChange">

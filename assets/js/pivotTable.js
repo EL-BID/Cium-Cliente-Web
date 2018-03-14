@@ -37,28 +37,8 @@ $(document).ready(function() {
         }
     });
     
-    $("#FiltroNoClasificados").searchFilter({targetSelector: ".indicador", charCount: 2});
-    
-    $('A.indicador').click(function() {
-        var id_indicador = $(this).attr('data-id');
-        var nombre_indicador = $(this).attr('data-name');
-        cargar_indicador(id_indicador,nombre_indicador);
-    });
 });
-function cargar_indicador(id_indicador,nombre_indicador){
-    var renderers = $.extend($.pivotUtilities.renderers,$.pivotUtilities.gchart_renderers);
-                    
-    $.getJSON(Routing.generate('get_datos_indicador', {id: id_indicador}), function(mps) {
-        $("#opcion_exportar").attr("style","display:");
-        $("#output").pivotUI(mps, {
-            renderers: renderers,
-            menuLimit: 500,
-            unusedAttrsVertical: false
-        }, false, 'es');
-        $('#titulo_header').attr('data-content', nombre_indicador);            
-        idIndicadorActivo = id_indicador;
-    });
-}
+
 
 var tableToExcel = (function() {
   var uri = 'data:application/vnd.ms-excel;base64,'

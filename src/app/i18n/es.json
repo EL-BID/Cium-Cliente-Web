@@ -263,6 +263,7 @@
 	"DETALLE" : "Detalles",
 	"PERIODO" : "Periodo",
 	"HASTA" : "Hasta",
+	"DESDE" : "Desde",
 	"TIEMPO" : "Tiempo",
 	"DESPEGAR_INFO":"Despegar información por",
 	"VISUALIZAR_INFO":"Visualizar por",
@@ -336,5 +337,10 @@
 	"VERSIONAPP": "version App",
 	"REPORTE": "Reporte",
 	"NUEVA_EVA_RECURSO": "Nueva Evaluación Recurso",
-	"NUEVA_EVA_PROCESO": "Nueva Evaluación Proceso"
+	"NUEVA_EVA_PROCESO": "Nueva Evaluación Proceso",
+
+	"FORMULARIO_CAPTURA": "Formulario de captura",
+	"FORMULARIO": "Crear formulario",
+	"CAPTURA": "Capturar formulario"
+
 }
