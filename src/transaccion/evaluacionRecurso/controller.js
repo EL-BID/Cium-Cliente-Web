@@ -899,8 +899,8 @@
                 var email = $scope.email;
                 var cone = $scope.cone;
                 var cerrado = $scope.cerrado;
-                var desde = desde ? moment($scope.desde).format('YYYY-MM-DD') : '';
-                var hasta = hasta ? moment($scope.hasta).format('YYYY-MM-DD') : '';
+                var desde = $scope.desde ? moment($scope.desde).format('YYYY-MM-DD') : '';
+                var hasta = $scope.hasta ? moment($scope.hasta).format('YYYY-MM-DD') : '';
 
                 var order = $scope.query.order;
 
