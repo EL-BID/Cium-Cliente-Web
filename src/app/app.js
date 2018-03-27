@@ -30,10 +30,10 @@
 									'DashboardModule',
 									'DatoModule',
 									'HallazgoModule',
-									'FormularioModule',
 									'DashboardModule',
 									'UsuariosModule',
-									'RolesModule']);
+									'RolesModule',
+									'CapturaIndicadorModule']);
 /**
  * @ngdoc service
  * @name App.service:config
@@ -120,6 +120,7 @@
 			controller: 'DashboardCtrl',
 		})
 		.otherwise({ redirectTo: '/dashboard' });
+		
 		
 		$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
 			if(angular.isUndefined($localStorage.cium))

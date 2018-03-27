@@ -34,13 +34,7 @@
     },
     {
         grupo: 'FORMULARIO_CAPTURA',
-        lista: [
-            {
-                titulo: 'Dashboard',
-                key: '72616EE964',
-                path: '/formulario-dashboard',
-                icono: 'view-grid'
-            }, {
+        lista: [{
                 titulo: 'FORMULARIO',
                 key: '6365637572',
                 path: '/formulario-indicador',

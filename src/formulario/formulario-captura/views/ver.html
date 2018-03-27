@@ -1,0 +1,46 @@
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
+ md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'">
+</md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}">
+		<md-icon md-svg-icon="plus"></md-icon>
+	</md-button>
+	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+				<md-icon md-svg-icon="menu"></md-icon>
+			</md-button>
+			<h2>
+				<span>{{ 'VER' | translate }}</span>
+			</h2>
+			<span flex></span>
+
+			<span ng-include="'src/app/views/menu-opciones.html'"></span>
+		</div>
+	</md-toolbar>
+	<md-content layout="column" class="imprimir" layout-padding ng-init="ver('/FormularioCapturaValor');">
+		<md-list>
+			<md-list-item class="md-2-line md-whiteframe-z1" ng-repeat="(indicador, variables) in dato" layout="row" layout-wrap>
+				<div class="md-item-text " flex>
+					<h3>{{'INDICADOR' | translate}}: {{indicador}}</h3>
+					<div layout="column" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+		
+						<md-whiteframe class="md-whiteframe-1dp" ng-repeat="(variable, mesesillos) in variables" flex layout layout-align="center center">
+							<span>{{'VARIABLE' | translate}}: {{variable}}</span>
+		
+							<div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" flex>
+		
+								<md-whiteframe class="md-whiteframe-1dp" style="background: {{info.valor  ? 'green' : 'red' }}" ng-repeat="(mes, info) in mesesillos"
+								 flex layout layout-align="center center">
+									<span>{{meses[mes - 1] | translate}}: {{info.valor}}</span>
+								</md-whiteframe>
+							</div>
+		
+						</md-whiteframe>
+					</div>
+				</div>
+			</md-list-item>
+		</md-list>
+	</md-content>
+</div>

@@ -1,7 +1,7 @@
 <md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
  md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'">
 </md-sidenav>
-<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/FormularioCaptura')">
+<div layout="column" class="relative" layout-fill role="main" flex ng-init="index('/FormularioCapturaValor')">
 
 	<md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
 	<md-toolbar ng-show="!showSearch">
@@ -59,25 +59,43 @@
 			<table md-data-table md-progress="datos">
 				<thead md-order="query.order" md-trigger="onOrderChange">
 					<tr>
-						<th hide-sm name="ID" order-by="id"></th>
-						<th name="{{ 'CLAVE' | translate }}"></th>
-						<th name="{{ 'NOMBRE' | translate }}"></th>
+						<th hide-sm name="AÑO" width="8%"></th>
+						<th name="Indicadores" width="84%"></th>
 
-						<th></th>
+						<th width="8%"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr md-auto-select ng-repeat="dato in datos">
-						<td hide-sm>{{ dato.id }}</td>
-						<td>{{ dato.clave | uppercase }}</td>
-						<td>{{ dato.nombre | uppercase }}</td>
-
-
+					<tr md-auto-select ng-repeat="(anio, dato) in datos">
+						<td hide-sm>{{ anio }}</td>
 						<td>
+							<md-list>
+								<md-list-item class="md-2-line md-whiteframe-z1" ng-repeat="(indicador, variables) in dato" layout="row" layout-wrap>
+									<div class="md-item-text " flex>
+										<h3>{{'INDICADOR' | translate}}: {{indicador}}</h3>
+										<div layout="column" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
 
+											<md-whiteframe class="md-whiteframe-1dp" ng-repeat="(variable, mesesillos) in variables" flex
+											 layout layout-align="center center">
+												<span>{{'VARIABLE' | translate}}: {{variable}}</span>
+
+												<div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" flex>
+												
+													<md-whiteframe class="md-whiteframe-1dp" style="background: {{info  ? 'green' : 'red' }}" ng-repeat="(mes, info) in mesesillos" flex layout layout-align="center center">
+														<span>{{meses[mes - 1] | translate}}: {{info}}</span>
+													</md-whiteframe>
+												</div>
+
+											</md-whiteframe>
+										</div>
+									</div>
+								</md-list-item>
+							</md-list>
+						</td>
+						<td>
 							<section layout="row" layout-align="end center">
 
-								<a url-modulo="ver?id={{ dato.id }}">
+								<a url-modulo="ver?id={{ anio }}">
 									<md-button class="md-icon-button md-primary" aria-label="Ver">
 										<md-icon md-svg-icon="eye"></md-icon>
 										<md-tooltip hide-sm>
@@ -86,7 +104,7 @@
 									</md-button>
 								</a>
 
-								<a url-modulo="modificar?id={{ dato.id }}">
+								<a url-modulo="modificar?id={{ anio }}">
 									<md-button class="md-icon-button md-primary" aria-label="Editar">
 										<md-icon md-svg-icon="pencil"></md-icon>
 										<md-tooltip hide-sm>
@@ -94,13 +112,6 @@
 										</md-tooltip>
 									</md-button>
 								</a>
-
-								<md-button ng-click="borrar(dato.id, $index)" class="md-icon-button md-warn" aria-label="Eliminar">
-									<md-icon md-svg-src="delete"></md-icon>
-									<md-tooltip hide-sm>
-										{{ 'ELIMINAR' | translate }}
-									</md-tooltip>
-								</md-button>
 
 							</section>
 

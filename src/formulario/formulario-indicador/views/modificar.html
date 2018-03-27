@@ -1,163 +1,116 @@
-
-<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"   ng-include="'src/app/views/menu.html'"></md-sidenav>
+<style>
+  .md-select-value>span>.md-text {
+    box-shadow: 1px 1px 1px;
+    padding: 0px 3px 0px 3px;
+  }
+</style>
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
+  md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'">
+</md-sidenav>
 <div layout="column" class="relative" layout-fill role="main" flex>
-	<md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}" >
-		<md-icon md-svg-icon="plus"></md-icon>
-  	</md-button>
-	<md-progress-linear  ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999"  md-mode="indeterminate"></md-progress-linear>
-	<md-toolbar >
-		<div class="md-toolbar-tools">    
-			<md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
-		  <md-icon md-svg-icon="menu" ></md-icon>
-		    </md-button>   
-			<h2>
-			  <span>{{ 'EDITAR' | translate }}</span>
-			</h2>
-			<span flex></span>	
-            
-            <span ng-include="'src/app/views/menu-opciones.html'"></span>
-		</div>
-	</md-toolbar>
-	<md-content layout="column"  layout-padding>
-	
-<form role="form" name="forma" ng-init="ver('/Indicador');Alertas();">
-<md-content layout="column" class="imprimir" >		
-<md-tabs md-dynamic-height md-border-bottom>               
-  <md-tab label="{{ 'DATOS_GENERALES' | translate }}">
-    <md-content layout="column"  layout-padding>
-      <md-input-container flex >     
-                  <label>{{ 'CODIGO' | translate }}</label>
-                        <input required  name="codigo" ng-model="dato.codigo" minlength="3" maxlength="25">
-                        <div ng-messages="forma.codigo.$error">
-                          <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
-                          <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
-                          <div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
-                        </div>
-                </md-input-container>
-                      
-                <md-input-container flex >     
-                  <label>{{ 'NOMBRE' | translate }}</label>
-                        <input required  name="nombre" ng-model="dato.nombre" minlength="3" maxlength="255">
-                        <div ng-messages="forma.nombre.$error">
-                          <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
-                          <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
-                          <div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
-                        </div>
-                </md-input-container>
+  <md-button class="md-fab md-fab-bottom-right md-warn" ng-click="nuevo()" aria-label="{{ 'NUEVA' | translate }}">
+    <md-icon md-svg-icon="plus"></md-icon>
+  </md-button>
+  <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+        <md-icon md-svg-icon="menu"></md-icon>
+      </md-button>
+      <h2>
+        <span>{{ 'EDITAR' | translate }}</span>
+      </h2>
+      <span flex></span>
 
-                <p>{{ 'CATEGORIA' | translate }}: <span class="radioValue">{{ dato.categoria }}</span> </p>
-                <md-radio-group ng-model="dato.categoria">
-                  <md-radio-button value="RECURSO"  >{{ 'RECURSO' | translate }}</md-radio-button>
-                  <md-radio-button value="CALIDAD" > {{ 'CALIDAD' | translate }} </md-radio-button>
-                </md-radio-group>
-                        
-                </md-content>
+      <span ng-include="'src/app/views/menu-opciones.html'"></span>
+    </div>
+  </md-toolbar>
+  <md-content layout="column" layout-padding>
+
+    <form role="form" name="forma" ng-init="ver('/FormularioCaptura'); usuarios = []; cargarCatalogo('/usuarios', usuarios);">
+      <md-content layout="column" class="imprimir">
+
+        <md-content layout="row" layout-padding>
+          <md-input-container flex>
+            <label>{{ 'CLAVE' | translate }}</label>
+            <input required name="clave" ng-model="dato.clave" minlength="3" maxlength="25">
+            <div ng-messages="forma.clave.$error">
+              <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+              <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+              <div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container flex>
+            <label>{{ 'NOMBRE' | translate }}</label>
+            <input required name="nombre" ng-model="dato.nombre" minlength="3" maxlength="255">
+            <div ng-messages="forma.nombre.$error">
+              <div ng-message="required">{{ 'CAMPO_REQUERIDO' | translate }}</div>
+              <div ng-message="minlength">{{ 'CAMPO_MIN_L' | translate }} 3</div>
+              <div ng-message="maxlength">{{ 'CAMPO_MAX_L' | translate }} 255</div>
+            </div>
+          </md-input-container>
           
-                <md-content layout-padding>
-                  <h3>
-                  {{ 'COLOR' | translate }} <span ng-attr-style="border: 1px solid #333; background: rgb({{color.red}},{{color.green}},{{color.blue}})">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  </h3>
-                  <div layout>
-                    <div flex="10" layout layout-align="center top">
-                      <span class="md-body-1">{{'ROJO' | translate}}</span>
-                    </div>
-                    <md-slider flex min="0" max="255" ng-model="color.red" aria-label="red" id="red-slider" class="md-accent">
-                    </md-slider>
-                    <div flex="20" layout layout-align="center center">
-                      <md-input-container layout>
-                      <input flex type="number" ng-model="color.red" aria-label="red" aria-controls="red-slider" max="255" min="0">
-                      </md-input-container>
-                    </div>
-                  </div>
-                  <div layout>
-                    <div flex="10" layout layout-align="center top">
-                      <span class="md-body-1">{{'VERDE' | translate}}</span>
-                    </div>
-                    <md-slider flex ng-model="color.green" min="0" max="255" aria-label="green" id="green-slider" md-theme="altThemeg" class="md-primary">
-                    </md-slider>
-                    <div flex="20" layout layout-align="center center">
-                      <md-input-container layout>
-                      <input flex type="number" ng-model="color.green" aria-label="green" aria-controls="green-slider" max="255" min="0">
-                      </md-input-container>
-                    </div>
-                  </div>
-                  <div layout>
-                    <div flex="10" layout layout-align="center top">
-                      <span class="md-body-1">{{'AZUL' | translate}}</span>
-                    </div>
-                    <md-slider flex ng-model="color.blue" min="0" max="255" aria-label="blue" id="blue-slider" class="md-primary">
-                    </md-slider>
-                    <div flex="20" layout layout-align="center top">
-                      <md-input-container >
-                      <input flex type="number" ng-model="color.blue" aria-label="blue" aria-controls="blue-slider" max="255" min="0">
-                      </md-input-container>
-                    </div>
-                  </div>
-            </md-content> 
-  </md-tab>
-
-  <md-tab label="{{ 'ALERTA' | translate }}">
-    <br>
-    <md-button class="md-raised md-primary" type="button" ng-click="agregarAlerta()"><md-icon md-svg-icon="plus"></md-icon>
-    <md-tooltip md-direction="right" show-gt-sm>{{'AGREGAR' | translate}}</md-tooltip> </md-button> 
-    <md-button class="md-raised md-accent" type="button" ng-show="dato.indicador_alertas.length > 0" ng-click="limpiarAlerta()"><md-icon md-svg-icon="delete-forever"></md-icon> <md-tooltip md-direction="right" show-gt-sm>{{'LIMPIAR' | translate}}</md-tooltip></md-button> 
-    <md-data-table-container>
-  <table md-data-table md-progress="datos">
-    <thead md-order="query.order" md-trigger="onOrderChange">
-      <tr>
-              <th name="{{  'MINIMO' | translate }}"></th>
-              <th name="{{  'MAXIMO' | translate }}"></th>
-              <th name="{{  'COLOR' | translate }}"></th>
-              <th ></th>              
-            </tr>
-    </thead>
-    <tbody>
-      <tr md-auto-select ng-repeat="item in dato.indicador_alertas">
-          
-            
-            <td>
-              <md-input-container flex layout>
-                <input aria-label="min{{$index}}" string-to-number type="number" min="0" max="100" ng-model="item.minimo" readonly="readonly">
-              </md-input-container>
-            </td>
-            <td>
-              <md-input-container flex layout>
-                <input aria-label="max{{$index}}" string-to-number type="number" min="{{dato.indicador_alertas[$index].minimo}}" max="100" ng-model="item.maximo" ng-change="calcularMinimo($index)" required>
-              </md-input-container></td>
-            <td>
-              <md-input-container flex layout>             
-                <md-select placeholder="Color" ng-model="item.idAlerta" ng-change="getIndexOf(item.idAlerta,$index)"  ng-init="getIndexOf(item.idAlerta,$index)">
-                  <md-option ng-repeat="campo in alertas" value="{{campo.id}}">{{campo.nombre}}</md-option>
-                </md-select>
-                </md-input-container>
-            </td>
-                        
-            <td><span class="img-circle" style="background: {{ colorColor[$index] }}; display:block; height:25px; width:25px;"></span></td>
-            <td>
-              <md-button type="button" class="md-warn" aria-label="Quitar" ng-click="quitarAlerta($index)">
-                <md-icon md-svg-icon="delete"></md-icon>
-              </md-button>
-            </td>
-          </tr>
-    </tbody>
-  </table>
-</md-data-table-container>
-  </md-tab>
 
 
-  <md-tab label="{{ 'VALIDACION' | translate }}" >
-    <md-content layout="column" layout-marging layout-padding ng-include="'src/catalogos/indicador/views/form_validacion.html'">
-    </md-content>
-  </md-tab>
+        </md-content>
 
-  <md-tab label="{{ 'INDICACIONES' | translate }}">
-    <md-input-container class="md-block">
-      <label>{{ 'INDICACIONES' | translate }}</label>
-      <textarea ng-model="dato.indicacion" columns="1" rows="50"></textarea>
-    </md-input-container>
-  </md-tab>
-</md-tabs>			
-				  	
-</md-content>
-</form>
-</md-content></div>
+        <md-content layout="row" layout-padding>
+          <label>
+            <br>{{'VARIABLES' | translate}}</label>
+
+          <md-button class="md-raised md-primary" type="button" ng-click="agregarVariable()">
+            <md-icon md-svg-icon="plus"></md-icon>
+            <md-tooltip md-direction="right" show-gt-sm>{{'AGREGAR' | translate}}</md-tooltip>
+          </md-button>
+          <md-button class="md-raised md-accent" type="button" ng-show="dato.formulario_captura_variable.length > 0" ng-click="limpiarVariable()">
+            <md-icon md-svg-icon="delete-forever"></md-icon>
+            <md-tooltip md-direction="right" show-gt-sm>{{'LIMPIAR' | translate}}</md-tooltip>
+          </md-button>
+        </md-content>
+        <md-content layout="row" layout-padding>
+          <md-data-table-container style=" width: 100%; ">
+            <table md-data-table md-progress="dato">
+              <thead md-order="query.order" md-trigger="onOrderChange">
+                <tr>
+                  <th name="{{  'VARIABLE' | translate }}" width="20%"></th>
+                  <th name="{{  'USUARIO' | translate }}" width="80%"></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr md-auto-select ng-repeat="item in dato.formulario_captura_variable">
+                  <td>
+                    <md-input-container flex layout>
+                      <input aria-label="var{{$index}}" ng-model="item.nombre">
+                    </md-input-container>
+                  </td>
+                  <td>
+
+                    <md-select style="box-shadow: 1px 1px 0px #0000001f;" ng-model="item.formulario_captura_usuarios" md-on-close="clearSearchTerm()"
+                      data-md-container-class="selectdemoSelectHeader" multiple>
+                      <md-select-header class="demo-select-header">
+                        <input ng-model="searchTerm" type="search" placeholder="Buscar usuario." class="demo-header-searchbox md-text">
+                      </md-select-header>
+                      <md-optgroup label="user">
+                        <md-option ng-value="val.id" ng-repeat="val in usuarios |
+                                        filter:searchSelectTerm">{{val.email}}</md-option>
+                      </md-optgroup>
+                    </md-select>
+                  </td>
+                  <td>
+                    <md-button class="md-raised md-accent" type="button" ng-click="quitarVariable($index)">
+                      <md-icon md-svg-icon="delete-forever"></md-icon>
+                    </md-button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </md-data-table-container>
+
+        </md-content>
+
+      </md-content>
+    </form>
+  </md-content>
+</div>

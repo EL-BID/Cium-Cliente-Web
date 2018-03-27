@@ -338,7 +338,25 @@
 	"REPORTE": "Report",
 	"NUEVA_EVA_RECURSO": "New Evaluation Resources",
 	"NUEVA_EVA_PROCESO": "New Evaluation Process",
-	"FORMULARIO_CAPTURA": "Capture form",
+
+	
+	"FORMULARIO-INDICADOR": "Indicator form",	
+	"FORMULARIO-CAPTURA": "Capture form",
 	"FORMULARIO": "Create form",
-	"CAPTURA": "Capture form"
+	"CAPTURA": "Capture form",
+	"ANIO-CAPTURA": "Year of capture",
+	"CLAVE": "Key",
+	"VARIABLE": "Variable",
+	"ENERO": "January",
+	"FEBRERO": "February",
+	"MARZO": "March",
+	"ABRIL": "April",
+	"MAYO": "May",
+	"JUNIO": "June",
+	"JULIO": "Julio",
+	"AGOSTO": "August",
+	"SEPTIEMBRE": "September",
+	"OCTUBRE": "October",
+	"NOVIEMBRE": "November",
+	"DICIEMBRE": "December"
 }

@@ -1,5 +1,5 @@
 (function () {
 	'use strict';
-	angular.module('FormularioModule')
+	angular.module('CapturaIndicadorModule')
 
 })();

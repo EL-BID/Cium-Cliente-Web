@@ -1,0 +1,63 @@
+<md-sidenav ng-class="(menuCerrado)?'menu-principal-izq':''" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
+  md-is-locked-open="$mdMedia('gt-sm')" ng-include="'src/app/views/menu.html'">
+</md-sidenav>
+<div layout="column" class="relative" layout-fill role="main" flex>
+
+  <md-progress-linear ng-if="cargando" class="md-warn" style="position:fixed; top: 0px; left:0px; z-index:999" md-mode="indeterminate"></md-progress-linear>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button hide-gt-md class="md-icon-button " ng-click="toggleMenu()" aria-label="Menu">
+        <md-icon md-svg-icon="menu"></md-icon>
+      </md-button>
+      <h2>
+        <span>{{ 'NUEVO' | translate }}</span>
+      </h2>
+      <span flex></span>
+
+      <span ng-include="'src/app/views/menu-opciones.html'"></span>
+    </div>
+  </md-toolbar>
+  <md-content layout="column" layout-padding>
+
+    <form role="form" name="forma" ng-init="index('/FormularioCapturaValor'); usuarios = []; cargarCatalogo('/usuarios', usuarios);">
+      <md-content layout="column" class="imprimir">
+        <md-select flex placeholder="{{ 'ANIO-CAPTURA' | translate }}" ng-model="anio" ng-change="cambiar_anio_nuevo()">
+          <md-option ng-repeat="item in anios" value="{{item}}">
+            {{item}}
+          </md-option>
+        </md-select>
+
+        <md-button href="#/formulario-captura/modificar?id={{anio}}" title="Ir" ng-if="anio_dato" aria-label="modificar"
+          class="md-raised md-primary"> Ir a edición
+        </md-button>
+        <!-- for de indicadores -->
+        <div layout="column" ng-cloak ng-repeat="(clave, indicadores) in dato">
+          <md-toolbar class="md-info">
+            <div class="md-toolbar-tools">
+              <h2 class="md-flex">{{'INDICADOR' | translate}}: {{clave}}</h2>
+            </div>
+          </md-toolbar>
+
+          <md-content flex layout-padding>
+            <!-- for de variables -->
+            <md-tabs md-dynamic-height md-border-bottom>
+              <md-tab ng-repeat="(var, variables) in indicadores" label="{{var}}">
+                <md-content class="md-padding">
+                  <!-- for de meses en el año -->
+                  <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm ng-repeat="mes in variables">
+                      <label>{{meses[$index] | translate}}</label>
+                      <input ng-model="mes.valor" type="number">
+                    </md-input-container>
+                  </div>
+                </md-content>
+              </md-tab>
+            </md-tabs>
+          </md-content>
+        </div>
+
+      </md-content>
+    </form>
+    <span ng-init="cargando = false;"></span>
+  </md-content>
+</div>
