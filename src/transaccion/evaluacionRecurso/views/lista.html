@@ -67,17 +67,19 @@
 <div layout="column" layout-fill>
 	<md-toolbar md-colors="{background: 'blue-100'}">
 		<div class="md-toolbar-tools">
-			<md-select flex placeholder="{{ 'CONE' | translate }}" ng-model="cone">                             
+			<md-select flex placeholder="{{ 'CONE' | translate }}" ng-model="cone">
+				<md-option value="">{{'ALL' | translate }}</md-option>                                
 				<md-option ng-repeat="item in cat_cone" value="{{item.nombre}}">
 				  {{item.nombre}}
 				</md-option>                      
 			</md-select>
-			<md-select flex placeholder="{{ 'JURISDICCION' | translate }}" ng-model="jurisdiccion">                             
+			<md-select flex placeholder="{{ 'JURISDICCION' | translate }}" ng-model="jurisdiccion">     <md-option value="">{{'ALL' | translate }}</md-option>                           
 				<md-option ng-repeat="item in cat_jurisdiccion" value="{{item.jurisdiccion}}">
 				  {{item.jurisdiccion}}
 				</md-option>                      
 			</md-select>
-			<md-select flex placeholder="{{ 'USUARIO' | translate }}" ng-model="email">                             
+			<md-select flex placeholder="{{ 'USUARIO' | translate }}" ng-model="email">
+				<md-option value="">{{'ALL' | translate }}</md-option>                                
 				<md-option ng-repeat="item in cat_usuario" value="{{item.email}}">
 				  {{item.email}}
 				</md-option>                      
@@ -91,13 +93,11 @@
 				</div>
 			</div>
 
-			<md-select flex placeholder="{{ 'TERMINADO' | translate }}" ng-model="cerrado">                             
-				<md-option value="1">
-				  {{ 'SI' | translate}}
-				</md-option>  
-				<md-option value="0">
-				  {{ 'NO' | translate}}
-				</md-option>                      
+			<md-select flex placeholder="{{ 'INDICADOR' | translate }}" ng-model="indicador">  
+				<md-option value="">{{'ALL' | translate }}</md-option>                              
+				<md-option ng-repeat="item in cat_indicadores" value="{{item.id}}">
+				  {{item.codigo}} - {{item.nombre}}
+				</md-option>                                  
 			</md-select>
 
 			<md-button ng-click="init()">

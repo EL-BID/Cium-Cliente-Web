@@ -101,6 +101,7 @@
             $scope.cat_cone = [];
             $scope.cat_jurisdiccion = [];
             $scope.cat_usuario = [];
+            $scope.cat_indicadores = [];
 
             $scope.cargarCat = function(url, modelo) {
                 $scope.cargando = true;
@@ -114,6 +115,7 @@
             $scope.cargarCat('/Cone', $scope.cat_cone);
             $scope.cargarCat('/Jurisdiccion', $scope.cat_jurisdiccion);
             $scope.cargarCat('/usuarios', $scope.cat_usuario);
+            $scope.cargarCat('/Indicador?categoria=CALIDAD', $scope.cat_indicadores);
 
             $scope.cargarCatalogo = function(url, modelo, callback) {
                 $scope.cargando = true;
@@ -356,7 +358,7 @@
             $scope.jurisdiccion = '';
             $scope.email = '';
             $scope.cone = '';
-            $scope.cerrado = 1;
+            $scope.indicador = '';
             $scope.desde = '';
             $scope.hasta = '';            
 
@@ -370,7 +372,7 @@
                 var jurisdiccion = $scope.jurisdiccion;
                 var email = $scope.email;
                 var cone = $scope.cone;
-                var cerrado = $scope.cerrado;
+                var indicador = $scope.indicador;
                 var desde = $scope.desde ? moment($scope.desde).format('YYYY-MM-DD') : '';
                 var hasta = $scope.hasta ? moment($scope.hasta).format('YYYY-MM-DD') : '';
 
@@ -383,7 +385,7 @@
                     + "&jurisdiccion=" + jurisdiccion
                     + "&email=" + email
                     + "&cone=" + cone
-                    + "&cerrado=" + cerrado
+                    + "&indicador=" + indicador
                     + "&desde=" + desde
                     + "&hasta=" + hasta , function(data) {
                     if (data.status == '407')
