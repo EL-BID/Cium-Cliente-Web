@@ -90,19 +90,19 @@ http://localhost/cium
 
 #### Dependencias:
 
-Todas la dependencias que requiere CIUM para funcionar, están en el archivo [bower.json](https://github.com/checherman/CLIENTE-CIUM/bower.json):
+Todas la dependencias que requiere CIUM para funcionar, están en el archivo [bower.json](https://github.com/checherman/Cium-Cliente-Web/bower.json):
 
 El desarrollo de CIUM esta construido en 2 partes:
 
 1.  La [API](https://github.com/checherman/Cium-APIRESTfull) que se conecta la arquitectura de Base de Datos. (Seguir los pasos de instalación y configuración de la API).
 
-2. El [Cliente Web](https://github.com/checherman/CLIENTE-CIUM) que solicita y envía datos a la API antes mencionada.
+2. El [Cliente Web](https://github.com/checherman/Cium-Cliente-Web) que solicita y envía datos a la API antes mencionada.
 
 3. El [Cliente Android](https://github.com/joramdeveloper/CIUM_movil) que almacena los datos off-line y se sincroniza con la API
 
   
 
-Para tener este vinculo y conexión entre API y CLIENTE, debe asegurarse que el archivos [url.js](https://github.com/checherman/CLIENTE-CIUM/tree/master/src/app/url.js) tengan las cadenas de conexión correspondientes
+Para tener este vinculo y conexión entre API y CLIENTE, debe asegurarse que el archivos [url.js](https://github.com/checherman/Cium-Cliente-Web/tree/master/src/app/url.js) tengan las cadenas de conexión correspondientes
 
   
 
@@ -144,11 +144,11 @@ Puedes ver el código de conducta para este proyecto en el siguiente archivo [CO
   
 
 ---
- - Secretaria de salud del estado de chiapas ISECH
+> - Secretaria de salud del estado de chiapas ISECH
 > - Salud Mesoamerica 2015 SM2015
 > - akira.redwolf@gmail.com 
 > - h.cortes@gmail.com 
-* **[Eliecer Ramirez Esquinca](https://github.com/checherman "Github")**
+> * **[Eliecer Ramirez Esquinca](https://github.com/checherman "Github")**
 
 
   
@@ -164,7 +164,7 @@ Para hacer el correcto uso del Cliente Web para CIUM, previamente tienen que ins
 ### Licencia
 ---
 
-Los detalles de licencia para este código fuente se encuentran en el archivo [LICENCIA.md](https://github.com/checherman/CLIENTE-CIUM/blob/master/LICENSE.md)
+Los detalles de licencia para este código fuente se encuentran en el archivo [LICENCIA.md](https://github.com/checherman/Cium-Cliente-Web/blob/master/LICENSE.md)
 
   
 
