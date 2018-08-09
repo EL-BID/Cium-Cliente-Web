@@ -52,10 +52,8 @@ El desarrollo del Cliente web de CIUM se programó en [Angular js](https://angul
 
 Para poder instalar y utilizar el Cliente web, deberá asegurarse que su servidor cumpla con los siguientes requisitos:
 
-  
-* Angular
-* Material Design
-* OAuth 2.0 [Salud ID]('http://id.saludchiapas.gob.mx')
+[Apache]('https://www.apache.org/')  
+[Bower]('http://bower.io/')
 
 
 *Si algo de lo anterior mencionado no se instalara correctamente, podrá consultar la documentación oficial de cada paquete de instalación*
@@ -92,7 +90,7 @@ http://localhost/cium
 
 Todas la dependencias que requiere CIUM para funcionar, están en el archivo [bower.json](https://github.com/checherman/Cium-Cliente-Web/bower.json):
 
-El desarrollo de CIUM esta construido en 2 partes:
+El desarrollo de CIUM esta construido en 3 partes:
 
 1.  La [API](https://github.com/checherman/Cium-APIRESTfull) que se conecta la arquitectura de Base de Datos. (Seguir los pasos de instalación y configuración de la API).
 
