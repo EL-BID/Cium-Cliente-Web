@@ -6,8 +6,7 @@ Esta herramienta digital forma parte del catálogo de herramientas del **Banco I
 
   
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)]
-[![License](https://poser.pugx.org/laravel/framework/license.svg)]
+[![Build Status](https://travis-ci.org/checherman/Cium-Cliente-Web.svg?branch=master)]
 
 ### Descripción y contexto
 
@@ -162,7 +161,7 @@ Para hacer el correcto uso del Cliente Web para CIUM, previamente tienen que ins
 ### Licencia
 ---
 
-Los detalles de licencia para este código fuente se encuentran en el archivo [LICENCIA.md](https://github.com/checherman/Cium-Cliente-Web/blob/master/LICENSE.md)
+La Documentación de Soporte y Uso del software se encuentra licenciada bajo Creative Commons IGO 3.0 Atribución-NoComercial-SinObraDerivada (CC-IGO 3.0 BY-NC-ND) [LICENCIA.md](https://github.com/checherman/Cium-Cliente-Web/blob/master/LICENSE.md)
 
   
 
