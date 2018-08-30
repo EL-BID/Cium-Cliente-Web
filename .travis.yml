@@ -4,6 +4,7 @@ node_js:
 before_install:
   - npm install -g grunt-cli bower
   - bower install
+  - grunt --force
 sudo: required
 cache:
   directories:
