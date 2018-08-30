@@ -4,7 +4,7 @@ node_js:
 before_install:
   - npm install -g bower
 install:
-  - bower install
+  - bower update
 cache:
   directories:
     - node_modules
