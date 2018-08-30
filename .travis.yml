@@ -2,7 +2,7 @@ language: node_js
 node_js:
     - "0.11"
 before_install:
-  - npm install -g grunt-cli bower
+  - npm install -g grunt bower
   - bower install
   - grunt --force
 sudo: required
