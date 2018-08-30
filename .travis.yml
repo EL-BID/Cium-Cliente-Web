@@ -1,2 +1,10 @@
-#.travis.yml for gmpsdistance
-language: php
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - npm install -g bower
+install:
+  - bower install
+cache:
+  directories:
+    - node_modules

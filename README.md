@@ -51,16 +51,23 @@ El desarrollo del Cliente web de CIUM se programó en [Angular js](https://angul
 
 Para poder instalar y utilizar el Cliente web, deberá asegurarse que su servidor cumpla con los siguientes requisitos:
 
-[Apache]('https://www.apache.org/')  
-[Bower]('http://bower.io/')
+[Apache](https://www.apache.org)  
+[Bower](http://bower.io)
 
 
 *Si algo de lo anterior mencionado no se instalara correctamente, podrá consultar la documentación oficial de cada paquete de instalación*
   
 
 #### Instalación y Configuración:
+Instalar bower
 
-Una ves instalado todo lo anterior, abrimos una consola en nuestro servidor para clonar el proyecto en base al [Repositorio](https://github.com/checherman/Cium-Cliente-Web.git).
+```
+
+npm install -g bower
+
+```
+
+Una ves instalado  lo anterior, abrimos una consola en nuestro servidor para clonar el proyecto en base al [Repositorio](https://github.com/checherman/Cium-Cliente-Web.git).
 
   
 
@@ -77,7 +84,7 @@ Una ves clonado el proyecto, cargamos e instalamos todos los paquetes y sus depe
 
 ```
 
-`bower update` 
+bower install 
 
 ```
 Una ves instaladas nuestras las dependencias con el comando anterior, entramos a localhost:
