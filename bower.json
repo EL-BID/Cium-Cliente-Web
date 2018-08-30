@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "angular-material": "~1.1.0",
-    "angular-aria": "~1.4.8",
+    "angular-aria": "~1.6.6",
     "angular-route": "~1.4.7",
     "ngstorage": "~0.3.0",
     "angular-translate": "~2.7.0",
