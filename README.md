@@ -5,8 +5,8 @@ Esta herramienta digital forma parte del catálogo de herramientas del **Banco I
 ## Cliente Web CIUM (Captura de Indicadores en Unidades Médicas).
 
   
+[![Build Status](https://travis-ci.org/checherman/Cium-Cliente-Web.svg?branch=master)](https://travis-ci.org/checherman/Cium-Cliente-Web)
 
-[![Build Status](https://travis-ci.org/checherman/Cium-Cliente-Web.svg?branch=master)]
 
 ### Descripción y contexto
 
