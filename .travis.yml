@@ -1,13 +1,6 @@
 language: node_js
 node_js:
-    - "0.11"
+    - "6.9.4"
 before_install:
-  - npm install -g grunt-cli
-  - npm install grunt --save-dev
-  - npm install -g bower
-  - bower install
-  - grunt --force
-sudo: required
-cache:
-  directories:
-    - node_modules
+  - 'npm install -g bower grunt-cli'
+  - 'bower install'
