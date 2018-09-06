@@ -33,7 +33,8 @@
     "ngRadialGauge": "master",
     "Chart.js": "2.1.6",
     "angular-filter": "master",
-    "lf-ng-md-file-input": "~1.4.8"
+    "lf-ng-md-file-input": "~1.4.8",
+    "escape-string-regexp": "^1.0.5"
   },
   "resolutions": {
     "angular-material": "~1.1.0",
