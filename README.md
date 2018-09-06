@@ -35,7 +35,7 @@ Para guiar y ser mas explicito a cualquier usuario encargado para trabajar con C
 
 Para la continuidad en el desarrollo de CIUM se brinda un Manual Técnico:
 
-[ver](docs)
+[ver](documentacion)
 
 ### Guía de instalación
 
