@@ -5,7 +5,7 @@ Esta herramienta digital forma parte del catálogo de herramientas del **Banco I
 ## Cliente Web CIUM (Captura de Indicadores en Unidades Médicas).
 
   
-[![Build Status](https://travis-ci.org/checherman/Cium-Cliente-Web.svg?branch=master)](https://travis-ci.org/checherman/Cium-Cliente-Web)
+[![Build Status](https://travis-ci.org/EL-BID/Cium-Cliente-Web.svg?branch=master)](https://travis-ci.org/EL-BID/Cium-Cliente-Web)
 
 
 ### Descripción y contexto
@@ -67,7 +67,7 @@ npm install -g bower
 
 ```
 
-Una ves instalado  lo anterior, abrimos una consola en nuestro servidor para clonar el proyecto en base al [Repositorio](https://github.com/checherman/Cium-Cliente-Web.git).
+Una ves instalado  lo anterior, abrimos una consola en nuestro servidor para clonar el proyecto en base al [Repositorio](https://github.com/EL-BID/Cium-Cliente-Web.git).
 
   
 
@@ -75,7 +75,7 @@ Ejecutamos el siguiente comando en nuestra consola:
 
 ```
 
-git clone https://github.com/checherman/Cium-Cliente-Web.git
+git clone https://github.com/EL-BID/Cium-Cliente-Web.git
 
 ```
 
@@ -94,19 +94,19 @@ http://localhost/cium
 
 #### Dependencias:
 
-Todas la dependencias que requiere CIUM para funcionar, están en el archivo [bower.json](https://github.com/checherman/Cium-Cliente-Web/bower.json):
+Todas la dependencias que requiere CIUM para funcionar, están en el archivo [bower.json](https://github.com/EL-BID/Cium-Cliente-Web/bower.json):
 
 El desarrollo de CIUM esta construido en 3 partes:
 
-1.  La [API](https://github.com/checherman/Cium-APIRESTfull) que se conecta la arquitectura de Base de Datos. (Seguir los pasos de instalación y configuración de la API).
+1.  La [API](https://github.com/EL-BID/Cium-APIRESTfull) que se conecta la arquitectura de Base de Datos. (Seguir los pasos de instalación y configuración de la API).
 
-2. El [Cliente Web](https://github.com/checherman/Cium-Cliente-Web) que solicita y envía datos a la API antes mencionada.
+2. El [Cliente Web](https://github.com/EL-BID/Cium-Cliente-Web) que solicita y envía datos a la API antes mencionada.
 
 3. El [Cliente Android](https://github.com/joramdeveloper/CIUM_movil) que almacena los datos off-line y se sincroniza con la API
 
   
 
-Para tener este vinculo y conexión entre API y CLIENTE, debe asegurarse que el archivos [url.js](https://github.com/checherman/Cium-Cliente-Web/tree/master/src/app/url.js) tengan las cadenas de conexión correspondientes
+Para tener este vinculo y conexión entre API y CLIENTE, debe asegurarse que el archivos [url.js](https://github.com/EL-BID/Cium-Cliente-Web/tree/master/src/app/url.js) tengan las cadenas de conexión correspondientes
 
   
 
@@ -161,14 +161,14 @@ Puedes ver el código de conducta para este proyecto en el siguiente archivo [CO
 
 ---
 
-Para hacer el correcto uso del Cliente Web para CIUM, previamente tienen que instalar la [API](https://github.com/checherman/Cium-APIRESTfull) que contiene las conexiones correspondientes a la base de datos y la encargada de realizar peticiones a los datos.
+Para hacer el correcto uso del Cliente Web para CIUM, previamente tienen que instalar la [API](https://github.com/EL-BID/Cium-APIRESTfull) que contiene las conexiones correspondientes a la base de datos y la encargada de realizar peticiones a los datos.
 
   
 
 ### Licencia
 ---
 
-La Documentación de Soporte y Uso del software se encuentra licenciada bajo Creative Commons IGO 3.0 Atribución-NoComercial-SinObraDerivada (CC-IGO 3.0 BY-NC-ND) [LICENCIA.md](https://github.com/checherman/Cium-Cliente-Web/blob/master/LICENSE.md)
+La Documentación de Soporte y Uso del software se encuentra licenciada bajo Creative Commons IGO 3.0 Atribución-NoComercial-SinObraDerivada (CC-IGO 3.0 BY-NC-ND) [LICENCIA.md](https://github.com/EL-BID/Cium-Cliente-Web/blob/master/LICENSE.md)
 
   
 
