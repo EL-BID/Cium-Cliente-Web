@@ -6,8 +6,8 @@ Esta herramienta digital forma parte del catálogo de herramientas del **Banco I
 
   
 [![Build Status](https://travis-ci.org/EL-BID/Cium-Cliente-Web.svg?branch=master)](https://travis-ci.org/EL-BID/Cium-Cliente-Web)
-[![Analytics](https://gabeacon.irvinlim.com/UA-4677001-16/Cium-Cliente-Web/readme?useReferer)](https://github.com/EL-BID/Cium-Cliente-Web)
-
+![analytics image (flat)](https://raw.githubusercontent.com/vitr/google-analytics-beacon/master/static/badge-flat.gif)
+![analytics](https://www.google-analytics.com/collect?v=1&cid=555&t=pageview&ec=repo&ea=open&dp=/Cium-Cliente-Web/readme&dt=&tid=UA-4677001-16)
 
 
 ### Descripción y contexto
